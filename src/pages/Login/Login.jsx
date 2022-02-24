@@ -1,16 +1,15 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import classes from "./Login.module.css";
 import logo from "../../assets/company_name/Travelist.svg";
-import hidePass from "../../assets/img/hidePass.svg";
-import showPass from "../../assets/img/showPass.svg";
+import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <Fragment>
       <div className={classes.mainWrapper}>
         <div className={classes.headerContainer}>
-          <a href="" className={classes.logoContainer}>
+          <Link to={"/"} className={classes.logoContainer}>
             <img src={logo} alt="Travelist" />
-          </a>
+          </Link>
         </div>
         <div className={classes.mainContainer}>
           <div className={classes.leftContainer}>
@@ -239,15 +238,15 @@ const Login = () => {
                   />
                 </div>
                 <div className={classes.forgetPasswordContainer}>
-                  <a href="" className={classes.forgetPassword}>
+                  <Link to={"/"} className={classes.forgetPassword}>
                     Forgot Password
-                  </a>
+                  </Link>
                 </div>
                 <button className={classes.submitLogin}>Login</button>
                 <div className={classes.createAccountBtnContainer}>
-                  <a href="" className={classes.createAccountBtn}>
+                  <Link to={"/register"} className={classes.createAccountBtn}>
                     Don't have an account yet?
-                  </a>
+                  </Link>
                 </div>
               </form>
             </div>
