@@ -1,0 +1,245 @@
+.mainWrapper {
+  max-width: 2600px;
+  margin: auto;
+  padding-bottom: 40px;
+}
+.headerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.mainContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.leftContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+  margin-left: 20px;
+}
+
+.logoContainer {
+  padding: 30px 10px;
+}
+.logoContainer img {
+  width: 100%;
+}
+#mainSVG {
+  width: 90%;
+  height: 100%;
+  max-height: 100vh;
+}
+#shoppingcart {
+  animation: shoppingcartMove 4s infinite;
+}
+
+@keyframes shoppingcartMove {
+  0% {
+    transform: rotate(-3deg);
+  }
+  49% {
+    transform: rotate(2deg);
+  }
+  100% {
+    transform: rotate(-3deg);
+  }
+}
+#rect1 {
+  animation: rect1Move 4s 0.2s infinite;
+}
+#rect2 {
+  animation: rect2Move 4s 0.3s infinite;
+}
+#rect3 {
+  animation: rect3Move 3s 0.1s infinite;
+}
+@keyframes rect1Move {
+  0% {
+    width: 12%;
+  }
+  49% {
+    width: 5%;
+  }
+  100% {
+    width: 12%;
+  }
+}
+@keyframes rect2Move {
+  0% {
+    width: 5%;
+  }
+  49% {
+    width: 2%;
+  }
+  100% {
+    width: 5%;
+  }
+}
+@keyframes rect3Move {
+  0% {
+    width: 7%;
+  }
+  49% {
+    width: 2%;
+  }
+  100% {
+    width: 7%;
+  }
+}
+
+#tick1 {
+  opacity: 0;
+  animation: tick1Move 3s 3s forwards;
+}
+#tick2 {
+  opacity: 0;
+  animation: tick1Move 3s 5s forwards;
+}
+#tick3 {
+  opacity: 0;
+  animation: tick1Move 3s 7s forwards;
+}
+@keyframes tick1Move {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  20% {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+  }
+}
+.rightContainer {
+  padding: 20px;
+  width: 55%;
+}
+
+.formContainer {
+  display: flex;
+  justify-content: center;
+}
+.loginTitle {
+  text-align: center;
+  font-size: 2.5rem;
+}
+.loginForm {
+  border-radius: 20px;
+  box-shadow: 1px 1px 10px 10px var(--primaryT);
+  display: flex;
+  flex-direction: column;
+  margin: 20px 20px 40px 20px;
+  padding: 30px;
+  width: 70%;
+  transition: all 0.4s;
+}
+
+.loginForm:hover {
+  box-shadow: 1px 1px 20px 20px var(--primaryT);
+  transform: scale(1.004);
+}
+.formChild {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+  width: 100%;
+  font-size: 1.5rem;
+}
+.formChild label {
+  font-weight: 500;
+}
+.formChild input {
+  padding: 5px;
+  font-size: 1.5rem;
+  border: 1px solid var(--primary);
+  box-shadow: 1px 3px 10px 3px var(--primaryT);
+  border-radius: 5px;
+  font-weight: 400;
+}
+.formChild input:focus {
+  outline: none;
+  box-shadow: 1px 3px 15px 6px var(--primaryT);
+  transform: scale(1.01);
+}
+.formPass {
+  position: relative;
+}
+.togglePassBtn {
+  position: absolute;
+  top: calc(1.5rem + 30px);
+  right: 15px;
+  transform: translateY(-50%);
+  width: 30px;
+}
+.forgetPasswordContainer {
+  margin: 20px 0;
+}
+.forgetPassword {
+  color: var(--primary);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.forgetPassword:hover {
+  color: var(--primaryD);
+}
+.submitLogin {
+  cursor: pointer;
+  background-color: var(--primary);
+  border: none;
+  padding: 1em 0;
+  margin: 20px 0 50px 0;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 1px 10px 10px 4px var(--primaryT);
+  transition: all 0.4s;
+}
+.submitLogin:hover {
+  transform: scale(1.01);
+  box-shadow: 1px 10px 15px 10px var(--primaryT);
+}
+.submitLogin:active {
+  color: var(--primaryD);
+  box-shadow: 1px 5px 6px 3px var(--primaryT);
+  transform: scale(0.9);
+}
+
+.createAccountBtn {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+.createAccountBtn:hover {
+  color: var(--primaryD);
+}
+.createAccountBtnContainer {
+  margin: 20px 0 20px 0;
+  text-align: center;
+}
+.loginFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.1rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .leftContainer {
+    width: 0;
+    display: none;
+  }
+  .rightContainer {
+    width: 100%;
+  }
+}
