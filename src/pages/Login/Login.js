@@ -4,12 +4,6 @@ import logo from "../../assets/company_name/Travelist.svg";
 import hidePass from "../../assets/img/hidePass.svg";
 import showPass from "../../assets/img/showPass.svg";
 const Login = () => {
-  const [passwordVisible, setPasswordVisible] = useState(false);
-  const togglePassword = () => {
-    setPasswordVisible((prevState) => {
-      return !prevState;
-    });
-  };
   return (
     <Fragment>
       <div className={classes.mainWrapper}>
@@ -235,17 +229,13 @@ const Login = () => {
                   <label>Email:</label>
                   <input type={"email"} placeholder="example@gmail.com" />
                 </div>
-                <div className={`${classes.formChild} ${classes.formPass}`}>
-                  <label>Password:</label>
+                <div className={`${classes.formChild}`}>
+                  <label htmlFor="password">Password:</label>
                   <input
-                    type={passwordVisible ? "text" : "password"}
+                    id="password"
+                    className={classes.passwordInput}
+                    type={"password"}
                     placeholder="example123"
-                  />
-                  <img
-                    src={passwordVisible ? showPass : hidePass}
-                    className={classes.togglePassBtn}
-                    onClick={togglePassword}
-                    alt="toggle"
                   />
                 </div>
                 <div className={classes.forgetPasswordContainer}>

@@ -171,16 +171,7 @@
   box-shadow: 1px 3px 15px 6px var(--primaryT);
   transform: scale(1.01);
 }
-.formPass {
-  position: relative;
-}
-.togglePassBtn {
-  position: absolute;
-  top: calc(1.5rem + 30px);
-  right: 15px;
-  transform: translateY(-50%);
-  width: 30px;
-}
+
 .forgetPasswordContainer {
   margin: 20px 0;
 }
