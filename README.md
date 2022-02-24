@@ -30,3 +30,7 @@
 5. git push origin `dev atau main` (Disesuaikan)
 
 ### Travelis adalah sebuah website ecommerce
+
+#### Resources used
+
+- [craftwork design](https://craftwork.design/)
