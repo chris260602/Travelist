@@ -1,16 +1,30 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import classes from "./Login.module.css";
-import logo from "../../assets/company_name/Travelist.svg";
-import { Link } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
+import SimpleHeader from "../../components/SimpleHeader/SimpleHeader";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/reducers/loginReducer/userReducer";
 const Login = () => {
+  const user = useSelector((state) => state.user);
+  const {isLoggedIn}= user;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (isLoggedIn === true) {
+      navigate("/")
+    }
+    document.title = "Login | Travelist";
+  }, [isLoggedIn]);
+  const loginSubmit = (e)=>{
+    e.preventDefault();
+    dispatch(login())
+  }
+  
   return (
     <Fragment>
       <div className={classes.mainWrapper}>
-        <div className={classes.headerContainer}>
-          <Link to={"/"} className={classes.logoContainer}>
-            <img src={logo} alt="Travelist" />
-          </Link>
-        </div>
+        <SimpleHeader />
         <div className={classes.mainContainer}>
           <div className={classes.leftContainer}>
             <svg
@@ -225,8 +239,12 @@ const Login = () => {
               <form className={classes.loginForm}>
                 <h2 className={classes.loginTitle}>Login</h2>
                 <div className={`${classes.formChild}`}>
-                  <label>Email:</label>
-                  <input type={"email"} placeholder="example@gmail.com" />
+                  <label htmlFor="email">Email:</label>
+                  <input
+                    id="email"
+                    type={"email"}
+                    placeholder="example@gmail.com"
+                  />
                 </div>
                 <div className={`${classes.formChild}`}>
                   <label htmlFor="password">Password:</label>
@@ -242,7 +260,12 @@ const Login = () => {
                     Forgot Password
                   </Link>
                 </div>
-                <button className={classes.submitLogin}>Login</button>
+                <button
+                  className={classes.submitLogin}
+                  onClick={loginSubmit}
+                >
+                  Login
+                </button>
                 <div className={classes.createAccountBtnContainer}>
                   <Link to={"/register"} className={classes.createAccountBtn}>
                     Don't have an account yet?

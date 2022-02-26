@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import classes from "./NotFound.module.css"
 import notfound from "../../assets/img/notfound.svg"
+import { useEffect } from "react";
 const NotFound = ()=>{
+    useEffect(()=>{
+        document.title = "Not Found | 404"
+    },[]);
     return (
         <div className={classes.notfoundContainer}>
             <img src={notfound} alt="" className={classes.notfoundImg}/>

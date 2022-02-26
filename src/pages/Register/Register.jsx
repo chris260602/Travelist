@@ -1,16 +1,15 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import classes from "./Register.module.css"
-import logo from "../../assets/company_name/Travelist.svg";
 import { Link } from "react-router-dom";
+import SimpleHeader from "../../components/SimpleHeader/SimpleHeader";
 
 const Register=()=>{
+    useEffect(()=>{
+        document.title = "Register | Travelist"
+    },[]);
     return(
         <Fragment>
-        <div className={classes.headerContainer}>
-          <Link to={"/"} className={classes.logoContainer}>
-            <img src={logo} alt="Travelist" />
-          </Link>
-        </div>
+        <SimpleHeader/>
         <div className={classes.formContainer}>
           <form className={classes.registerForm}>
             <h2 className={classes.registerTitle}>Register</h2>

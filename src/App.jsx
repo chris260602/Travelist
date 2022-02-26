@@ -1,9 +1,18 @@
-import "./App.css";
+import { useEffect, useState } from "react";
+import classes from "./App.module.css"
 
-function App() {
+const App = ()=> {
+  const [ctr,getCtr] = useState(1);
+  useEffect(()=>{
+    document.title = "Travelist"
+},[]);
+  const updateCtr = ()=>{
+    getCtr(ctr + 1);
+  }
+
   return (
-    <div className="App">
-      <h1>Hi</h1>
+    <div className={classes.app}>
+      <h1 className="" onClick={updateCtr}>{ctr}</h1>
     </div>
   );
 }

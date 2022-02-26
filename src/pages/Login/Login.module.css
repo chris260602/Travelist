@@ -3,12 +3,7 @@
   margin: auto;
   padding-bottom: 40px;
 }
-.headerContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-}
+
 .mainContainer {
   display: flex;
   justify-content: center;
@@ -22,12 +17,6 @@
   margin-left: 20px;
 }
 
-.logoContainer {
-  padding: 30px 10px;
-}
-.logoContainer img {
-  width: 100%;
-}
 #mainSVG {
   width: 90%;
   height: 100%;
