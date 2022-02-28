@@ -122,6 +122,11 @@
   text-align: center;
   font-size: 2.5rem;
 }
+.invalidLogin {
+  margin: 0;
+  padding: 0;
+  color: red;
+}
 .loginForm {
   border-radius: 20px;
   box-shadow: 1px 1px 10px 10px var(--primaryT);

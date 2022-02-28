@@ -34,3 +34,4 @@
 #### Resources used
 
 - [craftwork design](https://craftwork.design/)
+- [loading.io](https://loading.io/)

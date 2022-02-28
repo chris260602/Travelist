@@ -9,10 +9,19 @@ const App = ()=> {
   const updateCtr = ()=>{
     getCtr(ctr + 1);
   }
-
+const tes = async ()=>{
+  const response = await fetch("http://localhost:3003/user/getuser/1",{
+    headers : { 
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+     }
+  })
+  const data = await response.json();
+  console.log(data);
+}
   return (
     <div className={classes.app}>
-      <h1 className="" onClick={updateCtr}>{ctr}</h1>
+      <h1 className="" onClick={tes}>{ctr}</h1>
     </div>
   );
 }
