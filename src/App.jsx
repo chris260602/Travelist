@@ -1,9 +1,27 @@
-import "./App.css";
+import { useEffect, useState } from "react";
+import classes from "./App.module.css"
 
-function App() {
+const App = ()=> {
+  const [ctr,getCtr] = useState(1);
+  useEffect(()=>{
+    document.title = "Travelist"
+},[]);
+  const updateCtr = ()=>{
+    getCtr(ctr + 1);
+  }
+const tes = async ()=>{
+  const response = await fetch("http://localhost:3003/user/getuser/1",{
+    headers : { 
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+     }
+  })
+  const data = await response.json();
+  console.log(data);
+}
   return (
-    <div className="App">
-      <h1>Hi</h1>
+    <div className={classes.app}>
+      <h1 className="" onClick={tes}>{ctr}</h1>
     </div>
   );
 }

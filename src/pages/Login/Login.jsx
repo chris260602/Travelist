@@ -1,16 +1,59 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import classes from "./Login.module.css";
-import logo from "../../assets/company_name/Travelist.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import SimpleHeader from "../../components/SimpleHeader/SimpleHeader";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/reducers/loginReducer/userReducer";
+import Loader from "../../components/UI/Loader/Loader";
+import axios from "axios";
 const Login = () => {
+  const [btnClick, setBtnClick] = useState(false);
+  const [isInvalid, setIsInvalid] = useState(false);
+  const user = useSelector((state) => state.user);
+  const email = useRef();
+  const password = useRef();
+  const { isLoggedIn } = user;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (isLoggedIn === true) {
+      navigate("/");
+    }
+    document.title = "Login | Travelist";
+  }, [isLoggedIn]);
+  const loginSubmit = async (e) => {
+    e.preventDefault();
+    setBtnClick(true);
+    let data;
+    try {
+      data = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/user/login`,
+        {
+          email: email.current.value,
+          password: password.current.value,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+    } catch (e) {
+      setIsInvalid(true);
+      return;
+    } finally {
+      setBtnClick(false);
+    }
+
+    if (data) {
+      setIsInvalid(false);
+      dispatch(login(data.data.data.userid));
+    }
+  };
+
   return (
     <Fragment>
       <div className={classes.mainWrapper}>
-        <div className={classes.headerContainer}>
-          <Link to={"/"} className={classes.logoContainer}>
-            <img src={logo} alt="Travelist" />
-          </Link>
-        </div>
+        <SimpleHeader />
         <div className={classes.mainContainer}>
           <div className={classes.leftContainer}>
             <svg
@@ -27,55 +70,55 @@ const Login = () => {
                     id="Ellipse 2"
                     d="M66.4648 234.375C103.172 234.375 132.93 203.246 132.93 164.847C132.93 126.448 103.172 95.3198 66.4648 95.3198C29.7573 95.3198 0 126.448 0 164.847C0 203.246 29.7573 234.375 66.4648 234.375Z"
                     fill="#ED8F03"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                   <path
                     id="Ellipse 1"
                     d="M604.615 532.67C632.442 532.67 655 509.072 655 479.963C655 450.855 632.442 427.257 604.615 427.257C576.789 427.257 554.231 450.855 554.231 479.963C554.231 509.072 576.789 532.67 604.615 532.67Z"
                     fill="#ED8F03"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                   <path
                     id="Ellipse 3"
                     d="M447.566 97.5626C459.703 97.5626 469.542 87.2702 469.542 74.5737C469.542 61.8773 459.703 51.5848 447.566 51.5848C435.428 51.5848 425.589 61.8773 425.589 74.5737C425.589 87.2702 435.428 97.5626 447.566 97.5626Z"
                     fill="#ED8F03"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                   <path
                     id="Ellipse 4"
                     d="M64.3209 699.76C93.3316 699.76 116.85 675.158 116.85 644.811C116.85 614.463 93.3316 589.862 64.3209 589.862C35.3101 589.862 11.7922 614.463 11.7922 644.811C11.7922 675.158 35.3101 699.76 64.3209 699.76Z"
                     fill="#ED8F03"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                   <path
                     id="Ellipse 5"
                     d="M240.131 859C276.838 859 306.596 827.872 306.596 789.473C306.596 751.074 276.838 719.945 240.131 719.945C203.423 719.945 173.666 751.074 173.666 789.473C173.666 827.872 203.423 859 240.131 859Z"
                     fill="#ED8F03"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                   <path
                     id="Ellipse 6"
                     d="M327.5 214.189C352.662 214.189 373.061 192.851 373.061 166.529C373.061 140.208 352.662 118.87 327.5 118.87C302.338 118.87 281.939 140.208 281.939 166.529C281.939 192.851 302.338 214.189 327.5 214.189Z"
                     fill="#ED8F03"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                   <path
                     id="Polygon 1"
                     d="M246.027 0L286.412 73.172H205.642L246.027 0Z"
                     fill="#ED8F03"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                   <path
                     id="Polygon 2"
                     d="M70.9962 413.949L57.9466 461.738L24.9084 426.023L70.9962 413.949Z"
                     fill="#ED8F03"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                   <path
                     id="Polygon 3"
                     d="M568.703 95.3198L609.088 168.492H528.318L568.703 95.3198Z"
                     fill="#ED8F03"
-                    fill-opacity="0.25"
+                    fillOpacity="0.25"
                   />
                 </g>
                 <g id={classes.taskBox}>
@@ -121,9 +164,9 @@ const Login = () => {
                       id="Vector_2"
                       d="M138.11 185.125L150.36 197.375L174.86 171.125"
                       stroke="#25D366"
-                      stroke-width="10"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="10"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </g>
                   <g id={classes.tick2}>
@@ -131,9 +174,9 @@ const Login = () => {
                       id="Vector_3"
                       d="M138.11 293.125L150.36 305.375L174.86 279.125"
                       stroke="#25D366"
-                      stroke-width="10"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="10"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </g>
                   <g id={classes.tick3}>
@@ -141,9 +184,9 @@ const Login = () => {
                       id="Vector_2_2"
                       d="M138.11 404.125L150.36 416.375L174.86 390.125"
                       stroke="#25D366"
-                      stroke-width="10"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="10"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </g>
                 </g>
@@ -190,9 +233,9 @@ const Login = () => {
                   width="475"
                   height="598"
                   filterUnits="userSpaceOnUse"
-                  color-interpolation-filters="sRGB"
+                  colorInterpolationFilters="sRGB"
                 >
-                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
                   <feColorMatrix
                     in="SourceAlpha"
                     type="matrix"
@@ -222,11 +265,24 @@ const Login = () => {
           </div>
           <div className={classes.rightContainer}>
             <div className={classes.formContainer}>
-              <form className={classes.loginForm}>
+              <form className={classes.loginForm} onSubmit={loginSubmit}>
                 <h2 className={classes.loginTitle}>Login</h2>
+                {isInvalid ? (
+                  <p className={classes.invalidLogin}>
+                    Invalid email or password !
+                  </p>
+                ) : (
+                  ""
+                )}
                 <div className={`${classes.formChild}`}>
-                  <label>Email:</label>
-                  <input type={"email"} placeholder="example@gmail.com" />
+                  <label htmlFor="email">Email:</label>
+                  <input
+                    id="email"
+                    type={"email"}
+                    placeholder="example@gmail.com"
+                    ref={email}
+                    required
+                  />
                 </div>
                 <div className={`${classes.formChild}`}>
                   <label htmlFor="password">Password:</label>
@@ -235,6 +291,8 @@ const Login = () => {
                     className={classes.passwordInput}
                     type={"password"}
                     placeholder="example123"
+                    ref={password}
+                    required
                   />
                 </div>
                 <div className={classes.forgetPasswordContainer}>
@@ -242,7 +300,12 @@ const Login = () => {
                     Forgot Password
                   </Link>
                 </div>
-                <button className={classes.submitLogin}>Login</button>
+                {btnClick ? (
+                  <Loader />
+                ) : (
+                  <button className={classes.submitLogin}>Login</button>
+                )}
+
                 <div className={classes.createAccountBtnContainer}>
                   <Link to={"/register"} className={classes.createAccountBtn}>
                     Don't have an account yet?

@@ -1,0 +1,13 @@
+.headerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logoContainer {
+  padding: 30px 10px;
+}
+.logoContainer img {
+  width: 100%;
+}
