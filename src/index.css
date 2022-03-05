@@ -4,6 +4,7 @@
   --primaryT: rgba(237, 143, 3, 0.25);
   --primaryD: #9c5f04;
   --secondary: #ffb75e;
+  --secondaryD: #eb9a37;
   --gray: #616161;
   --grayLight: #c4c4c4;
   --red: #c70000;
@@ -16,4 +17,26 @@
   box-sizing: border-box;
   text-decoration: none;
   font-family: var(--defaultFont);
+}
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--secondary);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:horizontal {
+  border-radius: 10px;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondaryD);
 }
