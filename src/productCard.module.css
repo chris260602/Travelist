@@ -1,0 +1,44 @@
+.flexSetting{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product_list{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.product_list .card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px;
+    padding:5px 10px;
+    box-shadow: 1px 1px 10px 10px var(--primaryT);
+    border-radius: 5px;
+}
+
+.card_img{
+    margin: 0 5px;
+}
+
+.card_img img{
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    width: 140px;
+    height: auto;
+}
+
+.product_list .card .card_header{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.product_list .card .card_header .card_price{
+    margin-bottom: 10px;
+    font-weight: bold;
+}

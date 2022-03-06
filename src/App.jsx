@@ -1,28 +1,33 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import classes from "./App.module.css"
+import ProductCard from "./ProductCard";
+import CategoryCard from "./categoryCard";
 
 const App = ()=> {
-  const [ctr,getCtr] = useState(1);
-  useEffect(()=>{
-    document.title = "Travelist"
-},[]);
-  const updateCtr = ()=>{
-    getCtr(ctr + 1);
-  }
-const tes = async ()=>{
-  const response = await fetch("http://localhost:3003/user/getuser/1",{
-    headers : { 
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-     }
-  })
-  const data = await response.json();
-  console.log(data);
-}
   return (
-    <div className={classes.app}>
-      <h1 className="" onClick={tes}>{ctr}</h1>
+    <Fragment>
+    <div className={classes.rightContainer}>
+      <div className={classes.firstSection}>
+        <div className={classes.titleOfSection}>
+          <p>
+            Categories
+          </p>
+        </div>
+        <div>
+          <a href="" className={classes.seeAll}>See all</a>
+        </div>
+      </div>
+      <CategoryCard/>
     </div>
+    <div className={classes.rightContainer}>
+      <div className={classes.titleOfSection}>
+      <p>
+        Most Popular
+      </p>
+      </div>
+      <ProductCard />
+    </div>
+    </Fragment>
   );
 }
 
