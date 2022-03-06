@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import classes from "./App.module.css"
-import ProductCard from "./ProductCard";
-import CategoryCard from "./categoryCard";
+import ProductCard from "./components/ProductCard/ProductCard"
+import CategoryCard from "./components/CategoryCard/categoryCard";
 
 const App = ()=> {
   return (
