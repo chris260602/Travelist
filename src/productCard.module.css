@@ -16,7 +16,7 @@
     justify-content: center;
     margin: 20px;
     padding:5px 10px;
-    box-shadow: 1px 1px 10px 10px var(--primaryT);
+    box-shadow: 1px 1px 5px 4px var(--primaryT);
     border-radius: 5px;
 }
 
