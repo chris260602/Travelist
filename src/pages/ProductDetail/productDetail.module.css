@@ -1,0 +1,308 @@
+.rightContainer{
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+.firstContainer{
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+}
+
+.productImage{
+    width: 40%;
+    max-width: 215px;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.mainImage{
+    display: flex;
+    justify-content: center;
+}
+
+.imageChoice{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-top: 20px;
+    max-width: 100%;
+}
+
+.imageSection1{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.imageSection2{
+    width: 29%;
+}
+
+.productTitle{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.productInfo{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 20px 40px 0;
+}
+
+.section1{
+    margin-bottom: 20px;
+}
+
+.productName{
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.wishlistInProductInfo{
+    display: None;
+    margin: 20px 0;
+}
+
+.section2{
+    margin-bottom: 40px;
+}
+
+.productPrice{
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.productDescription{
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.productCategory{
+    margin-bottom: 10px;
+}
+
+.productContentTitle{
+    margin-bottom: 30px;
+}
+
+.productCart{
+    width: 30%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cartBox{
+    box-shadow: 1px 1px 5px 1px var(--secondary);
+    border-radius: 10px;
+    padding: 30px;
+    background-color: #ffffff;
+}
+
+.amountTitle{
+    font-weight: bold;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.amountCart{
+    margin-bottom: 40px;
+}
+
+.changeAmount{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.changeAmountIcon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.changeAmountIcon img{
+    width: 35px;
+}
+
+.amountText{
+    font-size: 1.2rem;
+}
+
+.productStock{
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.stockAmount{
+    font-weight: bold;
+}
+
+.addCartButton{
+    background-color: var(--secondary);
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    box-shadow: 1px 1px 5px 2px var(--secondaryT);
+}
+
+.wishlistInProductCart{
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+    justify-content: space-around;
+    align-items: center;
+}
+
+@media(max-width:1000px){
+    .productName{
+        font-size: 1.5rem;
+    }
+
+    .productPrice{
+        font-size: 1.5rem;
+    }
+
+    .productDescription{
+        font-size: 1.1rem;
+    }
+}
+
+@media(max-width:800px){
+    .productName{
+        font-size: 1.3rem;
+    }
+
+    .productPrice{
+        font-size: 1.3rem;
+    }
+}
+
+@media(max-width:700px){
+
+    .rightContainer{
+        display: flex;
+        flex-direction: column;
+        padding: 30px 0 0 0;
+    }
+
+    .firstContainer{
+        width: 100%;
+        
+    }
+
+    .productImage{
+        width: 100%;
+    }
+
+    .productInfo{
+        width: 100%;
+    }
+
+    .productCart{
+        width: 100%;
+        position: fixed;
+        bottom: 0px;
+    }
+
+    .cartBox{
+        width: 100%;
+    }
+
+    .wishlistInProductCart{
+        display: none;
+    }
+
+    .wishlistInProductInfo{
+        display: flex;
+    }
+
+    .amountTitle{
+        display: none;
+    }
+
+    .productStock{
+        display: none;
+    }
+
+    .amountCart{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .amountCart{
+        margin-bottom: 5px;
+    }
+
+    .cartBox{
+        padding: 5px;
+    }
+
+    .addCartButton{
+        width: 50%;
+    }
+
+    .changeAmount{
+        width: 50%;
+    }
+
+    .changeAmount{
+        justify-content: center;
+        margin: 0;
+    }
+
+    .amountText{
+        margin: 0 10px;
+    }
+
+    .cartBox{
+        border-radius:5px 5px 0 0 ;
+    }
+}
+
+@media(max-width:500px){
+    .productInfo{
+        width: 50%;
+    }
+
+    .productImage{
+        width: 50%;
+    }
+}
+
+@media (max-width: 450px) {
+    .firstContainer{
+        flex-direction: column;
+        align-items: center;
+    }
+    .productInfo{
+        width: 80%;
+        margin: 20px;
+    }
+
+    .productImage{
+        width: 100%;
+    }
+}
