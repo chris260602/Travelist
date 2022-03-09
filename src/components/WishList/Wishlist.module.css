@@ -1,0 +1,21 @@
+.wishlist{
+    display: flex;
+    align-items: center;
+}
+
+.wishlistIcon{
+    height: 40px;
+    width: 40px;
+    box-shadow: 1px 1px 2px 4px var(--primaryT);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loveIcon{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

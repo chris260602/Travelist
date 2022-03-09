@@ -8,6 +8,9 @@ import Register from "./pages/Register/Register";
 import NotFound from "./pages/NotFound/NotFound";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import CreateProduct from "./pages/CreateProduct/CreateProduct";
+import UpdateProduct from "./pages/UpdateProduct/UpdateProduct";
+import Productdetail from "./pages/ProductDetail/productDetail"
 
 ReactDOM.render(
   <Provider store={store}>
@@ -15,8 +18,11 @@ ReactDOM.render(
       <Routes>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="createproduct" element={<CreateProduct />} />
+        <Route path="updateproduct/:id" element={<UpdateProduct />} />
         <Route path="/" element={<App />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="productdetail" element={<Productdetail/>} />
       </Routes>
     </BrowserRouter>
   </Provider>,
