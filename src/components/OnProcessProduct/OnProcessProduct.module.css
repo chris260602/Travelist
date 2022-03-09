@@ -1,0 +1,80 @@
+
+.div{
+    border: solid, black, 5px;
+}
+
+.OnProcessProduct_list{
+    display: flex;
+    justify-content: center;
+    margin: 5px 0;
+}
+
+
+.OnProcessProduct_list .Container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+    padding:5px 10px;
+    box-shadow: 1px 1px 5px 4px var(--primaryT);
+    border-radius: 5px;
+    width: 80%;
+}
+
+
+.Container_img{
+    margin: 0 5px;
+    flex: 1;
+}
+
+.Container_img img{
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    width: 175px;
+    height: auto;
+}
+
+.Container_header{
+    flex: 1;
+    
+}
+
+.detail_header{
+    margin-bottom: 20px;
+    font-size: large;
+}
+.header_price{
+    font-size: small;
+}
+.header_date{
+    font-size: small;
+}
+
+.seeDetail{
+    color: var(--secondary);
+    font-weight: bold;
+}
+
+.total_price{
+    margin: 10px 0;
+    font-weight: bolder;
+}
+
+.Container_Status{
+    display: flex;
+    flex: 5;
+    align-self: flex-end;
+    justify-content: flex-end;
+}
+
+.status{
+    width: 110px;
+    margin: 10px 10px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: -1px 2px 5px 3px var(--gray);
+    background-color: var(--grayLight);
+}
