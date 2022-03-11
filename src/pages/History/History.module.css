@@ -1,0 +1,9 @@
+.Container{
+    display: flex;
+    justify-content: center;
+}
+
+.ContainerHeader{
+    padding: 15px 15px;
+    
+}
