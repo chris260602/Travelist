@@ -23,6 +23,7 @@ const OnProcessProduct = () =>{
                 <div className={classes.total_price}>
                     <p>Total Price: {item.currency} {item.totalPrice}</p>
                 </div>
+                
             </div>
             <div className={classes.Container_Status}>
                 <a href="">
