@@ -72,12 +72,10 @@ const Register = () => {
     if (isInputValid()) {
       try {
         await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/`, {
-          userrole: 0,
-          username: username.current.value,
-          useremail: email.current.value,
+          userName: username.current.value,
+          userEmail: email.current.value,
           password: password.current.value,
-          balance: 0,
-          profilepicture: `${process.env.REACT_APP_BACKEND_URL}/public/img/defaultprofile.svg`,
+          profilePicture: `${process.env.REACT_APP_BACKEND_URL}/public/img/defaultprofile.svg`,
         });
         clearInput();
         navigate("/login");
