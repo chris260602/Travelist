@@ -3,7 +3,6 @@ import productCard_data from './productCard_data';
 import classes from './productCard.module.css'
 
 const ProductCard = () =>{
-    console.log(productCard_data);
     const listItems = productCard_data.map((item) =>
         <div className={classes.card} key={item.id}>
             <div className={classes.card_img}>
