@@ -15,12 +15,12 @@ const CreateProduct = () => {
   const [picture2Container, setPicture2Container] = useState("");
   const [picture3Container, setPicture3Container] = useState("");
   const [picture4Container, setPicture4Container] = useState("");
-  const name = useRef();
-  const price = useRef();
-  const stocks = useRef();
+  const productName = useRef();
+  const productPrice = useRef();
+  const productStocks = useRef();
   const category = useRef();
-  const content = useRef();
-  const mainpicture = useRef();
+  const productContent = useRef();
+  const mainPicture = useRef();
   const picture2 = useRef();
   const picture3 = useRef();
   const picture4 = useRef();
@@ -38,14 +38,14 @@ const CreateProduct = () => {
     }
   };
   const clearInput = () => {
-    name.current.value = "";
-    price.current.value = "";
-    stocks.current.value = "";
+    productName.current.value = "";
+    productPrice.current.value = "";
+    productStocks.current.value = "";
     category.current.value = "Bathroom";
-    content.current.value = "";
-    if (checkIsPictureInserted(mainpicture, 1)) {
-      mainpicture.current.value = "";
-      changeImage(mainpicture, setMainPictureContainer);
+    productContent.current.value = "";
+    if (checkIsPictureInserted(mainPicture, 1)) {
+      mainPicture.current.value = "";
+      changeImage(mainPicture, setMainPictureContainer);
     }
     if (checkIsPictureInserted(picture2, 2)) {
       picture2.current.value = "";
@@ -65,38 +65,38 @@ const CreateProduct = () => {
     setIsSubmit(true);
     let formData = new FormData();
     let isValid = true;
-    if (name.current.value.length < 2) {
+    if (productName.current.value.length < 2) {
       isValid = false;
       setIsNameValid(false);
     } else {
       setIsNameValid(true);
     }
-    if (price.current.value === "" || price.current.value < 0) {
+    if (productPrice.current.value === "" || productPrice.current.value < 0) {
       isValid = false;
       setIsPriceValid(false);
     } else {
       setIsPriceValid(true);
     }
-    if (stocks.current.value === "" || stocks.current.value < 0) {
+    if (productStocks.current.value === "" || productStocks.current.value < 0) {
       isValid = false;
       setIsStocksValid(false);
     } else {
       setIsStocksValid(true);
     }
-    if (content.current.value.length < 1) {
+    if (productContent.current.value.length < 1) {
       isValid = false;
       setIsContentValid(false);
     } else {
       setIsContentValid(true);
     }
     if (isValid) {
-      formData.append("name", name.current.value);
-      formData.append("price", price.current.value);
-      formData.append("stocks", stocks.current.value);
-      formData.append("category", category.current.value);
-      formData.append("content", content.current.value);
-      if (mainpicture.current.files[0] !== undefined) {
-        formData.append("mainpicture", mainpicture.current.files[0]);
+      formData.append("productName", productName.current.value);
+      formData.append("productPrice", productPrice.current.value);
+      formData.append("productStocks", productStocks.current.value);
+      formData.append("categoryValue", category.current.value);
+      formData.append("productContent", productContent.current.value);
+      if (mainPicture.current.files[0] !== undefined) {
+        formData.append("mainPicture", mainPicture.current.files[0]);
       } else {
         return;
       }
@@ -176,8 +176,8 @@ const CreateProduct = () => {
           id="mainpicture"
           accept="image/png, image/gif, image/jpeg"
           required
-          onChange={() => changeImage(mainpicture, setMainPictureContainer)}
-          ref={mainpicture}
+          onChange={() => changeImage(mainPicture, setMainPictureContainer)}
+          ref={mainPicture}
         />
       </div>
       {totalPictures >= 2 ? (
@@ -255,7 +255,7 @@ const CreateProduct = () => {
         )}
         <div className={classes.formChild}>
           <label htmlFor="name">Name:</label>
-          <input type="text" id="name" ref={name} required />
+          <input type="text" id="name" ref={productName} required />
         </div>
         {!isPriceValid ? (
           <p className={classes.errorIndicator}>
@@ -271,7 +271,7 @@ const CreateProduct = () => {
             id="price"
             min={0}
             name="price"
-            ref={price}
+            ref={productPrice}
             required
           />
         </div>
@@ -284,7 +284,13 @@ const CreateProduct = () => {
         )}
         <div className={classes.formChild}>
           <label htmlFor="stocks">Stocks:</label>
-          <input type="number" id="stocks" min={0} ref={stocks} required />
+          <input
+            type="number"
+            id="stocks"
+            min={0}
+            ref={productStocks}
+            required
+          />
         </div>
         <div className={classes.formChild}>
           <label htmlFor="category">Category:</label>
@@ -310,7 +316,7 @@ const CreateProduct = () => {
         )}
         <div className={classes.formChild}>
           <label htmlFor="content">Content:</label>
-          <textarea type="text" id="content" ref={content} required />
+          <textarea type="text" id="content" ref={productContent} required />
         </div>
         {imagesForm}
         <div className={classes.toggleImageButtonContainer}>

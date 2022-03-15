@@ -14,16 +14,16 @@ const UpdateProduct = () => {
   const [isStocksValid, setIsStocksValid] = useState(true);
   const [isContentValid, setIsContentValid] = useState(true);
   const { id } = useParams();
-  const [mainpictureContainer, setMainPictureContainer] = useState("");
+  const [mainPictureContainer, setMainPictureContainer] = useState("");
   const [picture2Container, setPicture2Container] = useState("");
   const [picture3Container, setPicture3Container] = useState("");
   const [picture4Container, setPicture4Container] = useState("");
-  const name = useRef();
-  const price = useRef();
-  const stocks = useRef();
+  const productName = useRef();
+  const productPrice = useRef();
+  const productStocks = useRef();
   const category = useRef();
-  const content = useRef();
-  const mainpicture = useRef();
+  const productContent = useRef();
+  const mainPicture = useRef();
   const picture2 = useRef();
   const picture3 = useRef();
   const picture4 = useRef();
@@ -34,7 +34,7 @@ const UpdateProduct = () => {
         const response = await axios.get(
           `${process.env.REACT_APP_BACKEND_URL}/products/${id}`
         );
-        await fillInput(response.data.data[0]);
+        await fillInput(response.data.data);
       } catch (e) {
         setPageNotFound(true);
       }
@@ -44,34 +44,34 @@ const UpdateProduct = () => {
 
   const setImages = (number, data) => {
     if (number === 4) {
-      setMainPictureContainer(<img src={data.mainpicture} alt="ERROR" />);
+      setMainPictureContainer(<img src={data.mainPicture} alt="ERROR" />);
       setPicture2Container(<img src={data.picture2} alt="ERROR" />);
       setPicture3Container(<img src={data.picture3} alt="ERROR" />);
       setPicture4Container(<img src={data.picture4} alt="ERROR" />);
     } else if (number === 3) {
-      setMainPictureContainer(<img src={data.mainpicture} alt="ERROR" />);
+      setMainPictureContainer(<img src={data.mainPicture} alt="ERROR" />);
       setPicture2Container(<img src={data.picture2} alt="ERROR" />);
       setPicture3Container(<img src={data.picture3} alt="ERROR" />);
     } else if (number === 2) {
-      setMainPictureContainer(<img src={data.mainpicture} alt="ERROR" />);
+      setMainPictureContainer(<img src={data.mainPicture} alt="ERROR" />);
       setPicture2Container(<img src={data.picture2} alt="ERROR" />);
     } else {
-      setMainPictureContainer(<img src={data.mainpicture} alt="ERROR" />);
+      setMainPictureContainer(<img src={data.mainPicture} alt="ERROR" />);
     }
   };
   const fillInput = async (data) => {
-    name.current.value = data.productname;
-    price.current.value = data.price;
-    stocks.current.value = data.productstocks;
-    category.current.value = data.category;
-    content.current.value = data.content;
-    if (data.picture4 !== "null") {
+    productName.current.value = data.productName;
+    productPrice.current.value = data.productPrice;
+    productStocks.current.value = data.productStocks;
+    category.current.value = data.categoryValue;
+    productContent.current.value = data.productContent;
+    if (data.picture4 !== null) {
       setTotalPictures(4);
       setImages(4, data);
-    } else if (data.picture3 !== "null") {
+    } else if (data.picture3 !== null) {
       setTotalPictures(3);
       setImages(3, data);
-    } else if (data.picture2 !== "null") {
+    } else if (data.picture2 !== null) {
       setTotalPictures(2);
       setImages(2, data);
     } else {
@@ -91,7 +91,7 @@ const UpdateProduct = () => {
       if (picture2Container === "") {
         notInserted.push("Picture2");
       }
-      if (mainpictureContainer === "") {
+      if (mainPictureContainer === "") {
         notInserted.push("Main Picture");
       }
       if (notInserted.length === 0) {
@@ -107,7 +107,7 @@ const UpdateProduct = () => {
       if (picture2Container === "") {
         notInserted.push("Picture2");
       }
-      if (mainpictureContainer === "") {
+      if (mainPictureContainer === "") {
         notInserted.push("Main Picture");
       }
       if (notInserted.length === 0) {
@@ -120,7 +120,7 @@ const UpdateProduct = () => {
       if (picture2Container === "") {
         notInserted.push("Picture2");
       }
-      if (mainpictureContainer === "") {
+      if (mainPictureContainer === "") {
         notInserted.push("Main Picture");
       }
       if (notInserted.length === 0) {
@@ -130,7 +130,7 @@ const UpdateProduct = () => {
         return false;
       }
     } else if (totalPictures === 1) {
-      if (mainpictureContainer === "") {
+      if (mainPictureContainer === "") {
         notInserted.push("Main Picture");
       }
       if (notInserted.length === 0) {
@@ -149,40 +149,40 @@ const UpdateProduct = () => {
     setIsSubmit(true);
     let formData = new FormData();
     let isValid = true;
-    if (name.current.value.length < 2) {
+    if (productName.current.value.length < 2) {
       isValid = false;
       setIsNameValid(false);
     } else {
       setIsNameValid(true);
     }
-    if (price.current.value === "" || price.current.value < 0) {
+    if (productPrice.current.value === "" || productPrice.current.value < 0) {
       isValid = false;
       setIsPriceValid(false);
     } else {
       setIsPriceValid(true);
     }
-    if (stocks.current.value === "" || stocks.current.value < 0) {
+    if (productStocks.current.value === "" || productStocks.current.value < 0) {
       isValid = false;
       setIsStocksValid(false);
     } else {
       setIsStocksValid(true);
     }
-    if (content.current.value.length < 1) {
+    if (productContent.current.value.length < 1) {
       isValid = false;
       setIsContentValid(false);
     } else {
       setIsContentValid(true);
     }
     if (isValid && checkNewImageInserted()) {
-      formData.append("name", name.current.value);
-      formData.append("price", price.current.value);
-      formData.append("stocks", stocks.current.value);
-      formData.append("category", category.current.value);
-      formData.append("content", content.current.value);
+      formData.append("productName", productName.current.value);
+      formData.append("productPrice", productPrice.current.value);
+      formData.append("productStocks", productStocks.current.value);
+      formData.append("categoryValue", category.current.value);
+      formData.append("productContent", productContent.current.value);
 
       if (totalPictures === 4) {
-        if (mainpicture.current.files.length > 0) {
-          formData.append("mainpicture", mainpicture.current.files[0]);
+        if (mainPicture.current.files.length > 0) {
+          formData.append("mainpicture", mainPicture.current.files[0]);
         }
         if (picture2.current.files.length > 0) {
           formData.append("picture2", picture2.current.files[0]);
@@ -194,8 +194,8 @@ const UpdateProduct = () => {
           formData.append("picture4", picture4.current.files[0]);
         }
       } else if (totalPictures === 3) {
-        if (mainpicture.current.files.length > 0) {
-          formData.append("mainpicture", mainpicture.current.files[0]);
+        if (mainPicture.current.files.length > 0) {
+          formData.append("mainpicture", mainPicture.current.files[0]);
         }
         if (picture2.current.files.length > 0) {
           formData.append("picture2", picture2.current.files[0]);
@@ -204,15 +204,15 @@ const UpdateProduct = () => {
           formData.append("picture3", picture3.current.files[0]);
         }
       } else if (totalPictures === 2) {
-        if (mainpicture.current.files.length > 0) {
-          formData.append("mainpicture", mainpicture.current.files[0]);
+        if (mainPicture.current.files.length > 0) {
+          formData.append("mainpicture", mainPicture.current.files[0]);
         }
         if (picture2.current.files.length > 0) {
           formData.append("picture2", picture2.current.files[0]);
         }
       } else if (totalPictures === 1) {
-        if (mainpicture.current.files.length > 0) {
-          formData.append("mainpicture", mainpicture.current.files[0]);
+        if (mainPicture.current.files.length > 0) {
+          formData.append("mainpicture", mainPicture.current.files[0]);
         }
       }
       formData.append("pictureqty", totalPictures);
@@ -275,15 +275,15 @@ const UpdateProduct = () => {
   const imagesForm = (
     <div className={classes.imageContainer}>
       <div className={` ${classes.imageFormContainer}`}>
-        <label htmlFor="mainpicture">Main Picture</label>
-        {mainpictureContainer}
+        <label htmlFor="mainPicture">Main Picture</label>
+        {mainPictureContainer}
         <input
           type="file"
-          name="mainpicture"
-          id="mainpicture"
+          name="mainPicture"
+          id="mainPicture"
           accept="image/png, image/gif, image/jpeg"
-          onChange={() => changeImage(mainpicture, setMainPictureContainer)}
-          ref={mainpicture}
+          onChange={() => changeImage(mainPicture, setMainPictureContainer)}
+          ref={mainPicture}
         />
       </div>
       {totalPictures >= 2 ? (
@@ -361,8 +361,8 @@ const UpdateProduct = () => {
               ""
             )}
             <div className={classes.formChild}>
-              <label htmlFor="name">Name:</label>
-              <input type="text" id="name" ref={name} required />
+              <label htmlFor="productName">Name:</label>
+              <input type="text" id="productName" ref={productName} required />
             </div>
             {!isPriceValid ? (
               <p className={classes.errorIndicator}>
@@ -372,13 +372,13 @@ const UpdateProduct = () => {
               ""
             )}
             <div className={classes.formChild}>
-              <label htmlFor="price">Price:</label>
+              <label htmlFor="productPrice">Price:</label>
               <input
                 type="number"
-                id="price"
+                id="productPrice"
                 min={0}
-                name="price"
-                ref={price}
+                name="productPrice"
+                ref={productPrice}
                 required
               />
             </div>
@@ -390,8 +390,14 @@ const UpdateProduct = () => {
               ""
             )}
             <div className={classes.formChild}>
-              <label htmlFor="stocks">Stocks:</label>
-              <input type="number" id="stocks" min={0} ref={stocks} required />
+              <label htmlFor="productStocks">Stocks:</label>
+              <input
+                type="number"
+                id="productStocks"
+                min={0}
+                ref={productStocks}
+                required
+              />
             </div>
             <div className={classes.formChild}>
               <label htmlFor="category">Category:</label>
@@ -416,8 +422,13 @@ const UpdateProduct = () => {
               ""
             )}
             <div className={classes.formChild}>
-              <label htmlFor="content">Content:</label>
-              <textarea type="text" id="content" ref={content} required />
+              <label htmlFor="productContent">Content:</label>
+              <textarea
+                type="text"
+                id="productContent"
+                ref={productContent}
+                required
+              />
             </div>
             {imagesForm}
             <div className={classes.toggleImageButtonContainer}>

@@ -1,10 +1,13 @@
 import React, { Fragment } from 'react';
 import classes from './Cart.module.css';
 import ProductCart from '../../components/ProductCart/ProductCart';
+import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
 
 const Cart = () =>{
     return(
         <Fragment>
+            <Header/>
             <div className={classes.container}>
                 <div className={classes.cartTitle}>
                     <p>
@@ -28,6 +31,8 @@ const Cart = () =>{
                     </div>
                 </div>
             </div>
+
+            <Footer/>
 
         </Fragment>
     )
