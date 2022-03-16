@@ -1,11 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import classes from './HistoryProductContainer.module.css'
-import HistoryProductContainer_data from './HistoryProductContainer_data';
+import HistoryProductContainer_data from './HistoryProductContainer_data'
+import HistoryDetailPopup from '../HistoryDetailPopup/HistoryDetailPopup';
 
 const HistoryProductContainer = () =>{
+
+    const [Visible, setVisible] = useState(false);
+    const [selectedTransaction, setSelectedTransaction] = useState({});
+    const hanldeClick = (selectedData) => {
+        setSelectedTransaction(selectedData);
+        setVisible(true);
+    };
+
+    const hideDetail = () => {
+        setVisible(false);
+    };
+
     console.log(HistoryProductContainer_data);
     const HistoryProductContainerList = HistoryProductContainer_data.map((item) =>
-        <div className={classes.Container} key={item.id}>
+        <div className={classes.Container} key={item.TransID}>
             <div className={classes.Container_img}>
                 <img src={item.img} alt="error"/>
             </div>
@@ -17,9 +30,11 @@ const HistoryProductContainer = () =>{
                 </div>
 
                 <div className={classes.seeDetail}>
-                    <p>See More</p>
+                    <a href="#" onClick={() => hanldeClick(item)}>
+                        See More
+                    </a>
                 </div>
-
+                
                 <div className={classes.total_price}>
                     <p>Total Price: {item.currency} {item.totalPrice}</p>
                 </div>
@@ -27,7 +42,7 @@ const HistoryProductContainer = () =>{
             <div className={classes.Container_Status}>
                 {
                     (()=>{
-                        if (item.status == 1){
+                        if (item.status === true){
                             return(
                                 <a href="">
                                     <div className={classes.statusCompleted}>
@@ -35,7 +50,7 @@ const HistoryProductContainer = () =>{
                                     </div>    
                                 </a>
                             )
-                        }else if(item.status == 0){
+                        }else if(item.status === false){
                             return(
                                 <div className={classes.statusOnProcess}>
                                     On Process
@@ -45,7 +60,7 @@ const HistoryProductContainer = () =>{
                     })()
                 }
             </div>
-            
+            {Visible && <HistoryDetailPopup Details={selectedTransaction} handleClose={hideDetail} />}
         </div>
     )
 

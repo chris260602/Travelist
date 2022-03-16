@@ -8,13 +8,10 @@ const History =()=>{
     return(
         <Fragment>
             <div className = {classes.Container} >
-                <div>
-                    <div className= {classes.ContainerHeader}>
-                        <h1>History</h1>
-                    </div>
-                    <HistoryProductContainer/>
+                <div className= {classes.ContainerHeader}>
+                    <h1>History</h1>
                 </div>
-                
+                <HistoryProductContainer/>
             </div>
         </Fragment>
     )

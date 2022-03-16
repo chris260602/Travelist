@@ -1,0 +1,147 @@
+.DetailBackground{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.41);
+}
+
+.DetailContainer{
+    display: flex;
+    flex-direction: column;
+    padding: 25px 30px;
+    box-shadow: 1px 1px 5px 4px var(--primaryT);
+    border-radius: 15px;
+    /* width: 70%;
+    height: 80%; */
+    width: 1080px;
+    height: 575px;
+    position: fixed;
+    background: white;
+}
+
+.DetailTitle{
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0 0 15px 0;
+}
+
+.Title{
+    font-size: larger;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 96%;
+}
+
+.Close{
+    height: 55px;
+    font-size: 45pt;
+    cursor: pointer;
+    font-weight: 100;
+    margin-top: -50px;
+    transition: all 0.3s ease;
+}
+
+.Close:hover{
+    opacity: 0.5;
+}
+
+.DetailInformation{
+    flex: 9;
+    display: flex;
+    
+}
+
+.leftContainer{
+    flex: 1;
+    border-right: solid 1px var(--primary);
+    padding: 10px 0 0 25px;
+    font-size: x-large;
+}
+
+.detailHeader{
+    margin-bottom: 50px;
+}
+
+.status{
+    font-weight: bold;
+    margin: 0 0 10px 0;
+}
+
+.delivered{
+    color:  #51A120;
+}
+
+.notDelivered{
+    color: var(--gray);
+}
+
+.paymentDetail{
+    margin-top: 50px;
+}
+
+.paymentDetail p{
+    margin: 10px 0;
+}
+
+.paymentHeader{
+    font-weight: bold;
+}
+.totalPrice{
+    font-weight: bold;
+}
+
+.rightContainer{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-left: solid 1px var(--primary);
+    padding: 15px 25px;
+}
+
+.ProductDetail{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px;
+    padding:5px 10px;
+    box-shadow: 1px 1px 5px 4px var(--primaryT);
+    border-radius: 5px;
+}
+
+.card_img{
+    margin: 0 5px;
+}
+
+.card_img img{
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    width: 200px;
+    height: auto;
+}
+
+.card .card_header{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.card .card_header .card_price{
+    margin-bottom: 10px;
+    font-weight: bold;
+}
