@@ -43,7 +43,7 @@ const ProductDetail = ()=>{
                                 category: Bag
                             </p>
                             <p className={classes.productContentTitle}>
-                                content
+                                content:
                             </p>
                             <p className={classes.productContent}>
                                 lorem ipsum

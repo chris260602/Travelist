@@ -1,22 +1,26 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
-
-.seeAll{
+.mainContainer {
+  max-width: 1300px;
+  margin: auto;
+  margin-top: 80px;
+}
+.seeAll {
   color: var(--primary);
   font-weight: bold;
   font-size: 17px;
 }
 
-.titleOfSection{
+.titleOfSection {
   font-weight: bold;
   font-size: 25px;
   padding: 10px 0 0 0;
   margin: 0 20px 0 0;
 }
 
-.firstSection{
+.firstSection {
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
@@ -24,6 +28,6 @@
   margin: 0 0 10px;
 }
 
-.rightContainer{
+.rightContainer {
   padding: 30px;
 }

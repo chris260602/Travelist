@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import SimpleHeader from "../../components/SimpleHeader/SimpleHeader";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { login } from "../../store/reducers/loginReducer/userReducer";
+import { login } from "../../store/reducers/userReducer/userReducer";
 import Loader from "../../components/UI/Loader/Loader";
 import axios from "axios";
 const Login = () => {
@@ -26,6 +26,7 @@ const Login = () => {
     e.preventDefault();
     setBtnClick(true);
     let data;
+    let userData;
     try {
       data = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/user/login`,
@@ -37,16 +38,23 @@ const Login = () => {
           withCredentials: true,
         }
       );
+      if (data) {
+        userData = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/user/getuser/${data.data.data.userID}`,
+          {
+            withCredentials: true,
+          }
+        );
+      }
     } catch (e) {
       setIsInvalid(true);
       return;
     } finally {
       setBtnClick(false);
     }
-
     if (data) {
       setIsInvalid(false);
-      dispatch(login(data.data.data.userid));
+      dispatch(login(userData.data.data));
     }
   };
 

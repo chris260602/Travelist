@@ -1,15 +1,15 @@
-import React from 'react'
-import loveIcon from '../../assets/img/love.svg'
-import classes from './Wishlist.module.css'
+import React from "react";
+import wishListIcon from "../../assets/img/wishListIcon.svg";
+import classes from "./Wishlist.module.css";
 
-const Wishlist = () =>{
-    return(
-        <div className={classes.wishlist}>
-            <div className={classes.wishlistIcon}>
-                <img src={loveIcon} className={classes.loveIcon} alt="error" />
-            </div>
-        </div>
-    )
-}
+const Wishlist = () => {
+  return (
+    <div className={classes.wishlist}>
+      <div className={classes.wishlistIcon}>
+        <img src={wishListIcon} className={classes.loveIcon} alt="error" />
+      </div>
+    </div>
+  );
+};
 
 export default Wishlist;
