@@ -16,10 +16,8 @@
     padding: 25px 30px;
     box-shadow: 1px 1px 5px 4px var(--primaryT);
     border-radius: 15px;
-    /* width: 70%;
-    height: 80%; */
-    width: 1080px;
-    height: 575px;
+    width: 70%;
+    height: 80%;
     position: fixed;
     background: white;
 }
@@ -33,7 +31,8 @@
 }
 
 .Title{
-    font-size: larger;
+    font-size: 42px;
+    font-weight: bolder;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,7 +55,6 @@
 .DetailInformation{
     flex: 9;
     display: flex;
-    
 }
 
 .leftContainer{
@@ -108,6 +106,8 @@
 }
 
 .ProductDetail{
+    font-size: 32px;
+    font-weight: bold;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -136,6 +136,8 @@
 }
 
 .card .card_header{
+    font-size: medium;
+    font-weight: normal;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
@@ -144,4 +146,92 @@
 .card .card_header .card_price{
     margin-bottom: 10px;
     font-weight: bold;
+    font-size: medium;
+}
+
+@media screen  and (max-width: 860px){
+
+    .DetailContainer{
+        width: 80%;
+        height: auto;
+        padding: 10px;
+        font-size: x-large;
+    }
+
+    .DetailTitle{
+        margin: 0 0 7px 0;
+    }
+
+    .Title{
+        font-size: x-large;
+    }
+
+    .Close{
+        font-size: xx-large;
+        margin: -30px 0;
+    }
+
+    .DetailInformation{
+        flex-direction: column-reverse;
+    }
+
+    .leftContainer{
+        font-size: medium;
+        border-right: none;
+        border-top: solid 1px var(--primary);
+        padding: 5px 10px;
+    }
+
+    .rightContainer{
+        font-size: medium;
+        border-left: none;
+        border-bottom: solid 1px var(--primary);
+        padding: 5px 15px;
+    }
+
+    .ProductDetail{
+        font-size: large;
+    }
+
+    .card .card_header .card_price{
+        margin-bottom: 5px;
+    }
+
+    .card_img img{
+        width: 140px;
+    }
+
+    .card .card_header{
+        font-size: small;
+
+    }
+    
+    .card .card_header .card_price{
+        font-size: small;
+    }
+
+    .detailHeader{
+        margin-bottom: 25px;
+    }
+    
+    .status{
+        font-weight: bold;
+        margin: 0 0 5px 0;
+    }
+    
+    .delivered{
+        color:  #51A120;
+    }
+    
+    .notDelivered{
+        color: var(--gray);
+    }
+    
+    .paymentDetail{
+        margin-top: 25px;
+    }
+    
+    .paymentDetail p{
+        margin: 5px 0;
+    }
 }

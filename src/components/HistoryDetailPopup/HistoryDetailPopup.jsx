@@ -9,7 +9,7 @@ const HistoryDetailPopup = ({handleClose, Details}) =>{
             <div className={classes.DetailContainer}>
                 <div className={classes.DetailTitle}>
                     <div className={classes.Title}>
-                        <h1>Transaction Detail</h1>
+                        <p>Transaction Detail</p>
                     </div>
                     <div className={classes.Close}>
                         <p onClick={handleClose}>&times;</p>
@@ -49,7 +49,7 @@ const HistoryDetailPopup = ({handleClose, Details}) =>{
                     </div>
                     <div className={classes.rightContainer}>
                         <div className={classes.ProductDetail}>
-                            <h1>Product Detail</h1>
+                            <p>Product Detail</p>
                             <div className={classes.card} key={Details.id}>
                                 <div className={classes.card_img}>
                                     <img src={Details.img} alt="error"/>
