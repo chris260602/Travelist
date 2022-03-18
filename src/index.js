@@ -17,6 +17,7 @@ import Cart from "./pages/Cart/Cart";
 import About from "./pages/About/About";
 import NotificationPage from "./pages/NotificationPage/NotificationPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
+import HistoryPage from "./pages/History/History.jsx";
 let persistor = persistStore(store);
 
 ReactDOM.render(
@@ -33,6 +34,7 @@ ReactDOM.render(
           <Route path="about" element={<About />} />
           <Route path="notification" element={<NotificationPage />} />
           <Route path="profile" element={<ProfilePage />} />
+          <Route path="history" element={<HistoryPage />} />
           <Route path="*" element={<NotFound />} />
           <Route path="productdetail" element={<Productdetail />} />
         </Routes>
