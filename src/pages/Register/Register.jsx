@@ -5,6 +5,7 @@ import SimpleHeader from "../../components/SimpleHeader/SimpleHeader";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Loader from "../../components/UI/Loader/Loader";
+import EmailVerification from "./components/EmailVerification";
 
 const Register = () => {
   const [btnClick, setBtnClick] = useState(false);
@@ -13,6 +14,7 @@ const Register = () => {
   const [passwordValid, setPasswordValid] = useState(true);
   const [confirmPasswordValid, setConfirmPasswordValid] = useState(true);
   const [emailTaken, setEmailTaken] = useState(false);
+  const [isRegistered, setIsRegistered] = useState(false);
   const username = useRef();
   const email = useRef();
   const password = useRef();
@@ -78,7 +80,7 @@ const Register = () => {
           profilePicture: `${process.env.REACT_APP_BACKEND_URL}/public/img/defaultprofile.svg`,
         });
         clearInput();
-        navigate("/login");
+        setIsRegistered(true);
       } catch (e) {
         setEmailValid(false);
         setEmailTaken(true);
@@ -86,9 +88,15 @@ const Register = () => {
     }
     setBtnClick(false);
   };
-
   return (
     <Fragment>
+      {isRegistered ? (
+        <div className={classes.EmailVerificationContainer}>
+          <EmailVerification />
+        </div>
+      ) : (
+        ""
+      )}
       <SimpleHeader />
       <div className={classes.formContainer}>
         <form className={classes.registerForm} onSubmit={registerHandler}>

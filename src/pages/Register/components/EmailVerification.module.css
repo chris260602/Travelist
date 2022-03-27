@@ -1,0 +1,25 @@
+.container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  box-shadow: 1px 1px 10px 10px var(--primaryT);
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+}
+.linkContainer {
+  margin-top: 20px;
+}
+.linkContainer a {
+  color: var(--primary);
+  transition: all 0.2s;
+}
+.linkContainer a:hover {
+  color: var(--primaryD);
+}

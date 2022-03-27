@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import axios from "axios";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +15,7 @@ const CreateProduct = () => {
   const [picture2Container, setPicture2Container] = useState("");
   const [picture3Container, setPicture3Container] = useState("");
   const [picture4Container, setPicture4Container] = useState("");
+  const [categoryOptions, setCategoryOptions] = useState([]);
   const productName = useRef();
   const productPrice = useRef();
   const productStocks = useRef();
@@ -25,7 +26,12 @@ const CreateProduct = () => {
   const picture3 = useRef();
   const picture4 = useRef();
   const navigate = useNavigate();
-
+  useEffect(() => {
+    const getCategoriesOptionsHandler = async () => {
+      await getCategoriesOptions();
+    };
+    getCategoriesOptionsHandler();
+  }, []);
   const checkIsPictureInserted = (picture, minVal) => {
     if (picture.current !== null && totalPictures >= minVal) {
       if (picture.current.files[0] !== undefined) {
@@ -233,6 +239,21 @@ const CreateProduct = () => {
       )}
     </div>
   );
+  const getCategoriesOptions = async () => {
+    const categoriesOptions = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/categories/`
+    );
+    if (categoriesOptions.data.data.length > 0) {
+      const data = categoriesOptions.data.data.map((category) => (
+        <option value={category.categoryValue} key={category.categoryValue}>
+          {category.categoryName}
+        </option>
+      ));
+      setCategoryOptions(data);
+    } else {
+      return "";
+    }
+  };
   return (
     <div className={classes.formContainer}>
       {isSubmit ? (
@@ -295,7 +316,8 @@ const CreateProduct = () => {
         <div className={classes.formChild}>
           <label htmlFor="category">Category:</label>
           <select name="category" id="category" ref={category}>
-            <option value="Bathroom">Bathroom</option>
+            {categoryOptions}
+            {/* <option value="Bathroom">Bathroom</option>
             <option value="Electronics">Electronics</option>
             <option value="Kitchen">Kitchen</option>
             <option value="Clothes">Clothes</option>
@@ -306,7 +328,7 @@ const CreateProduct = () => {
             <option value="FoodDrinks">Food & Drinks</option>
             <option value="Bed">Bed</option>
             <option value="Pest Control">Pest Control</option>
-            <option value="Games">Games</option>
+            <option value="Games">Games</option> */}
           </select>
         </div>
         {!isContentValid ? (

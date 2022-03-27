@@ -19,5 +19,4 @@ export const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: false,
     }),
-  //Fixed Serializable (Harus dipahami)
 });
