@@ -18,6 +18,7 @@ const UpdateProduct = () => {
   const [picture2Container, setPicture2Container] = useState("");
   const [picture3Container, setPicture3Container] = useState("");
   const [picture4Container, setPicture4Container] = useState("");
+  const [categoryOptions, setCategoryOptions] = useState([]);
   const productName = useRef();
   const productPrice = useRef();
   const productStocks = useRef();
@@ -30,6 +31,10 @@ const UpdateProduct = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const getProductData = async () => {
+      const getCategoriesOptionsHandler = async () => {
+        await getCategoriesOptions();
+      };
+      getCategoriesOptionsHandler();
       try {
         const response = await axios.get(
           `${process.env.REACT_APP_BACKEND_URL}/products/${id}`
@@ -182,7 +187,7 @@ const UpdateProduct = () => {
 
       if (totalPictures === 4) {
         if (mainPicture.current.files.length > 0) {
-          formData.append("mainpicture", mainPicture.current.files[0]);
+          formData.append("mainPicture", mainPicture.current.files[0]);
         }
         if (picture2.current.files.length > 0) {
           formData.append("picture2", picture2.current.files[0]);
@@ -195,7 +200,7 @@ const UpdateProduct = () => {
         }
       } else if (totalPictures === 3) {
         if (mainPicture.current.files.length > 0) {
-          formData.append("mainpicture", mainPicture.current.files[0]);
+          formData.append("mainPicture", mainPicture.current.files[0]);
         }
         if (picture2.current.files.length > 0) {
           formData.append("picture2", picture2.current.files[0]);
@@ -205,14 +210,14 @@ const UpdateProduct = () => {
         }
       } else if (totalPictures === 2) {
         if (mainPicture.current.files.length > 0) {
-          formData.append("mainpicture", mainPicture.current.files[0]);
+          formData.append("mainPicture", mainPicture.current.files[0]);
         }
         if (picture2.current.files.length > 0) {
           formData.append("picture2", picture2.current.files[0]);
         }
       } else if (totalPictures === 1) {
         if (mainPicture.current.files.length > 0) {
-          formData.append("mainpicture", mainPicture.current.files[0]);
+          formData.append("mainPicture", mainPicture.current.files[0]);
         }
       }
       formData.append("pictureqty", totalPictures);
@@ -336,8 +341,24 @@ const UpdateProduct = () => {
       )}
     </div>
   );
+  const getCategoriesOptions = async () => {
+    const categoriesOptions = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/categories/`
+    );
+    if (categoriesOptions.data.data.length > 0) {
+      const data = categoriesOptions.data.data.map((category) => (
+        <option value={category.categoryValue} key={category.categoryValue}>
+          {category.categoryName}
+        </option>
+      ));
+      setCategoryOptions(data);
+    } else {
+      return "";
+    }
+  };
   return (
     <Fragment>
+      {/* {getCategoriesOptions()} */}
       {pageNotFound ? (
         <NotFound />
       ) : (
@@ -401,8 +422,10 @@ const UpdateProduct = () => {
             </div>
             <div className={classes.formChild}>
               <label htmlFor="category">Category:</label>
+              {}
               <select name="category" id="category" ref={category}>
-                <option value="Bathroom">Bathroom</option>
+                {categoryOptions}
+                {/* <option value="Bathroom">Bathroom</option>
                 <option value="Electronics">Electronics</option>
                 <option value="Kitchen">Kitchen</option>
                 <option value="Clothes">Clothes</option>
@@ -413,7 +436,7 @@ const UpdateProduct = () => {
                 <option value="FoodDrinks">Food & Drinks</option>
                 <option value="Bed">Bed</option>
                 <option value="Pest Control">Pest Control</option>
-                <option value="Games">Games</option>
+                <option value="Games">Games</option> */}
               </select>
             </div>
             {!isContentValid ? (
