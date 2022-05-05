@@ -1,25 +1,27 @@
+.card{
+    padding: 10px;
+}
 .flexSetting{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.product_list{
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-}
-
-.product_list .card{
+ .cardContainer{
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 20px;
-    padding:5px 10px;
+    padding:5px 0;
     box-shadow: 1px 1px 5px 4px var(--primaryT);
     border-radius: 5px;
+    transition: all 0.3s;
 }
-
+ .cardContainer:hover{
+    transform: scale(1.05);
+    box-shadow: 1px 1px 10px 5px var(--secondary);
+}
 .card_img{
     margin: 0 5px;
 }
@@ -27,18 +29,59 @@
 .card_img img{
     display: flex;
     justify-content: center;
-    padding: 15px;
-    width: 140px;
+    padding: 5px;
+    padding-bottom: 10px;
+    width: 160px;
     height: auto;
 }
 
-.product_list .card .card_header{
+.card_header{
+    color: black;
+}
+
+ .card .card_header{
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
 }
 
-.product_list .card .card_header .card_price{
+.card .card_header .card_price{
     margin-bottom: 10px;
     font-weight: bold;
+}
+.bottomContainer{
+    display: flex;
+    justify-content: space-between;
+}
+.bottomButtonContainer{
+    display: flex;
+}
+.bottomButtonContainer img{
+    width: 23px;
+    height: 23px;
+}
+.editButton,
+.deleteButton{
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7px;
+    margin: 0 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition: all 0.2s;
+}
+.editButton:hover,
+.deleteButton:hover{
+    transform: scale(1.15);
+}
+.editButton{
+    right: 50px;
+    background-color: #118AE1;
+}
+.deleteButton{
+    right: 5px;
+    background-color: #D9534F;
 }

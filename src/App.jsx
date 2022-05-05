@@ -4,8 +4,17 @@ import ProductCard from "./components/ProductCard/ProductCard";
 import CategoryCard from "./components/CategoryCard/categoryCard";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import { useSelector } from "react-redux";
+import DeleteProductCard from "./components/ProductCard/components/DeleteProductCard";
+import ProductCardList from "./components/ProductCard/ProductCardList";
 
 const App = () => {
+  const user = useSelector((state) => state.user);
+  const [seeAll, setSeeAll] = useState(false);
+  const seeAllHandler = () => {
+    setSeeAll((prevState) => !prevState);
+  };
+
   return (
     <Fragment>
       <Header />
@@ -16,18 +25,18 @@ const App = () => {
               <p>Categories</p>
             </div>
             <div>
-              <a href="" className={classes.seeAll}>
-                See all
-              </a>
+              <p className={classes.seeAll} onClick={seeAllHandler}>
+                {seeAll ? "Minimize" : "See all"}
+              </p>
             </div>
           </div>
-          <CategoryCard />
+          <CategoryCard seeAll={seeAll} />
         </div>
         <div className={classes.rightContainer}>
           <div className={classes.titleOfSection}>
             <p>Most Popular</p>
           </div>
-          <ProductCard />
+          <ProductCardList isAdmin={user.userRole === 1} />
         </div>
       </div>
       <Footer />

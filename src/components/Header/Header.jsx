@@ -14,6 +14,7 @@ const Header = () => {
   const [showCartCard, setShowCartCard] = useState(false);
   const [showNotificationCard, setShowNotificationCard] = useState(false);
   const [showProfileCard, setShowProfileCard] = useState(false);
+
   return (
     <div className={classes.headerContainer}>
       <div className={classes.logoContainer}>
@@ -40,32 +41,42 @@ const Header = () => {
             </Fragment>
           ) : (
             <Fragment>
-              <div
-                className={classes.cartContainer}
-                onMouseEnter={() => setShowCartCard(true)}
-                onMouseLeave={() => setShowCartCard(false)}
-              >
-                <Link to={"/cart"} className={classes.cartLink}>
-                  <img src={cartIcon} alt="cart" />
-                  <p className={classes.pendingIcon}>1</p>
-                </Link>
-                {showCartCard ? <CartHoverCard active="true" /> : ""}
-              </div>
-              <div
-                className={classes.notificationContainer}
-                onMouseEnter={() => setShowNotificationCard(true)}
-                onMouseLeave={() => setShowNotificationCard(false)}
-              >
-                <Link to={"/notification"} className={classes.notificationLink}>
-                  <img src={notificationBellIcon} alt="notification" />
-                  <p className={classes.pendingIcon}>1</p>
-                </Link>
-                {showNotificationCard ? (
-                  <NotificationHoverCard active="true" />
-                ) : (
-                  ""
-                )}
-              </div>
+              {user.userRole === 0 ? (
+                <Fragment>
+                  <div
+                    className={classes.cartContainer}
+                    onMouseEnter={() => setShowCartCard(true)}
+                    onMouseLeave={() => setShowCartCard(false)}
+                  >
+                    <Link to={"/cart"} className={classes.cartLink}>
+                      <img src={cartIcon} alt="cart" />
+                      <p className={classes.pendingIcon}>1</p>
+                    </Link>
+                    {showCartCard ? <CartHoverCard active="true" /> : ""}
+                  </div>
+                  <div
+                    className={classes.notificationContainer}
+                    onMouseEnter={() => setShowNotificationCard(true)}
+                    onMouseLeave={() => setShowNotificationCard(false)}
+                  >
+                    <Link
+                      to={"/notification"}
+                      className={classes.notificationLink}
+                    >
+                      <img src={notificationBellIcon} alt="notification" />
+                      <p className={classes.pendingIcon}>1</p>
+                    </Link>
+                    {showNotificationCard ? (
+                      <NotificationHoverCard active="true" />
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                </Fragment>
+              ) : (
+                ""
+              )}
+
               <div
                 className={classes.profileContainer}
                 onMouseEnter={() => setShowProfileCard(true)}
@@ -80,6 +91,7 @@ const Header = () => {
                     active="true"
                     userName={user.userName}
                     userID={user._id}
+                    isAdmin={user.userRole === 1}
                   />
                 ) : (
                   ""
