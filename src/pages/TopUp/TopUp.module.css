@@ -1,8 +1,13 @@
 .Container{
+    max-width: 1300px;
+    margin: auto;
     margin-top: 100px;
-    padding: 0 5%;
+    padding: 0 20px;
+    display: flex;
 }
-
+.TopUpMainContainer{
+    width: 60%;
+}
 .TopUpTitle{
     font-size: xx-large;
     font-weight: bold;
@@ -63,7 +68,7 @@
 .InstantButton{
     font-size: x-large;
     font-weight: bold;
-    color: white;
+    color: rgb(0, 0, 0);
     box-shadow: 1px 1px 5px 4px var(--primaryT);
     border-radius: 10px;
     background: var(--primary);
@@ -74,6 +79,7 @@
     cursor: pointer;
 }
 .InstantButton:hover{
+    color: white;
     transition: all 0.2s ease-in-out;
     background-color: var(--secondary);
 }
@@ -86,29 +92,60 @@
 .TopUpButtonContainer{
     margin: 60px 0;
 }
-.TopUpButton{
-    color: white;
-    font-size: x-large;
-    font-weight: bold;
-    background: var(--primary);
-    box-shadow: 1px 1px 5px 4px var(--primaryT);
-    border-radius: 10px;
-    background: var(--primary);
-    padding: 5px 15px;
-    width: 130px;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-}
-.TopUpButton:hover{
-    transition: all 0.2s ease-in-out;
-    background-color: var(--secondary);
-}
-.TopUpButton:active{
-    transition: all 0.1s ease-in-out;
-    background-color: var(--primaryD);
+
+
+
+.topUpContainer{
+    max-width: 1300px;
+    margin: auto;
+    margin-top: 80px;
 }
 
+.autoButton{
+    background-color: #5cdb5c;
+}
+
+.inputTopUp::-webkit-outer-spin-button,
+.inputTopUp::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.TopUpNoteContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+}
+.bold{
+    font-weight: 800;
+}
+.TopUpNoteCard{
+    background-color: aliceblue;
+    padding: 30px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+.TopUpNoteCard li{
+    padding: 7px 0;
+}
+
+@media screen and (max-width: 1100px){
+    .Container{
+        display: flex;
+        flex-direction: column;
+    }
+    .TopUpMainContainer{
+        width: 100%;
+    }
+    .TopUpNoteContainer{
+        width: 100%;
+    }
+    .topUpDisclaimer{
+        padding-bottom: 20px;
+    }
+}
 @media screen  and (max-width: 420px){
 
 
@@ -145,19 +182,3 @@
         width: 95px;
     }
 }
-
-.topUpContainer{
-    max-width: 1300px;
-    margin: auto;
-    margin-top: 80px;
-}
-
-.autoButton{
-    background-color: aliceblue;
-}
-
-.inputTopUp::-webkit-outer-spin-button,
-.inputTopUp::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
-

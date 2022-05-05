@@ -31,26 +31,27 @@ const TopUpPage = () => {
     <Fragment>
       <Header />
       <div className={classes.Container}>
-        <div>
-          <div className={classes.TopUpTitle}>
-            <p>Top Up</p>
+        <div className={classes.TopUpMainContainer}>
+          <div>
+            <div className={classes.TopUpTitle}>
+              <p>Top Up</p>
+            </div>
+            <div className={classes.CurrentBalance}>
+              <p>
+                Current Balances:{" "}
+                <span className={classes.balance}>Rp {userBalance}</span>
+              </p>
+            </div>
           </div>
-          <div className={classes.CurrentBalance}>
-            <p>
-              Current Balances:{" "}
-              <span className={classes.balance}>Rp 50.000</span>
-            </p>
-          </div>
-        </div>
-        <div>
-          <form action="">
+
+          <div className={classes.TopUpContainer}>
             <div className={classes.InputTitle}>
               <label>Top Up Amount:</label>
             </div>
             <div className={classes.InputContainer}>
               <span className={classes.CurrencyCode}>Rp.</span>
               <input
-                className={`${classes.inputTopUp} ${classes.input}`}
+                className={`${classes.inputTopUp} ${classes.Input}`}
                 type="number"
                 min={0}
                 name=""
@@ -91,9 +92,50 @@ const TopUpPage = () => {
             </div>
 
             <div className={classes.TopUpButtonContainer}>
-              <SimpleButton size="20">Top Up</SimpleButton>
+              <SimpleButton size="20" onClick={console.log("tes")}>
+                Top Up
+              </SimpleButton>
             </div>
-          </form>
+          </div>
+        </div>
+        <div className={classes.TopUpNoteContainer}>
+          <div className={classes.TopUpNote}>
+            <h2>How to Top Up in Travelist</h2>
+            <ul className={classes.TopUpNoteCard}>
+              <li>
+                <p>
+                  Select Top Up Amount by manually inputting the desired amount
+                  or pressing the buttons provided.
+                </p>
+              </li>
+              <li>
+                <p>Press the Top Up Button.</p>
+              </li>
+              <li>
+                <p>Send the total amount to Travelist Virtual Bank Number.</p>
+              </li>
+              <li>
+                <p>
+                  Send the transaction proof to{" "}
+                  <a
+                    href={"mailto: travelist@gmail.com"}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    travelist@gmail.com{" "}
+                  </a>
+                  <span className={classes.bold}>
+                    by attaching the screenshot proof and your email address
+                  </span>
+                  .
+                </p>
+              </li>
+            </ul>
+            <p className={classes.topUpDisclaimer}>
+              The transaction could take between 5 - 10 minutes for your payment
+              verification.{" "}
+            </p>
+          </div>
         </div>
       </div>
       <Footer />
@@ -102,34 +144,3 @@ const TopUpPage = () => {
 };
 
 export default TopUpPage;
-//** classes.TopUpButton **/
-// {
-//   /* return (
-//     <Fragment>
-//       <Header />
-//       <div className={classes.topUpContainer}>
-//         <h1>Top Up</h1>
-//         <h3>Current Balance {userBalance}</h3>
-//         <div className="topUpBox">
-//           <h3>Top Up amount</h3>
-//           <div>
-//             <p>Rp.</p>
-//             <input
-//               className={classes.inputTopUp}
-//               type="number"
-//               min={0}
-//               name=""
-//               id=""
-//               value={topUpAmount}
-//               onChange={handleInput}
-//               onKeyDown={(e) =>
-//                 symbolsArr.includes(e.key) && e.preventDefault()
-//               }
-//             />
-//           </div>
-
-//         </div>
-//       </div>
-//     </Fragment>
-//   ); */
-// }
