@@ -27,7 +27,7 @@ const ProfileHoverCard = (props) => {
       }`}
     >
       <div className={classes.profileHoverCardTop}>
-        <h3>{props.userName}</h3>
+        <h3 className={classes.profileName}>{props.userName}</h3>
       </div>
       <div className={`${classes.profileHoverCardContainer}`}>
         <Link to={"/cart"} className={classes.profileHoverCard}>

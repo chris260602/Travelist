@@ -1,0 +1,13 @@
+.topUpContainer{
+    max-width: 1300px;
+    margin: auto;
+    margin-top: 80px;
+}
+
+.autoButton{
+    background-color: aliceblue;
+}
+.inputTopUp::-webkit-outer-spin-button,
+.inputTopUp::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
