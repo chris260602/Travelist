@@ -1,0 +1,17 @@
+.simpleButton{
+    cursor: pointer;
+    background-color: var(--primary);
+    border: none;
+    padding: 0.5em 1em;
+    font-weight: bold;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 1px 10px 10px 4px var(--primaryT);
+    transition: all 0.4s;
+}
+
+.simpleButton:focus {
+    outline: none;
+    box-shadow: 1px 3px 15px 6px var(--primaryT);
+    transform: scale(1.01);
+}

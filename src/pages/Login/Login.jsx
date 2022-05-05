@@ -10,6 +10,7 @@ import axios from "axios";
 const Login = () => {
   const [btnClick, setBtnClick] = useState(false);
   const [isInvalid, setIsInvalid] = useState(false);
+  const [isEmailNotVerified, setIsEmailNotVerified] = useState(false);
   const user = useSelector((state) => state.user);
   const email = useRef();
   const password = useRef();
@@ -22,6 +23,7 @@ const Login = () => {
     }
     document.title = "Login | Travelist";
   }, [isLoggedIn]);
+  document.body.style.overflow = "auto";
   const loginSubmit = async (e) => {
     e.preventDefault();
     setBtnClick(true);
@@ -47,7 +49,11 @@ const Login = () => {
         );
       }
     } catch (e) {
-      setIsInvalid(true);
+      if (e.response.data.error === "Email Not Verified") {
+        setIsEmailNotVerified(true);
+      } else {
+        setIsInvalid(true);
+      }
       return;
     } finally {
       setBtnClick(false);
@@ -278,6 +284,10 @@ const Login = () => {
                 {isInvalid ? (
                   <p className={classes.invalidLogin}>
                     Invalid email or password !
+                  </p>
+                ) : isEmailNotVerified ? (
+                  <p className={classes.invalidLogin}>
+                    Please Verifiy your email !
                   </p>
                 ) : (
                   ""
