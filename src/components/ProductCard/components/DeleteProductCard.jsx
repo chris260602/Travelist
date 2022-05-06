@@ -16,11 +16,19 @@ const DeleteProductCard = (props) => {
         }
       ></div>
       <div className={classes.container}>
-        <h1>Delete Product</h1>
-        <p>Are you sure you want to delete {productName}</p>
-        <p>Product that is deleted will be lost forever!</p>
+        <h1 className={classes.deleteTitle}>Delete Product</h1>
+        <div>
+          <p>
+            Are you sure you want to delete{" "}
+            <span className={classes.bold}>{productName}</span> ?
+          </p>
+          <p className={`${classes.red} ${classes.bold}`}>
+            Product that is deleted will be lost forever!
+          </p>
+        </div>
         <div className={classes.ButtonContainer}>
           <p
+            className={classes.cancelButton}
             onClick={() =>
               props.cancelModalHandler({
                 active: false,
@@ -31,7 +39,9 @@ const DeleteProductCard = (props) => {
           >
             Cancel
           </p>
-          <p onClick={() => alert(productID)}>Delete</p>
+          <p className={classes.deleteButton} onClick={() => alert(productID)}>
+            Delete
+          </p>
         </div>
       </div>
     </Fragment>,
