@@ -47,11 +47,11 @@ const TopUpPage = () => {
         </div>
       </div>
       {/* {<DataIsEmpty />} */}
-      <TopUpCol />
-      <TopUpCol />
-      <TopUpCol />
-      <TopUpCol />
-      <TopUpCol />
+      <TopUpCol data={{ name: "user1", id: "1", price: "10000" }} />
+      <TopUpCol data={{ name: "user2", id: "1", price: "10000" }} />
+      <TopUpCol data={{ name: "user3", id: "1", price: "10000" }} />
+      <TopUpCol data={{ name: "user4", id: "1", price: "10000" }} />
+      <TopUpCol data={{ name: "user5", id: "1", price: "10000" }} />
     </div>
   );
   const TopUpAdmin = (

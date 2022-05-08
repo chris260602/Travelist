@@ -22,6 +22,9 @@ import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen";
 import TopUp from "./pages/TopUp/TopUp";
 import UserPage from "./pages/UserPage/UserPage"
+import AddCategory from "./pages/AddCategory/AddCategory";
+import UpdateCategory from "./pages/UpdateCategory/UpdateCategory";
+import Categories from "./pages/Categories/Categories";
 
 //Testing
 const App = React.lazy(() => {
@@ -53,6 +56,9 @@ ReactDOM.render(
             <Route path="*" element={<NotFound />} />
             <Route path="productdetail" element={<Productdetail />} />
             <Route path="userpage" element={<UserPage />} />
+            <Route path="addcategory" element={<AddCategory />} />
+            <Route path="updatecategory/:id" element={<UpdateCategory />} />
+            <Route path="categories" element={<Categories />} />
           </Routes>
         </BrowserRouter>
       </PersistGate>

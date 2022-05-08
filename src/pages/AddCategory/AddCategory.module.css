@@ -1,0 +1,184 @@
+.formContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+  }
+  .addCategoryForm {
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 20px 40px 20px;
+    padding: 30px;
+    width: 70%;
+    max-width: 1000px;
+    transition: all 0.4s;
+  }
+  .formChild {
+    display: flex;
+    margin: 20px 0;
+    width: 100%;
+    font-size: 1.5rem;
+  }
+  .formChild label {
+    font-weight: 500;
+    width: 20%;
+    min-width: 130px;
+  }
+  .formChild option {
+    background-color: white;
+  }
+  .formChild input,
+  .formChild textarea,
+  .formChild select {
+    width: 80%;
+    padding: 5px;
+    font-size: 1.5rem;
+    border: 1px solid var(--primary);
+    box-shadow: 1px 3px 10px 3px var(--primaryT);
+    border-radius: 5px;
+    font-weight: 400;
+    background-color: white;
+  }
+  .formChild input:focus,
+  .formChild textarea:focus,
+  .formChild select:focus {
+    outline: none;
+    box-shadow: 1px 3px 15px 6px var(--primaryT);
+    transform: scale(1.01);
+  }
+  .formChild textarea {
+    max-width: 80%;
+    resize: vertical;
+    min-height: 100px;
+  }
+  .errorIndicator {
+    color: red;
+  }
+  .imageContainer {
+    display: flex;
+    overflow-x: auto;
+    padding: 20px 0;
+    margin-bottom: 20px;
+  }
+  .imageFormContainer {
+    border-radius: 10px;
+    box-shadow: 1px 1px 7px 3px var(--primaryT);
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px 20px;
+    width: 25%;
+  }
+  .imageFormContainer label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .imageFormContainer img {
+    width: 70%;
+    margin-bottom: 10px;
+  }
+  
+  .buttonContainer {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .buttonContainer button {
+    cursor: pointer;
+    background-color: var(--primary);
+    border: none;
+    padding: 0.4em 1.2em;
+    margin: 20px 0 50px 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 1px 10px 10px 4px var(--primaryT);
+    transition: all 0.4s;
+  }
+  .buttonContainer button:hover {
+    transform: scale(1.01);
+    box-shadow: 1px 10px 15px 10px var(--primaryT);
+  }
+  .buttonContainer button:active {
+    color: var(--primaryD);
+    box-shadow: 1px 5px 6px 3px var(--primaryT);
+    transform: scale(0.9);
+  }
+  .loaderWrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(65, 65, 65, 0.507);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .loaderWrapper img {
+    width: 100px;
+  }
+  
+  @media screen and (max-width: 1320px) {
+    .addCategoryForm {
+      width: 80%
+    }
+  }
+  
+  @media screen and (max-width: 750px) {
+    .imageFormContainer img {
+      width: 50%;
+    }
+  }
+  
+  @media screen and (max-width: 700px) {
+    .imageFormContainer {
+      width: 130px;
+      height: auto;
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .formChild {
+      flex-direction: column;
+      font-size: 1.2rem;
+    }
+  
+    .formChild input,
+    .formChild textarea,
+    .formChild select {
+      width: 100%;
+      font-size: 1.2rem;
+    }
+  
+    .formChild textarea {
+      max-width: 100%;
+    }
+  
+    .addCategoryForm {
+      width: 100%;
+    }
+  
+  }
+  
+  @media screen and (max-width: 500px) {
+    .buttonContainer button {
+      font-size: 1.1rem;
+    }
+  }
+  
+  @media screen and (max-width: 400px) {
+    .addCategoryForm {
+      padding: 15px;
+    }
+  }
+  
+  @media screen and (max-width: 350px) {
+    .buttonContainer {
+      flex-direction: column;
+    }
+  
+    .buttonContainer button {
+      margin: 10px 0 20px 0;
+    }
+  }
