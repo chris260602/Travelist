@@ -1,22 +1,54 @@
+import { Fragment, useEffect } from "react";
+import { useState } from "react";
 import classes from "./TopUpCol.module.css";
-const TopUpCol = () => {
+
+import SimpleModal from "./components/SimpleModal";
+const TopUpCol = (props) => {
+  const [item, setItem] = useState(null);
+  const { data } = props;
   return (
-    <div className={classes.TopUpColContainer}>
-      <div className={classes.TopUpCol1}>
-        <p>User1</p>
-      </div>
-      <div className={classes.TopUpCol2}>
-        <p>Rp 100.000</p>
-      </div>
-      <div className={classes.TopUpColButtonContainer}>
-        <div className={classes.acceptButton}>
-          <p>Accept</p>
+    <Fragment>
+      {item ? <SimpleModal item={item} modalHandler={setItem} /> : ""}
+      <div className={classes.TopUpColContainer}>
+        <div className={classes.TopUpCol1}>
+          <p>{data.name}</p>
         </div>
-        <div className={classes.declineButton}>
-          <p>Decline</p>
+        <div className={classes.TopUpCol2}>
+          <p>Rp {data.price}</p>
+        </div>
+        <div className={classes.TopUpColButtonContainer}>
+          <div
+            className={classes.acceptButton}
+            onClick={() =>
+              setItem({
+                name: data.name,
+                id: data.id,
+                price: data.price,
+                title: "Accept Top Up Request",
+                desc: "Are you sure you want to give",
+                warning: "Any actions that are made cannot be changed!",
+              })
+            }
+          >
+            <p>Accept</p>
+          </div>
+          <div
+            className={classes.declineButton}
+            onClick={() =>
+              setItem({
+                name: data.name,
+                id: data.id,
+                title: "Decline Top Up Request",
+                desc: "Are you sure you want to decline a top up request from",
+                warning: "Any actions that are made cannot be changed!",
+              })
+            }
+          >
+            <p>Decline</p>
+          </div>
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 

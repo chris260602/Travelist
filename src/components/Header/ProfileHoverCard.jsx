@@ -70,6 +70,7 @@ const ProfileHoverCard = (props) => {
                 <p>Top-Up Request</p>
               </div>
             </Link>
+            {/* Manage Categories sama Manage Products */}
             {/* <Link to={"/topup"} className={classes.profileHoverCard}>
             <div className={classes.profileHoverCardImageContainer}>
               <img src={moneyIcon} alt="" />
