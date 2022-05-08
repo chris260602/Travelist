@@ -70,6 +70,24 @@ const ProfileHoverCard = (props) => {
                 <p>Top-Up Request</p>
               </div>
             </Link>
+
+            <Link to={"/products"} className={classes.profileHoverCard}>
+              <div className={classes.profileHoverCardImageContainer}>
+                <img src={moneyIcon} alt="" />
+              </div>
+              <div className={classes.profileHoverCardTextContainer}>
+                <p>Manage Products</p>
+              </div>
+            </Link>
+
+            <Link to={"/categories"} className={classes.profileHoverCard}>
+              <div className={classes.profileHoverCardImageContainer}>
+                <img src={moneyIcon} alt="" />
+              </div>
+              <div className={classes.profileHoverCardTextContainer}>
+                <p>Manage Categories</p>
+              </div>
+            </Link>
             {/* Manage Categories sama Manage Products */}
             {/* <Link to={"/topup"} className={classes.profileHoverCard}>
             <div className={classes.profileHoverCardImageContainer}>

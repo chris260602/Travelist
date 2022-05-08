@@ -24,6 +24,7 @@ import TopUp from "./pages/TopUp/TopUp";
 import AddCategory from "./pages/AddCategory/AddCategory";
 import UpdateCategory from "./pages/UpdateCategory/UpdateCategory";
 import Categories from "./pages/Categories/Categories";
+import Products from "./pages/Products/Products";
 
 //Testing
 const App = React.lazy(() => {
@@ -57,6 +58,7 @@ ReactDOM.render(
             <Route path="addcategory" element={<AddCategory />} />
             <Route path="updatecategory/:id" element={<UpdateCategory />} />
             <Route path="categories" element={<Categories />} />
+            <Route path="products" element={<Products />} />
           </Routes>
         </BrowserRouter>
       </PersistGate>

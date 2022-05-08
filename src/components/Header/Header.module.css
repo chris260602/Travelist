@@ -10,6 +10,7 @@
   background-color: white;
   padding: 10px 15px;
   top: 0;
+  z-index: 1;
 }
 .logoContainer img {
   width: 200px;
