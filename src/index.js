@@ -21,6 +21,7 @@ import HistoryPage from "./pages/History/History.jsx";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen";
 import TopUp from "./pages/TopUp/TopUp";
+import UserPage from "./pages/UserPage/UserPage"
 
 //Testing
 const App = React.lazy(() => {
@@ -51,6 +52,7 @@ ReactDOM.render(
             <Route path="topup" element={<TopUp />} />
             <Route path="*" element={<NotFound />} />
             <Route path="productdetail" element={<Productdetail />} />
+            <Route path="userpage" element={<UserPage />} />
           </Routes>
         </BrowserRouter>
       </PersistGate>
