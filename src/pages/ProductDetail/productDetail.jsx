@@ -1,11 +1,14 @@
 import React, { Fragment } from 'react'
 import classes from './productDetail.module.css'
 import Wishlist from '../../components/WishList/Wishlist' 
+import Header from '../../components/Header/Header'
+import Footer from '../../components/Footer/Footer'
 
 const ProductDetail = ()=>{
 
     return(
         <Fragment>
+        <Header/>
        <div className={classes.rightContainer}>
            <div className={classes.firstContainer}>
                 <div className={classes.productImage}>
@@ -86,7 +89,7 @@ const ProductDetail = ()=>{
                 </div>
            </div>
        </div> 
-       
+       <Footer/>
        </Fragment>
     )
 }
