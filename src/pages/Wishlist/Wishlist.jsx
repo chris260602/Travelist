@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import classes from './Wishlist.module.css'
-import ProductList from '../../components/ProductList/productList';
+import ProductList from './components/productList'
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 

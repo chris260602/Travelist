@@ -1,0 +1,48 @@
+.card{
+    padding: 15px;
+}
+
+.cardContainer{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px;
+    padding:5px 0;
+    box-shadow: 1px 1px 5px 4px var(--primaryT);
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+ .cardContainer:hover{
+    transform: scale(1.05);
+    box-shadow: 1px 1px 10px 5px var(--secondary);
+}
+.card_img{
+    margin: 0 5px;
+}
+
+.card_img img{
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    padding-bottom: 10px;
+    width: 160px;
+    height: auto;
+}
+
+.card .card_header{
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.card_price{
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.wishListIcon {
+    display: flex;
+    align-items: flex-end;
+}
