@@ -24,16 +24,7 @@
     height: 240px;
     overflow: auto;
   }
-  .linkContainer {
-    margin-top: 20px;
-  }
-  .linkContainer a {
-    color: var(--primary);
-    transition: all 0.2s;
-  }
-  .linkContainer a:hover {
-    color: var(--primaryD);
-  }
+
   .deleteTitle{
     margin-bottom: 20px;
   }
