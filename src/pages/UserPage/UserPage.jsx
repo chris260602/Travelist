@@ -1,7 +1,11 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState} from "react";
 import classes from "./UserPage.module.css";
+import ChangeUsernamePopUp from "./ChangeUsername";
+import ChangePasswordPopUp from "./ChangePassword";
+import DeleteAccountPopUp from "./DeleteAccount";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+
 import { Link } from "react-router-dom";
 
 const user=
@@ -15,6 +19,29 @@ const user=
 
 const UserPage = () =>{
 
+    const [UsernameVisible, setUsernameVisible] = useState(false);
+    const [PasswordVisible, setPasswordVisible] = useState(false);
+    const [DeleteVisible, setDeleteVisible] = useState(false);
+    
+    const handleClickUsername = () => {
+        setUsernameVisible(true);
+    };
+    const handleClickPassword = () => {
+        setPasswordVisible(true);
+    };
+    const handleClickDelete = () => {
+        setDeleteVisible(true);
+    };
+
+    const hideUsername = () => {
+        setUsernameVisible(false);
+    };
+    const hidePassword = () => {
+        setPasswordVisible(false);
+    };
+    const hideDelete = () => {
+        setDeleteVisible(false);
+    };
     
 
     return(
@@ -31,7 +58,7 @@ const UserPage = () =>{
                         </div>
                     </div>
                     <div className={classes.deleteButton1}>
-                        <a href="#2">
+                        <a href="#2" onClick={()=>handleClickDelete()}>
                             <div className={classes.deleteAccount}>
                                     Delete Account
                             </div>
@@ -43,7 +70,7 @@ const UserPage = () =>{
                     <div className={classes.username}>
                         <div className={classes.usernameHeader}>
                             <span>User Name: </span>  
-                            <a href="#3">
+                            <a href="#3" onClick={()=>handleClickUsername()}>
                                 Change
                             </a> 
                         </div>
@@ -74,24 +101,26 @@ const UserPage = () =>{
 
                     </div>
                     <div className={classes.buttons}>
-                        <a href="#5">
+                        <a href="#5" onClick={()=>handleClickPassword()}>
                             <div className={classes.changePassword}>
                                 Change Password
                             </div>  
                         </a>
 
                         <div className={classes.deleteButton2}>
-                            <a href="#2">
+                            <a href="#2" onClick={()=>handleClickDelete()}>
                                 <div className={classes.deleteAccount}>
                                         Delete Account
                                 </div>
                             </a>
                         </div>
                     </div>
-                    
-
                 </div>
+            {UsernameVisible && <ChangeUsernamePopUp handleClose={hideUsername} />}
+            {PasswordVisible && <ChangePasswordPopUp handleClose={hidePassword} />}
+            {DeleteVisible && <DeleteAccountPopUp handleClose={hideDelete} />}
             </div>
+            
             <Footer/>
         </Fragment>
     )
