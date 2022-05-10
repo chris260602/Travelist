@@ -1,7 +1,7 @@
 import React, { Fragment} from "react";
 import classes from "./productCard.module.css";
 import { Link } from "react-router-dom";
-import Wishlist from "../../WishList/Wishlist";
+import Wishlist from "../../../../components/WishList/Wishlist";
 
 const ProductCard = (props) => {
     const { item } = props;

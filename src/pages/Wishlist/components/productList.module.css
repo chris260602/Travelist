@@ -1,0 +1,11 @@
+.product_list{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 470px) {
+    .product_list{
+        justify-content: center;
+    }
+}
