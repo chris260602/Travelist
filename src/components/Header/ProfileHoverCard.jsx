@@ -5,6 +5,8 @@ import wishListIcon from "../../assets/img/wishListIcon.svg";
 import logoutIcon from "../../assets/img/logoutIcon.svg";
 import historyIcon from "../../assets/img/historyIcon.svg";
 import moneyIcon from "../../assets/img/moneyIcon.svg";
+import manageProductsIcon from "../../assets/img/manageProductsIcon.svg";
+import manageCategoriesIcon from "../../assets/img/manageCategoriesIcon.svg";
 import classes from "./ProfileHoverCard.module.css";
 import { useDispatch } from "react-redux";
 import { logoff } from "../../store/reducers/userReducer/userReducer";
@@ -73,7 +75,7 @@ const ProfileHoverCard = (props) => {
 
             <Link to={"/products"} className={classes.profileHoverCard}>
               <div className={classes.profileHoverCardImageContainer}>
-                <img src={moneyIcon} alt="" />
+                <img src={manageProductsIcon} alt="" />
               </div>
               <div className={classes.profileHoverCardTextContainer}>
                 <p>Manage Products</p>
@@ -82,21 +84,12 @@ const ProfileHoverCard = (props) => {
 
             <Link to={"/categories"} className={classes.profileHoverCard}>
               <div className={classes.profileHoverCardImageContainer}>
-                <img src={moneyIcon} alt="" />
+                <img src={manageCategoriesIcon} alt="" />
               </div>
               <div className={classes.profileHoverCardTextContainer}>
                 <p>Manage Categories</p>
               </div>
             </Link>
-            {/* Manage Categories sama Manage Products */}
-            {/* <Link to={"/topup"} className={classes.profileHoverCard}>
-            <div className={classes.profileHoverCardImageContainer}>
-              <img src={moneyIcon} alt="" />
-            </div>
-            <div className={classes.profileHoverCardTextContainer}>
-              <p>Manage Categories</p>
-            </div>
-          </Link> */}
           </Fragment>
         )}
         <div className={classes.profileHoverCard} onClick={logoutHandler}>

@@ -4,6 +4,8 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./CreateProduct.module.css";
 import loader from "../../assets/svg_animation/loader.svg";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 const CreateProduct = () => {
   const [totalPictures, setTotalPictures] = useState(1);
   const [isSubmit, setIsSubmit] = useState(false);
@@ -136,7 +138,7 @@ const CreateProduct = () => {
   const cancelBtnHandler = (e) => {
     e.preventDefault();
     if (window.confirm("Your input will not be saved if you leave now")) {
-      navigate("/");
+      navigate("/products");
     }
   };
   const changeImage = (image, container) => {
@@ -255,69 +257,71 @@ const CreateProduct = () => {
     }
   };
   return (
-    <div className={classes.formContainer}>
-      {isSubmit ? (
-        <div className={classes.loaderWrapper}>
-          <img src={loader} alt="Loading..." />
-        </div>
-      ) : (
-        ""
-      )}
-      <form
-        className={classes.createProductForm}
-        onSubmit={createProductHandler}
-      >
-        {!isNameValid ? (
-          <p className={classes.errorIndicator}>
-            Name Must be atleast 2 characters long
-          </p>
+    <Fragment>
+      <Header />
+      <div className={classes.formContainer}>
+        {isSubmit ? (
+          <div className={classes.loaderWrapper}>
+            <img src={loader} alt="Loading..." />
+          </div>
         ) : (
           ""
         )}
-        <div className={classes.formChild}>
-          <label htmlFor="name">Name:</label>
-          <input type="text" id="name" ref={productName} required />
-        </div>
-        {!isPriceValid ? (
-          <p className={classes.errorIndicator}>
-            Price can't have negative value
-          </p>
-        ) : (
-          ""
-        )}
-        <div className={classes.formChild}>
-          <label htmlFor="price">Price:</label>
-          <input
-            type="number"
-            id="price"
-            min={0}
-            name="price"
-            ref={productPrice}
-            required
-          />
-        </div>
-        {!isStocksValid ? (
-          <p className={classes.errorIndicator}>
-            Stocks can't have negative value
-          </p>
-        ) : (
-          ""
-        )}
-        <div className={classes.formChild}>
-          <label htmlFor="stocks">Stocks:</label>
-          <input
-            type="number"
-            id="stocks"
-            min={0}
-            ref={productStocks}
-            required
-          />
-        </div>
-        <div className={classes.formChild}>
-          <label htmlFor="category">Category:</label>
-          <select name="category" id="category" ref={category}>
-            {categoryOptions}
-            {/* <option value="Bathroom">Bathroom</option>
+        <form
+          className={classes.createProductForm}
+          onSubmit={createProductHandler}
+        >
+          {!isNameValid ? (
+            <p className={classes.errorIndicator}>
+              Name Must be atleast 2 characters long
+            </p>
+          ) : (
+            ""
+          )}
+          <div className={classes.formChild}>
+            <label htmlFor="name">Name:</label>
+            <input type="text" id="name" ref={productName} required />
+          </div>
+          {!isPriceValid ? (
+            <p className={classes.errorIndicator}>
+              Price can't have negative value
+            </p>
+          ) : (
+            ""
+          )}
+          <div className={classes.formChild}>
+            <label htmlFor="price">Price:</label>
+            <input
+              type="number"
+              id="price"
+              min={0}
+              name="price"
+              ref={productPrice}
+              required
+            />
+          </div>
+          {!isStocksValid ? (
+            <p className={classes.errorIndicator}>
+              Stocks can't have negative value
+            </p>
+          ) : (
+            ""
+          )}
+          <div className={classes.formChild}>
+            <label htmlFor="stocks">Stocks:</label>
+            <input
+              type="number"
+              id="stocks"
+              min={0}
+              ref={productStocks}
+              required
+            />
+          </div>
+          <div className={classes.formChild}>
+            <label htmlFor="category">Category:</label>
+            <select name="category" id="category" ref={category}>
+              {categoryOptions}
+              {/* <option value="Bathroom">Bathroom</option>
             <option value="Electronics">Electronics</option>
             <option value="Kitchen">Kitchen</option>
             <option value="Clothes">Clothes</option>
@@ -329,45 +333,47 @@ const CreateProduct = () => {
             <option value="Bed">Bed</option>
             <option value="Pest Control">Pest Control</option>
             <option value="Games">Games</option> */}
-          </select>
-        </div>
-        {!isContentValid ? (
-          <p className={classes.errorIndicator}>Content cannot be empty</p>
-        ) : (
-          ""
-        )}
-        <div className={classes.formChild}>
-          <label htmlFor="content">Content:</label>
-          <textarea type="text" id="content" ref={productContent} required />
-        </div>
-        {imagesForm}
-        <div className={classes.toggleImageButtonContainer}>
-          <button
-            onClick={decreasePictureAmountHandler}
-            className={classes.removePictureBtn}
-          >
-            Remove
-          </button>
-          <button
-            onClick={addPictureAmountHandler}
-            className={classes.addPictureBtn}
-          >
-            Add More
-          </button>
-        </div>
-
-        <div className={classes.buttonContainer}>
-          {isSubmit ? (
-            ""
+            </select>
+          </div>
+          {!isContentValid ? (
+            <p className={classes.errorIndicator}>Content cannot be empty</p>
           ) : (
-            <Fragment>
-              <button onClick={cancelBtnHandler}>Cancel</button>
-              <button>Create Product</button>
-            </Fragment>
+            ""
           )}
-        </div>
-      </form>
-    </div>
+          <div className={classes.formChild}>
+            <label htmlFor="content">Content:</label>
+            <textarea type="text" id="content" ref={productContent} required />
+          </div>
+          {imagesForm}
+          <div className={classes.toggleImageButtonContainer}>
+            <button
+              onClick={decreasePictureAmountHandler}
+              className={classes.removePictureBtn}
+            >
+              Remove
+            </button>
+            <button
+              onClick={addPictureAmountHandler}
+              className={classes.addPictureBtn}
+            >
+              Add More
+            </button>
+          </div>
+
+          <div className={classes.buttonContainer}>
+            {isSubmit ? (
+              ""
+            ) : (
+              <Fragment>
+                <button onClick={cancelBtnHandler}>Cancel</button>
+                <button>Create Product</button>
+              </Fragment>
+            )}
+          </div>
+        </form>
+      </div>
+      <Footer />
+    </Fragment>
   );
 };
 export default CreateProduct;

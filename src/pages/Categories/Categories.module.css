@@ -1,0 +1,42 @@
+.container{
+    max-width: 1300px;
+  margin: auto;
+  margin-top: 80px;
+  min-height:  calc(100vh - 80px - 203px);;
+}
+.mainTitle{
+    padding: 20px;
+    font-size: 2.5rem;
+}
+.buttonContainer{
+  display: flex;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+.addCategoryButton{
+  padding: 0.5em 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary);
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+}
+.cardContainer{
+border-radius: 20px;
+  box-shadow: 1px 3px 20px 3px var(--primaryT);
+  display: flex;
+  justify-content: flex-start;
+  margin: 20px 20px 40px 20px;
+  padding: 30px;
+  flex-wrap: wrap;
+  transition: all 0.4s;
+}
+.loading{
+  margin-top: 200px;
+  text-align: center;
+  height: calc(100vh - 80px - 333px);
+}

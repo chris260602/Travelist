@@ -1,0 +1,71 @@
+.cardContainer{
+    border-radius: 20px;
+  box-shadow: 1px 3px 20px 3px var(--primaryT);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 20px 20px 40px 20px;
+  padding: 30px;
+  width: 560px;
+  
+}
+.topContainer{
+    position: relative;
+    display: flex;
+    max-height: 150px;
+    overflow: auto;
+}
+
+.imgContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35%;
+    margin-bottom: 15px;
+}
+.imgContainer img{
+    width: 65%;
+    
+}
+.mainInfoContainer{
+    width: 65%;
+}
+.infoContainer{
+    margin-bottom: 15px;
+}
+.bottomContainer{
+    display: flex;
+    position: relative;
+    width: 95%;
+    margin: auto;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding-top: 20px;
+}
+.bottomContainer::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 95%;
+    margin: auto;
+    border-bottom: 2px solid var(--primary);
+}
+.editButton,.removeButton{
+padding: 0.5em 1em;
+border-radius: 10px;
+color: white;
+font-weight: bold;
+cursor: pointer;
+transition: all 0.3s;
+}
+.editButton:hover,.removeButton:hover{
+    transform: scale(1.1);
+}
+.editButton{
+background-color: var(--blue);
+}
+.removeButton{
+background-color: var(--red);
+}

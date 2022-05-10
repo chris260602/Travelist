@@ -72,6 +72,7 @@ const AddCategory = () => {
           }
         );
         clearInput();
+        navigate("/categories");
       } catch (e) {
         alert("Something went wrong");
       }
@@ -81,7 +82,7 @@ const AddCategory = () => {
   const cancelBtnHandler = (e) => {
     e.preventDefault();
     if (window.confirm("Your input will not be saved if you leave now")) {
-      navigate("/");
+      navigate("/categories");
     }
   };
   const changeImage = (image, container) => {

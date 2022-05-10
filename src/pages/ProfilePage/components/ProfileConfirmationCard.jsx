@@ -1,8 +1,8 @@
 import { Fragment } from "react";
 import ReactDOM from "react-dom";
-import classes from "./SimpleModal.module.css";
-const SimpleModal = (props) => {
-  const { title, desc, warning, name, id, price } = props.item;
+import classes from "./ProfileConfirmationCard.module.css";
+const ProfileConfirmationCard = (props) => {
+  const { title, desc, warning, name, id } = props.item;
   return ReactDOM.createPortal(
     <Fragment>
       <div
@@ -14,7 +14,6 @@ const SimpleModal = (props) => {
         <div>
           <p>
             {desc} <span className={classes.bold}>{name}</span>{" "}
-            {!price ? "" : " Rp. " + price}?
           </p>
           <p className={`${classes.red} ${classes.bold}`}>{warning}</p>
         </div>
@@ -35,4 +34,4 @@ const SimpleModal = (props) => {
   );
 };
 
-export default SimpleModal;
+export default ProfileConfirmationCard;

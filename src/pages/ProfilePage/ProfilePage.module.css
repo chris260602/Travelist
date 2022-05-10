@@ -1,0 +1,233 @@
+.pageContainer{
+    max-width: 1300px;
+    margin: auto;
+    margin-top: 100px;
+    display: flex;
+    padding: 0 0 20px 0;
+    width: 100%;
+}
+
+.leftContainer{
+    flex: 3.5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-right: solid var(--primaryT) 2px;
+    padding: 15px 0 20px 0;
+}
+
+.profilePicture{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40%;
+}
+
+.profilePicture img{
+    border-radius: 100%;
+    width: 225px;
+    height: auto;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.changePicture{
+    margin-top: 10px;
+}
+
+.profilePicture a{
+    font-size: 21pt;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.deleteAccount{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--red);
+    font-size: larger;
+    font-weight: bold;
+    color: white;
+    width: 210px;
+    padding: 15px 5px 15px 5px;
+    border-radius: 7px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.deleteButton2{
+    display: none;
+}
+
+.rightContainer{
+    flex: 6.5;
+    padding: 20px 0 15px 7%;
+    border-left: solid var(--primaryT) 1px;
+    font-size: 21pt;
+}
+.rightContainer span{
+    font-weight: bolder;
+}
+.rightContainer a{
+    font-weight: bold;
+    font-size: large;
+    text-decoration: none;
+    color: var(--primary);
+    margin-left: 20px;
+}
+
+.username{
+    padding-bottom: 10px;
+}
+.usernameHeader{
+    display: flex;
+    align-items: center;
+}
+
+.email{
+    padding: 10px 0 10px 0;
+}
+.emailHeader{
+    display: flex;
+    align-items: center;
+}
+
+.balance{
+    padding: 10px 0 10px 0;
+}
+.balanceHeader{
+    display: flex;
+}
+.topUpButton{
+    background-color: var(--blue);
+    padding: 5px 15px 5px 15px;
+    border-radius: 7px;
+    color: white;
+    font-size: medium;
+}
+
+.changePassword{
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: var(--primary);
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 5px 10px 5px;
+    border-radius: 7px;
+}
+.changePassword img{
+    width: 25px;
+    padding-right: 10px;
+}
+@media screen  and (max-width: 545px){
+
+.pageContainer{
+    flex-direction: column;
+    height: 100%;
+    padding: 0 5px 0 5px;
+    margin-top: 80px;
+}
+
+.leftContainer{
+    flex: 3.5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-right: none;
+    border-bottom: solid var(--primaryT) 1px;
+    padding: 15px 0 10px 5px;
+}
+.leftContainer a{
+    font-size: large;
+}
+
+.profilePicture{
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.deleteButton1{
+    display: none;
+}
+
+.profilePicture img{
+    width: 100px;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.rightContainer{
+    flex: 6.5;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 20px 5px 20px;
+    border-left: none;
+    border-top: solid var(--primaryT) 1px;
+    font-size: large;
+    align-items: center;
+}
+.rightContainer a{
+    font-size: small;
+    margin-left: 10px;
+}
+.topUpButton{
+    font-size: smaller;
+    padding: 3px 5px 3px 5px;
+}
+
+.username{
+    width: 90%;
+    padding: 0 0 5px 0;
+}
+.email{
+    width: 90%;
+    padding: 5px 0 5px 0;
+}
+.balance{
+    width: 90%;
+    padding: 5px 0 10px 0;
+}
+
+.changePassword{
+    width: 100%;
+    padding: 5px 4px 5px 4px;
+    font-size: 11pt;
+    font-weight: 600;
+}
+.deleteButton2{
+    display: inline-block;
+}
+.deleteButton2 a{
+    margin: 0;
+}
+.deleteAccount{
+    width: 100%;
+    padding: 5px 4px 5px 4px;
+    font-size: 11pt;
+    font-weight: 600;
+}
+.buttons a{
+    padding: 0;
+    margin: 0;
+}
+.buttons{
+    display: flex;
+    width: 90%;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px 0 10px 0;
+}
+
+
+
+}
