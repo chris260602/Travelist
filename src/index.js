@@ -24,7 +24,9 @@ import TopUp from "./pages/TopUp/TopUp";
 import AddCategory from "./pages/AddCategory/AddCategory";
 import UpdateCategory from "./pages/UpdateCategory/UpdateCategory";
 import Categories from "./pages/Categories/Categories";
-import Products from "./pages/Products/Products";
+// import ProductAdmin from "./pages/Products/Products";
+import Wishlist from "./pages/Wishlist/Wishlist";
+import Products from "./pages/ProductPage/ProductPage";
 
 //Testing
 const App = React.lazy(() => {
@@ -58,6 +60,7 @@ ReactDOM.render(
             <Route path="addcategory" element={<AddCategory />} />
             <Route path="updatecategory/:id" element={<UpdateCategory />} />
             <Route path="categories" element={<Categories />} />
+            <Route path="wishlist" element={<Wishlist />} />
             <Route path="products" element={<Products />} />
           </Routes>
         </BrowserRouter>

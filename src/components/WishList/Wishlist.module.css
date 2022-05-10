@@ -1,6 +1,7 @@
 .wishlist{
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .wishlistIcon{
@@ -18,4 +19,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.wishlist:hover{
+    transform: scale(1.15);
+    /*box-shadow: 1px 10px 15px 10px var(--primaryT);*/
 }

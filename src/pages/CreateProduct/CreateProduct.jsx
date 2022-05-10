@@ -129,6 +129,7 @@ const CreateProduct = () => {
           }
         );
         clearInput();
+        navigate("/products");
       } catch (e) {
         alert("Something went wrong");
       }
