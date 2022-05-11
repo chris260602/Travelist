@@ -1,7 +1,42 @@
-import React from "react";
+import axios from "axios";
+import React, { useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import classes from "../ProfilePage.module.css";
 
-const changePassword = ({ handleClose }) => {
+const ChangeEmail = ({ handleClose, refreshUserData }) => {
+  const input = useRef();
+  const user = useSelector((state) => state.user);
+  const [isLoading, setIsLoading] = useState(false);
+  const handleConfirm = async () => {
+    if (
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(input.current.value)
+    ) {
+      setIsLoading(true);
+
+      try {
+        const body = {
+          id: user.userID,
+          newEmail: input.current.value,
+        };
+        await axios.patch(
+          `${process.env.REACT_APP_BACKEND_URL}/user/changeuseremail`,
+          {
+            body,
+            withCredentials: true,
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+      } catch (e) {
+        // console.log(e);
+        alert("Something Went Wrong");
+      }
+
+      setIsLoading(false);
+      handleClose();
+    }
+  };
   return (
     <div className={classes.popUpBackground}>
       <div className={classes.popUpContainer}>
@@ -19,12 +54,18 @@ const changePassword = ({ handleClose }) => {
           </div>
           <div className={classes.inputContainer}>
             <div className={classes.inputBox}>
-              <input type="text" placeholder="New Email" />
+              <input type="email" placeholder="New Email" ref={input} />
             </div>
-
-            <div className={classes.inputButton} onClick={handleClose}>
-              <p>Save Changes</p>
-            </div>
+            {isLoading ? (
+              ""
+            ) : (
+              <div
+                className={classes.inputButton}
+                onClick={() => handleConfirm().then(() => refreshUserData())}
+              >
+                <p>Save Changes</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -32,4 +73,4 @@ const changePassword = ({ handleClose }) => {
   );
 };
 
-export default changePassword;
+export default ChangeEmail;

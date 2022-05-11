@@ -26,11 +26,12 @@
 }
 
 .profilePicture img{
-    border-radius: 100%;
+    border-radius: 50%;
     width: 225px;
-    height: auto;
+    height: 225px;
     padding: 5px;
     margin-bottom: 10px;
+    object-fit: cover;
 }
 
 .changePicture{
@@ -244,6 +245,8 @@
     align-items: center;
     padding: 10px 5px 10px 5px;
     border-radius: 7px;
+    user-select: none;
+    cursor: pointer;
 }
 .delete{
     background-color: var(--red);
@@ -317,6 +320,7 @@
 
 .profilePicture img{
     width: 100px;
+    height: 100px;
     margin-bottom: 0;
     padding: 0;
 }

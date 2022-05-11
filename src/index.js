@@ -24,7 +24,6 @@ import TopUp from "./pages/TopUp/TopUp";
 import AddCategory from "./pages/AddCategory/AddCategory";
 import UpdateCategory from "./pages/UpdateCategory/UpdateCategory";
 import Categories from "./pages/Categories/Categories";
-// import ProductAdmin from "./pages/Products/Products";
 import Wishlist from "./pages/Wishlist/Wishlist";
 import Products from "./pages/ProductPage/ProductPage";
 

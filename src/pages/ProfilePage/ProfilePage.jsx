@@ -8,8 +8,11 @@ import DeleteAccountPopUp from "./components/DeleteAccount";
 import ChangeEmailPopUp from "./components/ChangeEmail";
 import lockIcon from "../../assets/img/lockIcon.svg";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProfileConfirmationCard from "./components/ProfileConfirmationCard";
+import ChangeProfilePicture from "./components/ChangeProfilePicture";
+import { login, logoff } from "../../store/reducers/userReducer/userReducer";
+import axios from "axios";
 
 const ProfilePage = () => {
   const user = useSelector((state) => state.user);
@@ -19,13 +22,26 @@ const ProfilePage = () => {
   const [PasswordVisible, setPasswordVisible] = useState(false);
   const [DeleteVisible, setDeleteVisible] = useState(false);
   const [EmailVisible, setEmailVisible] = useState(false);
+  const [AccountVisible, setAccountVisible] = useState(false);
   useEffect(() => {
-    if (UsernameVisible || PasswordVisible || DeleteVisible || EmailVisible) {
+    if (
+      UsernameVisible ||
+      PasswordVisible ||
+      DeleteVisible ||
+      EmailVisible ||
+      AccountVisible
+    ) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
-  }, [UsernameVisible, PasswordVisible, DeleteVisible, EmailVisible]);
+  }, [
+    UsernameVisible,
+    PasswordVisible,
+    DeleteVisible,
+    EmailVisible,
+    AccountVisible,
+  ]);
   const handleClickUsername = () => {
     setUsernameVisible(true);
   };
@@ -37,6 +53,9 @@ const ProfilePage = () => {
   };
   const handleClickEmail = () => {
     setEmailVisible(true);
+  };
+  const handleClickAccount = () => {
+    setAccountVisible(true);
   };
 
   const hideUsername = () => {
@@ -51,7 +70,19 @@ const ProfilePage = () => {
   const hideEmail = () => {
     setEmailVisible(false);
   };
-
+  const hideAccount = () => {
+    setAccountVisible(false);
+  };
+  const dispatch = useDispatch();
+  const refreshUserData = async () => {
+    const userData = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/user/getuser/${user.userID}`,
+      {
+        withCredentials: true,
+      }
+    );
+    dispatch(login(userData.data.data));
+  };
   return (
     <Fragment>
       {prompt ? (
@@ -66,7 +97,10 @@ const ProfilePage = () => {
             <div>
               <img src={user.profilePicture} alt="error" />
             </div>
-            <div className={classes.changePicture}>
+            <div
+              className={classes.changePicture}
+              onClick={() => handleClickAccount()}
+            >
               <p>Change Picture</p>
             </div>
           </div>
@@ -133,10 +167,36 @@ const ProfilePage = () => {
         </div>
       </div>
       <Footer />
-      {UsernameVisible && <ChangeUsernamePopUp handleClose={hideUsername} />}
-      {PasswordVisible && <ChangePasswordPopUp handleClose={hidePassword} />}
-      {DeleteVisible && <DeleteAccountPopUp handleClose={hideDelete} />}
-      {EmailVisible && <ChangeEmailPopUp handleClose={hideEmail} />}
+      {UsernameVisible && (
+        <ChangeUsernamePopUp
+          handleClose={hideUsername}
+          refreshUserData={refreshUserData}
+        />
+      )}
+      {PasswordVisible && (
+        <ChangePasswordPopUp
+          handleClose={hidePassword}
+          refreshUserData={refreshUserData}
+        />
+      )}
+      {DeleteVisible && (
+        <DeleteAccountPopUp
+          handleClose={hideDelete}
+          refreshUserData={() => dispatch(logoff())}
+        />
+      )}
+      {EmailVisible && (
+        <ChangeEmailPopUp
+          handleClose={hideEmail}
+          refreshUserData={refreshUserData}
+        />
+      )}
+      {AccountVisible && (
+        <ChangeProfilePicture
+          handleClose={hideAccount}
+          refreshUserData={refreshUserData}
+        />
+      )}
     </Fragment>
   );
 };

@@ -4,23 +4,20 @@ import ReactDOM from "react-dom";
 import { useSelector } from "react-redux";
 import classes from "../ProfilePage.module.css";
 
-const ChangeUsername = ({ handleClose, refreshUserData }) => {
+const ChangeProfilePicture = ({ handleClose, refreshUserData }) => {
   const input = useRef();
   const user = useSelector((state) => state.user);
   const [isLoading, setIsLoading] = useState(false);
   const handleConfirm = async () => {
-    if (input.current.value.length >= 6) {
-      setIsLoading(true);
-
+    setIsLoading(true);
+    if (input.current.files[0] !== undefined) {
+      let formData = new FormData();
+      formData.append("profilePicture", input.current.files[0]);
       try {
-        const body = {
-          id: user.userID,
-          newName: input.current.value,
-        };
         await axios.patch(
-          `${process.env.REACT_APP_BACKEND_URL}/user/changeusername`,
+          `${process.env.REACT_APP_BACKEND_URL}/user/changepicture/${user.userID}`,
+          formData,
           {
-            body,
             withCredentials: true,
             headers: {
               "Content-Type": "multipart/form-data",
@@ -31,10 +28,9 @@ const ChangeUsername = ({ handleClose, refreshUserData }) => {
         // console.log(e);
         alert("Something Went Wrong");
       }
-
-      setIsLoading(false);
-      handleClose();
     }
+    setIsLoading(false);
+    handleClose();
   };
   return ReactDOM.createPortal(
     <Fragment>
@@ -43,7 +39,7 @@ const ChangeUsername = ({ handleClose, refreshUserData }) => {
         <div className={classes.popUpContainer}>
           <div className={classes.popUpTitle}>
             <div className={classes.Title}>
-              <p>Change Username</p>
+              <p>Change Profile Picture</p>
             </div>
             <div className={classes.Close}>
               <p onClick={handleClose}>&times;</p>
@@ -51,11 +47,11 @@ const ChangeUsername = ({ handleClose, refreshUserData }) => {
           </div>
           <div className={classes.popUpContent}>
             <div className={classes.contentInfo}>
-              You can change your name only once
+              Change Your Profile Picture
             </div>
             <div className={classes.inputContainer}>
               <div className={classes.inputBox}>
-                <input type="text" placeholder="Min 6 Characters" ref={input} />
+                <input type="file" ref={input} />
               </div>
               {isLoading ? (
                 ""
@@ -76,4 +72,4 @@ const ChangeUsername = ({ handleClose, refreshUserData }) => {
   );
 };
 
-export default ChangeUsername;
+export default ChangeProfilePicture;

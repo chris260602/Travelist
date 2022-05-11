@@ -1,7 +1,42 @@
-import React from "react";
+import axios from "axios";
+import React, { useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import classes from "../ProfilePage.module.css";
 
-const changePassword = ({ handleClose }) => {
+const ChangePassword = ({ handleClose, refreshUserData }) => {
+  const input = useRef();
+  const newInput = useRef();
+  const user = useSelector((state) => state.user);
+  const [isLoading, setIsLoading] = useState(false);
+  const handleConfirm = async () => {
+    if (newInput.current.value.length >= 6 && input.current.value.length >= 6) {
+      setIsLoading(true);
+
+      try {
+        const body = {
+          id: user.userID,
+          oldPassword: input.current.value,
+          newPassword: newInput.current.value,
+        };
+        await axios.patch(
+          `${process.env.REACT_APP_BACKEND_URL}/user/changeuserpassword`,
+          {
+            body,
+            withCredentials: true,
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+      } catch (e) {
+        // console.log(e);
+        alert("Something Went Wrong");
+      }
+
+      setIsLoading(false);
+      handleClose();
+    }
+  };
   return (
     <div className={classes.popUpBackground}>
       <div className={classes.popUpContainer}>
@@ -19,12 +54,19 @@ const changePassword = ({ handleClose }) => {
           </div>
           <div className={classes.inputContainer}>
             <div className={classes.inputBox}>
-              <input type="text" placeholder="Old Password" />
-              <input type="text" placeholder="New Password" />
+              <input type="text" placeholder="Old Password" ref={input} />
+              <input type="text" placeholder="New Password" ref={newInput} />
             </div>
-            <a href="#" onClick={handleClose}>
-              <div className={classes.inputButton}>Save changes</div>
-            </a>
+            {isLoading ? (
+              ""
+            ) : (
+              <div
+                className={classes.inputButton}
+                onClick={() => handleConfirm().then(() => refreshUserData())}
+              >
+                <p>Save changes</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -32,4 +74,4 @@ const changePassword = ({ handleClose }) => {
   );
 };
 
-export default changePassword;
+export default ChangePassword;
