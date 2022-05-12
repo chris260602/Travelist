@@ -3,19 +3,70 @@ import classes from "./TopUp.module.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import SimpleButton from "../../components/UI/SimpleButton/SimpleButton";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import TopUpCol from "./TopUpCol";
 import DataIsEmpty from "../../components/DataIsEmpty/DataIsEmpty";
+import axios from "axios";
+import { login } from "../../store/reducers/userReducer/userReducer";
+import { useNavigate } from "react-router-dom";
 //DUMMY_DATA
 
 const TopUpPage = () => {
   useEffect(() => {
     document.title = "TopUp | Travelist";
+    refreshUserData();
+    fetchAllTopUpRequest();
   }, []);
-  const [userBalance, setUserBalance] = useState(0);
-  const [topUpAmount, setTopUpAmount] = useState("0");
+  const [topUpAmount, setTopUpAmount] = useState(0);
+  const [topUpRequestList, setTopUpRequestList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFetchingRequest, setIsFetchingRequest] = useState(false);
   const [symbolsArr] = useState(["e", "E", "+", "-", "."]);
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const refreshUserData = async () => {
+    const userData = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/user/getuser/${user.userID}`,
+      {
+        withCredentials: true,
+      }
+    );
+    dispatch(login(userData.data.data));
+  };
+  const fetchAllTopUpRequest = async () => {
+    setIsFetchingRequest(true);
+    try {
+      const topUpRequestList = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/topup`,
+        {
+          withCredentials: true,
+        }
+      );
+      // console.log(topUpRequestList);
+      setTopUpRequestList(topUpRequestList.data.data);
+    } catch (e) {
+      alert("Something went wrong");
+    }
+    setIsFetchingRequest(false);
+  };
+  const handleRequestTopUp = async () => {
+    setIsLoading(true);
+    const amount = parseInt(topUpAmount);
+    try {
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/topup`, {
+        data: {
+          id: user.userID,
+          amount: amount,
+        },
+        withCredentials: true,
+      });
+    } catch (e) {
+      alert("Something went wrong");
+    }
+    setIsLoading(false);
+    navigate("/");
+  };
   const handleInput = (event) => {
     if (event.nativeEvent.data === null && topUpAmount.length <= 1) {
       setTopUpAmount("0");
@@ -47,11 +98,23 @@ const TopUpPage = () => {
         </div>
       </div>
       {/* {<DataIsEmpty />} */}
-      <TopUpCol data={{ name: "user1", id: "1", price: "10000" }} />
-      <TopUpCol data={{ name: "user2", id: "1", price: "10000" }} />
-      <TopUpCol data={{ name: "user3", id: "1", price: "10000" }} />
-      <TopUpCol data={{ name: "user4", id: "1", price: "10000" }} />
-      <TopUpCol data={{ name: "user5", id: "1", price: "10000" }} />
+      {isFetchingRequest ? (
+        "Loading..."
+      ) : topUpRequestList.length === 0 ? (
+        <p style={{ textAlign: "center", padding: "20px" }}>No Data...</p>
+      ) : (
+        topUpRequestList.map((request) => (
+          <TopUpCol
+            data={{
+              name: request.userName,
+              id: request._id,
+              userID: request.userID,
+              price: request.requestAmount,
+            }}
+            fetchAllTopUpRequest={fetchAllTopUpRequest}
+          />
+        ))
+      )}
     </div>
   );
   const TopUpAdmin = (
@@ -75,7 +138,7 @@ const TopUpPage = () => {
           <div className={classes.CurrentBalance}>
             <p>
               Current Balances:{" "}
-              <span className={classes.balance}>Rp {userBalance}</span>
+              <span className={classes.balance}>Rp {user.balance}</span>
             </p>
           </div>
         </div>
@@ -128,9 +191,13 @@ const TopUpPage = () => {
           </div>
 
           <div className={classes.TopUpButtonContainer}>
-            <SimpleButton size="20" onClick={console.log("tes")}>
-              Top Up
-            </SimpleButton>
+            {isLoading ? (
+              ""
+            ) : (
+              <SimpleButton size="20" onClick={handleRequestTopUp}>
+                Top Up
+              </SimpleButton>
+            )}
           </div>
         </div>
       </div>

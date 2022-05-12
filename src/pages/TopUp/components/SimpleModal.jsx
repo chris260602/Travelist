@@ -19,15 +19,24 @@ const SimpleModal = (props) => {
           <p className={`${classes.red} ${classes.bold}`}>{warning}</p>
         </div>
         <div className={classes.ButtonContainer}>
-          <p
-            className={classes.cancelButton}
-            onClick={() => props.modalHandler(null)}
-          >
-            Cancel
-          </p>
-          <p className={classes.confirmButton} onClick={props.buttonHandler}>
-            Confirm
-          </p>
+          {props.isLoading ? (
+            ""
+          ) : (
+            <Fragment>
+              <p
+                className={classes.cancelButton}
+                onClick={() => props.modalHandler(null)}
+              >
+                Cancel
+              </p>
+              <p
+                className={classes.confirmButton}
+                onClick={props.buttonHandler}
+              >
+                Confirm
+              </p>
+            </Fragment>
+          )}
         </div>
       </div>
     </Fragment>,
