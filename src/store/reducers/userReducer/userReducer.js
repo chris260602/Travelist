@@ -24,6 +24,7 @@ export const userReducer = createSlice({
       state.profilePicture = action.payload.profilePicture;
     },
     logoff: (state) => {
+      window.location.href = "/";
       state.isLoggedIn = false;
       state.userID = "";
       state.userRole = -1;

@@ -6,6 +6,7 @@ import classes from "./UpdateCategory.module.css";
 import loader from "../../assets/svg_animation/loader.svg";
 import NotFound from "../NotFound/NotFound";
 import Header from "../../components/Header/Header";
+import { useSelector } from "react-redux";
 const UpdateCategory = () => {
   const [pageNotFound, setPageNotFound] = useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
@@ -16,8 +17,12 @@ const UpdateCategory = () => {
   const categoryName = useRef();
   const categoryValue = useRef();
   const categoryIcon = useRef();
+  const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   useEffect(() => {
+    if (!user || user.userRole === -1 || user.userRole === 0) {
+      navigate("/login");
+    }
     const getCategoryData = async () => {
       try {
         const response = await axios.get(

@@ -6,6 +6,7 @@ import classes from "./CreateProduct.module.css";
 import loader from "../../assets/svg_animation/loader.svg";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import { useSelector } from "react-redux";
 const CreateProduct = () => {
   const [totalPictures, setTotalPictures] = useState(1);
   const [isSubmit, setIsSubmit] = useState(false);
@@ -28,11 +29,16 @@ const CreateProduct = () => {
   const picture3 = useRef();
   const picture4 = useRef();
   const navigate = useNavigate();
+  const user = useSelector((state) => state.user);
   useEffect(() => {
-    const getCategoriesOptionsHandler = async () => {
-      await getCategoriesOptions();
-    };
-    getCategoriesOptionsHandler();
+    if (user.userRole === 1) {
+      const getCategoriesOptionsHandler = async () => {
+        await getCategoriesOptions();
+      };
+      getCategoriesOptionsHandler();
+    } else {
+      navigate("/");
+    }
   }, []);
   const checkIsPictureInserted = (picture, minVal) => {
     if (picture.current !== null && totalPictures >= minVal) {

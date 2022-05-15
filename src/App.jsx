@@ -7,14 +7,29 @@ import Footer from "./components/Footer/Footer";
 import { useSelector } from "react-redux";
 import DeleteProductCard from "./components/ProductCard/components/DeleteProductCard";
 import ProductCardList from "./components/ProductCard/ProductCardList";
+import axios from "axios";
 
 const App = () => {
   const user = useSelector((state) => state.user);
   const [seeAll, setSeeAll] = useState(false);
+  const [productData, setProductData] = useState([]);
+  useEffect(() => {
+    getProductsDataHander();
+  }, []);
+  const getProductsDataHander = async () => {
+    // setIsLoading(true);
+    const response = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/products/popular`,
+      {
+        withCredentials: true,
+      }
+    );
+    console.log(response);
+    setProductData(response.data.data);
+  };
   const seeAllHandler = () => {
     setSeeAll((prevState) => !prevState);
   };
-
   return (
     <Fragment>
       <Header />
@@ -36,7 +51,7 @@ const App = () => {
           <div className={classes.titleOfSection}>
             <p>Most Popular</p>
           </div>
-          <ProductCardList isAdmin={user.userRole === 1} />
+          <ProductCardList isAdmin={user.userRole === 1} data={productData} />
         </div>
       </div>
       <Footer />

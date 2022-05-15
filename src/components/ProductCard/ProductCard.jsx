@@ -31,19 +31,23 @@ const ProductCard = (props) => {
         ""
       )}
       <div className={classes.cardContainer}>
-        <Link to={"/productdetail"} className={classes.card} key={item.id}>
+        <Link
+          to={`/productdetail/${item._id}`}
+          className={classes.card}
+          key={item._id}
+        >
           <div className={classes.card_img}>
-            <img src={item.img} alt="error" />
+            <img src={item.mainPicture} alt="error" />
           </div>
           <div className={classes.card_header}>
             <h4>{item.productName}</h4>
             <p className={classes.card_price}>
-              <span>{item.currency}</span>
-              {item.price}
+              <span>Rp. </span>
+              {item.productPrice}
             </p>
             <div className={classes.bottomContainer}>
               <p>
-                {item.sold} <span> Sold</span>
+                {item.productSold} <span> Sold</span>
               </p>
             </div>
           </div>
@@ -53,7 +57,7 @@ const ProductCard = (props) => {
             <div
               className={classes.editButton}
               onClick={() => {
-                navigate(`/updateproduct/${item.id}`);
+                navigate(`/updateproduct/${item._id}`);
               }}
             >
               <img src={editIcon} alt="edit" />
@@ -63,7 +67,7 @@ const ProductCard = (props) => {
               onClick={() =>
                 setDeletePromt({
                   active: true,
-                  productID: item.id,
+                  productID: item._id,
                   productName: item.productName,
                 })
               }

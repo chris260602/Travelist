@@ -5,12 +5,17 @@ import SpecialCard from "../../components/SpecialCard/SpecialCard";
 import classes from "./Categories.module.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useSelector } from "react-redux";
 const Categories = () => {
   const [categoryData, setCategoryData] = useState([]);
   const navigate = useNavigate();
   const [cardContainer, setCardContainer] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const user = useSelector((state) => state.user);
   useEffect(() => {
+    if (!user || user.userRole === -1 || user.userRole === 0) {
+      navigate("/login");
+    }
     getCategoryDataHander();
     if (categoryData) {
       setCardContainer(cardContainerHandler);

@@ -24,6 +24,9 @@
 }
 .card_img{
     margin: 0 5px;
+    height: 70%;
+    height: 150px;
+    width: 150px;
 }
 
 .card_img img{
@@ -31,8 +34,9 @@
     justify-content: center;
     padding: 5px;
     padding-bottom: 10px;
-    width: 160px;
-    height: auto;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 
 .card_header{

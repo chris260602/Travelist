@@ -12,11 +12,6 @@ import { useNavigate } from "react-router-dom";
 //DUMMY_DATA
 
 const TopUpPage = () => {
-  useEffect(() => {
-    document.title = "TopUp | Travelist";
-    refreshUserData();
-    fetchAllTopUpRequest();
-  }, []);
   const [topUpAmount, setTopUpAmount] = useState(0);
   const [topUpRequestList, setTopUpRequestList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -25,6 +20,14 @@ const TopUpPage = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  useEffect(() => {
+    if (!user || user.userRole === -1) {
+      navigate("/login");
+    }
+    document.title = "TopUp | Travelist";
+    refreshUserData();
+    fetchAllTopUpRequest();
+  }, []);
   const refreshUserData = async () => {
     const userData = await axios.get(
       `${process.env.REACT_APP_BACKEND_URL}/user/getuser/${user.userID}`,

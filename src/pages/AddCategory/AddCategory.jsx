@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import classes from "./AddCategory.module.css";
 import loader from "../../assets/svg_animation/loader.svg";
 import Header from "../../components/Header/Header";
+import { useSelector } from "react-redux";
 const AddCategory = () => {
   const [isSubmit, setIsSubmit] = useState(false);
   const [isNameValid, setIsNameValid] = useState(true);
@@ -13,8 +14,13 @@ const AddCategory = () => {
   const categoryName = useRef();
   const categoryValue = useRef();
   const categoryIcon = useRef();
+  const user = useSelector((state) => state.user);
   const navigate = useNavigate();
-
+  useEffect(() => {
+    if (!user || user.userRole === -1 || user.userRole === 0) {
+      navigate("/login");
+    }
+  }, []);
   const checkIsPictureInserted = (picture, minVal) => {
     if (picture.current !== null && 1 >= minVal) {
       if (picture.current.files[0] !== undefined) {

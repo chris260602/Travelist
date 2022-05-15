@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import NotFound from "./pages/NotFound/NotFound";
-import { Provider, useSelector } from "react-redux";
+import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
 import { store } from "./store/store";
@@ -49,13 +49,14 @@ ReactDOM.render(
             <Route path="updateproduct/:id" element={<UpdateProduct />} />
             <Route path="/" element={<App />} />
             <Route path="cart" element={<Cart />} />
-            <Route path="about" element={<About />} />
-            <Route path="notification" element={<NotificationPage />} />
+            <Route path="about" element={<About />} /> {/* BELUM JADI */}
+            <Route path="notification" element={<NotificationPage />} />{" "}
+            {/* BELUM JADI */}
             <Route path="profile" element={<ProfilePage />} />
             <Route path="history" element={<HistoryPage />} />
             <Route path="topup" element={<TopUp />} />
             <Route path="*" element={<NotFound />} />
-            <Route path="productdetail" element={<Productdetail />} />
+            <Route path="productdetail/:id" element={<Productdetail />} />
             <Route path="addcategory" element={<AddCategory />} />
             <Route path="updatecategory/:id" element={<UpdateCategory />} />
             <Route path="categories" element={<Categories />} />

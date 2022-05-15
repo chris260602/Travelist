@@ -7,7 +7,7 @@ import ChangePasswordPopUp from "./components/ChangePassword";
 import DeleteAccountPopUp from "./components/DeleteAccount";
 import ChangeEmailPopUp from "./components/ChangeEmail";
 import lockIcon from "../../assets/img/lockIcon.svg";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileConfirmationCard from "./components/ProfileConfirmationCard";
 import ChangeProfilePicture from "./components/ChangeProfilePicture";
@@ -16,14 +16,18 @@ import axios from "axios";
 
 const ProfilePage = () => {
   const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
   const [prompt, setPrompt] = useState(null);
-  console.log(user);
+  // console.log(user);
   const [UsernameVisible, setUsernameVisible] = useState(false);
   const [PasswordVisible, setPasswordVisible] = useState(false);
   const [DeleteVisible, setDeleteVisible] = useState(false);
   const [EmailVisible, setEmailVisible] = useState(false);
   const [AccountVisible, setAccountVisible] = useState(false);
   useEffect(() => {
+    if (!user || user.userRole === -1) {
+      navigate("/login");
+    }
     if (
       UsernameVisible ||
       PasswordVisible ||

@@ -18,6 +18,9 @@ const Footer = () => {
           <Link to={"/about"}>
             <p>About</p>
           </Link>
+          <Link to={"/products"}>
+            <p>Products</p>
+          </Link>
         </div>
         <div
           className={`${classes.businessContainer} ${classes.childContainer}`}

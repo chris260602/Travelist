@@ -1,17 +1,42 @@
-import React, { Fragment } from 'react'
-import classes from './productList.module.css'
-import ProductCard from './components/productCard'
-import ProductList_data from './components/productCard_data'
+import React, { Fragment, useEffect, useState } from "react";
+import classes from "./productList.module.css";
+import ProductCard from "./components/productCard";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 const ProductList = (props) => {
+  const [wishListData, setWishListData] = useState([]);
+  const user = useSelector((state) => state.user);
 
-    const listItems = ProductList_data.map((item) => (
-        <Fragment>
-          <ProductCard item={item} isAdmin={props.isAdmin} />
-        </Fragment>
-      ));
-    
-    return <div className={classes.product_list}>{listItems}</div>;
-}
+  useEffect(() => {
+    getFavouritesProductsDataHander();
+  }, []);
+  const getFavouritesProductsDataHander = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/favourite/getUserProducts/${user.userID}`,
 
-export default ProductList
+        {
+          withCredentials: true,
+        }
+      );
+      setWishListData(response.data.data);
+      console.log(response.data.data);
+    } catch (e) {
+      alert("Please refresh your browser");
+    }
+  };
+  const listItems = wishListData.map((item) => (
+    <Fragment>
+      <ProductCard item={item} isAdmin={props.isAdmin} />
+    </Fragment>
+  ));
+
+  return (
+    <div className={classes.product_list}>
+      {wishListData.length === 0 ? <p>No Data..</p> : listItems}
+    </div>
+  );
+};
+
+export default ProductList;

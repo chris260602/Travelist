@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import classes from "./UpdateProduct.module.css";
 import loader from "../../assets/svg_animation/loader.svg";
 import NotFound from "../NotFound/NotFound";
+import { useSelector } from "react-redux";
 const UpdateProduct = () => {
   const [pageNotFound, setPageNotFound] = useState(false);
   const [totalPictures, setTotalPictures] = useState(1);
@@ -29,22 +30,27 @@ const UpdateProduct = () => {
   const picture3 = useRef();
   const picture4 = useRef();
   const navigate = useNavigate();
+  const user = useSelector((state) => state.user);
   useEffect(() => {
-    const getProductData = async () => {
-      const getCategoriesOptionsHandler = async () => {
-        await getCategoriesOptions();
+    if (user.userRole === 1) {
+      const getProductData = async () => {
+        const getCategoriesOptionsHandler = async () => {
+          await getCategoriesOptions();
+        };
+        getCategoriesOptionsHandler();
+        try {
+          const response = await axios.get(
+            `${process.env.REACT_APP_BACKEND_URL}/products/${id}`
+          );
+          await fillInput(response.data.data);
+        } catch (e) {
+          setPageNotFound(true);
+        }
       };
-      getCategoriesOptionsHandler();
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/products/${id}`
-        );
-        await fillInput(response.data.data);
-      } catch (e) {
-        setPageNotFound(true);
-      }
-    };
-    getProductData();
+      getProductData();
+    } else {
+      navigate("/");
+    }
   }, []);
 
   const setImages = (number, data) => {

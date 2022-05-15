@@ -19,9 +19,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    filter: none;
+    
 }
+.loveIcon.active{
+    filter: invert(49%) sepia(82%) saturate(2083%) hue-rotate(328deg) brightness(101%) contrast(101%);
 
+}
 .wishlist:hover{
     transform: scale(1.15);
-    /*box-shadow: 1px 10px 15px 10px var(--primaryT);*/
 }
