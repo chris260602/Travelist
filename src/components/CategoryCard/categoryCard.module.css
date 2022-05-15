@@ -1,10 +1,4 @@
-.category_list{
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-}
-
-.category_list .card{
+.card{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,22 +11,25 @@
     border-radius: 5px;
     transition: all 0.3s;
 }
-.category_list .card:hover{
+.card:hover{
     transform: scale(1.05);
     box-shadow: 1px 1px 10px 5px var(--secondary);
 }
-.category_list .card .card_img{
-    height: 70%;
-
+.card .card_img{
+    height: 65%;
+    display: flex;
+    align-items: center;
 }
-.category_list .card .card_img img{
+.card .card_img img{
     max-width: 50px;
+    max-height: 50px;
 }
 
 .card_header{
     height: 30%;
+    margin-top: 5px;
     display: flex;
-    align-items: center;
+    align-items:center;
     text-align: center;
     font-size: 0.8rem;
     color: black;

@@ -1,30 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import categoryCardData from "./categoryCardData";
 import classes from "./categoryCard.module.css";
 import { Link } from "react-router-dom";
 const CategoryCard = (props) => {
-  let listItems = [];
-  for (let i = 0; i < categoryCardData.length; i++) {
-    if (!props.seeAll && i >= 5) {
-      break;
-    }
-    listItems.push(
-      <Link
+  const { item } = props;
+  return(
+    <Link
         to={"/productdetail"}
         className={classes.card}
-        key={categoryCardData[i].id}
-      >
+        key={item.id}>
+
         <div className={classes.card_img}>
-          <img src={categoryCardData[i].img} alt="error" />
+          <img src={item.categoryIcon} alt="error" />
         </div>
         <div className={classes.card_header}>
-          <p>{categoryCardData[i].categoryName}</p>
+          <p>{item.categoryName}</p>
         </div>
-      </Link>
-    );
-  }
-
-  return <div className={classes.category_list}>{listItems}</div>;
+    </Link>
+  )
+  
 };
 
 export default CategoryCard;
