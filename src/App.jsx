@@ -8,13 +8,16 @@ import { useSelector } from "react-redux";
 import DeleteProductCard from "./components/ProductCard/components/DeleteProductCard";
 import ProductCardList from "./components/ProductCard/ProductCardList";
 import axios from "axios";
+import CategoryCardList from "./components/CategoryCard/categoryCardList";
 
 const App = () => {
   const user = useSelector((state) => state.user);
   const [seeAll, setSeeAll] = useState(false);
   const [productData, setProductData] = useState([]);
+  const [categoryData, setCategoryData] = useState([]);
   useEffect(() => {
     getProductsDataHander();
+    getCategoryDataHander();
   }, []);
   const getProductsDataHander = async () => {
     // setIsLoading(true);
@@ -29,6 +32,15 @@ const App = () => {
   };
   const seeAllHandler = () => {
     setSeeAll((prevState) => !prevState);
+  };
+  const getCategoryDataHander = async () => {
+    const response = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/categories/`,
+      {
+        withCredentials: true,
+      }
+    );
+    setCategoryData(response.data.data);
   };
   return (
     <Fragment>
@@ -45,7 +57,8 @@ const App = () => {
               </p>
             </div>
           </div>
-          <CategoryCard seeAll={seeAll} />
+
+          <CategoryCardList seeAll={seeAll} data={categoryData}/>
         </div>
         <div className={classes.rightContainer}>
           <div className={classes.titleOfSection}>
