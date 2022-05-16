@@ -71,6 +71,7 @@
     justify-content: center;
     align-items: center;
     width: 35%;
+    color: white;
 }
 
 .button:hover {

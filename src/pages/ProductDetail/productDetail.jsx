@@ -10,8 +10,10 @@ import { useSelector } from "react-redux";
 const ProductDetail = () => {
   const [productData, setProductData] = useState({});
   const [productImage, setProductImage] = useState({});
+  const [cartData, setCartData] = useState(null);
   const [isWishlist, setIsWishlist] = useState(false);
   const [loadingWishList, setLoadingWishList] = useState(false);
+  const [loadingCart, setLoadingCart] = useState(false);
   const [amount, setAmount] = useState(1);
   const amountInput = useRef();
   const user = useSelector((state) => state.user);
@@ -19,6 +21,7 @@ const ProductDetail = () => {
   useEffect(() => {
     getProductDataHander();
     getFavouriteDataHander();
+    getCartData();
   }, [isWishlist]);
   const getProductDataHander = async () => {
     const response = await axios.get(
@@ -27,7 +30,6 @@ const ProductDetail = () => {
         withCredentials: true,
       }
     );
-    // console.log(response);
     setProductData(response.data.data);
     setProductImage(response.data.data.mainPicture);
   };
@@ -87,6 +89,59 @@ const ProductDetail = () => {
       alert("Something went wrong");
     }
     setLoadingWishList(false);
+  };
+  const getCartData = async () => {
+    try {
+      const cartData = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/cart/${user.userID}/${id}`,
+        {
+          withCredentials: true,
+        }
+      );
+      if (cartData.data) {
+        setCartData(cartData.data.data);
+      }
+
+      console.log(cartData);
+    } catch (e) {
+      alert("Something went wrong");
+    }
+  };
+  const handleAddCart = async () => {
+    setLoadingCart(true);
+    if (
+      cartData === null ||
+      cartData.quantity + amount <= productData.productStocks
+    ) {
+      try {
+        await axios.post(
+          `${process.env.REACT_APP_BACKEND_URL}/cart/create`,
+          {
+            userID: user.userID,
+            productID: id,
+            quantity: amount,
+          },
+          {
+            withCredentials: true,
+          }
+        );
+        if (cartData === null) {
+          setCartData({ quantity: amount });
+        } else {
+          setCartData((prevState) => ({
+            ...prevState,
+            quantity: prevState.quantity + amount,
+          }));
+        }
+        setAmount(1);
+      } catch (e) {
+        alert("Something went wrong");
+      }
+    } else {
+      alert("Amount is greater than total Stocks");
+    }
+
+    setLoadingCart(false);
   };
   const handleSubtract = () => {
     if (amount > 1) {
@@ -238,7 +293,16 @@ const ProductDetail = () => {
                     </span>
                   </p>
                 </div>
-                <div className={classes.addCartButton}>Add to Cart</div>
+                {loadingCart ? (
+                  <p>Loading...</p>
+                ) : (
+                  <div
+                    className={classes.addCartButton}
+                    onClick={handleAddCart}
+                  >
+                    Add to Cart
+                  </div>
+                )}
               </div>
               <div className={classes.wishlistInProductCart}>
                 {loadingWishList ? (

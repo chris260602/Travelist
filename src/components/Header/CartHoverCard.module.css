@@ -11,6 +11,7 @@
   border-radius: 10px;
   box-shadow: 1px 1px 15px -1px var(--secondary);
   width: 400px;
+  overflow: auto;
 }
 .cartHoverCardTop {
   display: flex;

@@ -4,7 +4,6 @@ import classes from "./Wishlist.module.css";
 
 const Wishlist = (props) => {
   const { isWishList } = props;
-  console.log(isWishList);
   const clickHandler = async () => {
     if (!isWishList) {
       props.handleAdd();

@@ -1,5 +1,9 @@
 .container{
     margin: 30px 20px 20px 30px;
+    max-width: 1300px;
+  margin: auto;
+  margin-top: 80px;
+  padding: 20px 20px;
 }
 
 .cartTitle{
@@ -16,6 +20,7 @@
 .cartProduct{
     width: 70%;
     margin-right:30px;
+    padding-right: 30px;
 }
 
 .cartSummary{

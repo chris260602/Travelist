@@ -5,6 +5,7 @@ import classes from "./CartHoverCard.module.css";
 const CartHoverCard = (props) => {
   const [isActive, setIsActive] = useState(false);
   useEffect(() => {
+    console.log(props.data);
     if (props.active === "true") {
       setIsActive(true);
     } else {
@@ -22,27 +23,18 @@ const CartHoverCard = (props) => {
         <Link to={"/cart"}>See More</Link>
       </div>
       <div className={`${classes.cartHoverCardContainer}`}>
-        <Link to={"/cart"} className={classes.cartHoverCard}>
-          <div className={classes.cartHoverCardImageContainer}>
-            <img src={profileIcon} alt="" />
-          </div>
-          <div className={classes.cartHoverCardTextContainer}>
-            <h3>Bag</h3>
-            <p className={classes.totalItems}>100 Items</p>
-            <p>Rp.30000</p>
-          </div>
-        </Link>
-
-        <Link to={"/cart"} className={classes.cartHoverCard}>
-          <div className={classes.cartHoverCardImageContainer}>
-            <img src={profileIcon} alt="" />
-          </div>
-          <div className={classes.cartHoverCardTextContainer}>
-            <h3>Bag</h3>
-            <p className={classes.totalItems}>100 Items</p>
-            <p>Rp.30000</p>
-          </div>
-        </Link>
+        {props.data.products.map((item) => (
+          <Link to={"/cart"} className={classes.cartHoverCard}>
+            <div className={classes.cartHoverCardImageContainer}>
+              <img src={item.productPicture} alt="" />
+            </div>
+            <div className={classes.cartHoverCardTextContainer}>
+              <h3>{item.productName}</h3>
+              <p className={classes.totalItems}>{item.productAmount} Items</p>
+              <p>Rp.{item.productPrice}</p>
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
   );

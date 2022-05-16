@@ -8,6 +8,7 @@ const CategoryCard = (props) => {
     if (!props.seeAll && i >= 5) {
       break;
     }
+
     listItems.push(
       <Link
         to={"/productdetail"}
