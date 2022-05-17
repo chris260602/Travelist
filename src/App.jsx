@@ -20,14 +20,12 @@ const App = () => {
     getCategoryDataHander();
   }, []);
   const getProductsDataHander = async () => {
-    // setIsLoading(true);
     const response = await axios.get(
       `${process.env.REACT_APP_BACKEND_URL}/products/popular`,
       {
         withCredentials: true,
       }
     );
-    console.log(response);
     setProductData(response.data.data);
   };
   const seeAllHandler = () => {
@@ -58,7 +56,7 @@ const App = () => {
             </div>
           </div>
 
-          <CategoryCardList seeAll={seeAll} data={categoryData}/>
+          <CategoryCardList seeAll={seeAll} data={categoryData} />
         </div>
         <div className={classes.rightContainer}>
           <div className={classes.titleOfSection}>

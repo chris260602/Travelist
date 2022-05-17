@@ -6,7 +6,13 @@
     background-color: var(--modalBG);
     z-index: 100;
 }
-
+.loadingContainer{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+}
 .container {
     position: fixed;
     top: 50%;

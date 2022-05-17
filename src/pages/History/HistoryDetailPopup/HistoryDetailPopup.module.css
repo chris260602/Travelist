@@ -103,17 +103,24 @@
     align-items: center;
     border-left: solid 1px var(--primary);
     padding: 15px 25px;
+    /* width: 500px; */
+    font-size: 32px;
+    
+    
 }
 
 .ProductDetail{
-    font-size: 32px;
     font-weight: bold;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    height: 400px;
+    overflow: auto;
 }
 
 .card{
+    color: black;
     display: flex;
     flex-direction: column;
     justify-content: center;

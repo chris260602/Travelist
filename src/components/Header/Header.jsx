@@ -21,9 +21,8 @@ const Header = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (isFirstTime && user.userRole === 0) {
-      // getCartData();
+      getCartData();
     }
-    getCartData();
   }, []);
   const getCartData = async () => {
     try {
@@ -33,7 +32,6 @@ const Header = () => {
           withCredentials: true,
         }
       );
-      console.log(response.data.data);
       let totalData = 0;
       const cartHeaderData = response.data.data.map((item) => {
         totalData++;
@@ -45,12 +43,8 @@ const Header = () => {
         };
       });
       dispatch(setCartData({ totalData, cartHeaderData }));
-      // console.log(totalData);
-      // console.log("TotalData");
-      // console.log(cartHeaderData);
-      // console.log("CARD HEADER DATA");
-      // setCartData(response.data.data);
     } catch (e) {
+      console.log(e);
       alert("Please refresh your browser");
     }
   };

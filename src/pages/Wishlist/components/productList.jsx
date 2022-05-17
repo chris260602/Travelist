@@ -9,7 +9,9 @@ const ProductList = (props) => {
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    getFavouritesProductsDataHander();
+    if (user && user.userRole === 0) {
+      getFavouritesProductsDataHander();
+    }
   }, []);
   const getFavouritesProductsDataHander = async () => {
     try {
@@ -21,7 +23,6 @@ const ProductList = (props) => {
         }
       );
       setWishListData(response.data.data);
-      console.log(response.data.data);
     } catch (e) {
       alert("Please refresh your browser");
     }

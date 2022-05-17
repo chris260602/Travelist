@@ -7,9 +7,7 @@ import ProductCard from "./ProductCard";
 const ProductCardList = (props) => {
   const { data } = props;
   const listItems = data.map((item) => (
-    <Fragment>
-      <ProductCard item={item} isAdmin={props.isAdmin} />
-    </Fragment>
+    <ProductCard item={item} isAdmin={props.isAdmin} key={item._id} />
   ));
 
   return <div className={classes.product_list}>{listItems}</div>;

@@ -12,6 +12,7 @@ const Wishlist = () => {
   useEffect(() => {
     if (!user || user.userRole === -1 || user.userRole === 1) {
       navigate("/login");
+      return;
     }
   }, []);
   return (

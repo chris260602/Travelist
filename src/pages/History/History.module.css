@@ -2,14 +2,15 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    max-width: 1300px;
+    margin: auto;
     margin-top: 100px;
-    width: 100%;
 }
 
 .ContainerHeader{
-    width: 100%;
-    padding-left: 18%;
+    text-align: start;
+    padding-left: 10%;
 }
 
 /* div{

@@ -4,14 +4,16 @@ import ProductCart from "../../components/ProductCart/ProductCart";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import BuyPage from "./components/buyPage";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ProductCartList from "../../components/ProductCart/ProductCartList";
 import axios from "axios";
+import { login } from "../../store/reducers/userReducer/userReducer";
 
 const Cart = () => {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [getTdPromt, setTdPromt] = useState({
     active: false,
   });
@@ -23,10 +25,13 @@ const Cart = () => {
   const [totalAmountChangeLoading, setTotalAmountChangeLoading] =
     useState(false);
   const [summaryData, setSummaryData] = useState({});
+  const [purchaseLoading, setPurchaseLoading] = useState(false);
+  const [soldOut, setSoldOut] = useState(false);
   const [isFirstTime, setIsFirstTime] = useState(true);
   useEffect(() => {
     if (!user || user.userRole === -1 || user.userRole === 1) {
       navigate("/login");
+      return;
     }
     if (getTdPromt.active) {
       document.body.style.overflow = "hidden";
@@ -35,6 +40,7 @@ const Cart = () => {
     }
     if (isFirstTime) {
       handlePageStart();
+      refreshUserData();
       handleReloadTotalPrice();
     }
     if (isDataChange && !isFirstTime) {
@@ -91,11 +97,60 @@ const Cart = () => {
         }
       );
       console.log(response.data.data);
+      handleRestrictProductStocks(response.data.data);
       setCartData(response.data.data);
     } catch (e) {
       alert("Please refresh your browser");
     }
     setCartDataLoading(false);
+  };
+  const handleRestrictProductStocks = (productDatas) => {
+    productDatas.forEach((data) => {
+      if (data.quantity < data.productID.productStocks) {
+        setSoldOut(true);
+        return;
+      }
+    });
+  };
+  const handleBuyProducts = async () => {
+    setPurchaseLoading(true);
+    try {
+      const products = cartData.map((item) => {
+        return {
+          productID: item.productID._id,
+          quantity: item.quantity,
+        };
+      });
+      await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/transaction/add`,
+        {
+          userID: user.userID,
+          products: products,
+          totalItem: summaryData.totalItem,
+          totalPrice: summaryData.totalPrice,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+    } catch (e) {
+      alert("Please refresh your browser");
+    }
+    navigate("/");
+    setPurchaseLoading(false);
+  };
+  const refreshUserData = async () => {
+    try {
+      const userData = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/user/getuser/${user.userID}`,
+        {
+          withCredentials: true,
+        }
+      );
+      dispatch(login(userData.data.data));
+    } catch (e) {
+      alert("Something went wrong");
+    }
   };
   return (
     <Fragment>
@@ -107,6 +162,8 @@ const Cart = () => {
             totalPrice: summaryData.totalPrice,
             balance: user.balance,
           }}
+          handleBuyProducts={handleBuyProducts}
+          purchaseLoading={purchaseLoading}
         />
       ) : (
         ""
@@ -153,16 +210,22 @@ const Cart = () => {
                           <span>Total Price: </span>Rp {summaryData.totalPrice}
                         </p>
                       </div>
-                      <div
-                        className={classes.buyNowButton}
-                        onClick={() =>
-                          setTdPromt({
-                            active: true,
-                          })
-                        }
-                      >
-                        <p>Buy Now</p>
-                      </div>
+                      {!soldOut ? (
+                        <div className={classes.buyNowButton}>
+                          <p>Some products might be sold out.</p>
+                        </div>
+                      ) : (
+                        <div
+                          className={classes.buyNowButton}
+                          onClick={() =>
+                            setTdPromt({
+                              active: true,
+                            })
+                          }
+                        >
+                          <p>Buy Now</p>
+                        </div>
+                      )}
                     </Fragment>
                   )}
                 </div>

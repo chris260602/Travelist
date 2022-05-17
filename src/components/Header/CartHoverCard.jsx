@@ -23,18 +23,22 @@ const CartHoverCard = (props) => {
         <Link to={"/cart"}>See More</Link>
       </div>
       <div className={`${classes.cartHoverCardContainer}`}>
-        {props.data.products.map((item) => (
-          <Link to={"/cart"} className={classes.cartHoverCard}>
-            <div className={classes.cartHoverCardImageContainer}>
-              <img src={item.productPicture} alt="" />
-            </div>
-            <div className={classes.cartHoverCardTextContainer}>
-              <h3>{item.productName}</h3>
-              <p className={classes.totalItems}>{item.productAmount} Items</p>
-              <p>Rp.{item.productPrice}</p>
-            </div>
-          </Link>
-        ))}
+        {props.data.products.length === 0 ? (
+          <p>No Item on your cart</p>
+        ) : (
+          props.data.products.map((item) => (
+            <Link to={"/cart"} className={classes.cartHoverCard}>
+              <div className={classes.cartHoverCardImageContainer}>
+                <img src={item.productPicture} alt="" />
+              </div>
+              <div className={classes.cartHoverCardTextContainer}>
+                <h3>{item.productName}</h3>
+                <p className={classes.totalItems}>{item.productAmount} Items</p>
+                <p>Rp.{item.productPrice}</p>
+              </div>
+            </Link>
+          ))
+        )}
       </div>
     </div>
   );

@@ -11,7 +11,6 @@ const ProductCart = (props) => {
   const [amount, setAmount] = useState(props.item.quantity);
   const user = useSelector((state) => state.user);
   const [loadingCart, setLoadingCart] = useState(false);
-  console.log(props);
   const updateCartQuantity = async (amountData) => {
     setLoadingCart(true);
     try {

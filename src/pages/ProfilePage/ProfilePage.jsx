@@ -24,6 +24,7 @@ const ProfilePage = () => {
   const [DeleteVisible, setDeleteVisible] = useState(false);
   const [EmailVisible, setEmailVisible] = useState(false);
   const [AccountVisible, setAccountVisible] = useState(false);
+  const [isPageLoading, setIsPageLoading] = useState(false);
   useEffect(() => {
     if (!user || user.userRole === -1) {
       navigate("/login");
@@ -38,6 +39,9 @@ const ProfilePage = () => {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
+    }
+    if (user) {
+      refreshUserData();
     }
   }, [
     UsernameVisible,
@@ -79,13 +83,20 @@ const ProfilePage = () => {
   };
   const dispatch = useDispatch();
   const refreshUserData = async () => {
-    const userData = await axios.get(
-      `${process.env.REACT_APP_BACKEND_URL}/user/getuser/${user.userID}`,
-      {
-        withCredentials: true,
-      }
-    );
-    dispatch(login(userData.data.data));
+    setIsPageLoading(true);
+    try {
+      const userData = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/user/getuser/${user.userID}`,
+        {
+          withCredentials: true,
+        }
+      );
+      dispatch(login(userData.data.data));
+    } catch (e) {
+      alert("Something went wrong");
+    }
+
+    setIsPageLoading(false);
   };
   return (
     <Fragment>
@@ -96,79 +107,85 @@ const ProfilePage = () => {
       )}
       <Header />
       <div className={classes.pageContainer}>
-        <div className={classes.leftContainer}>
-          <div className={classes.profilePicture}>
-            <div>
-              <img src={user.profilePicture} alt="error" />
-            </div>
-            <div
-              className={classes.changePicture}
-              onClick={() => handleClickAccount()}
-            >
-              <p>Change Picture</p>
-            </div>
-          </div>
-          <div className={classes.deleteButton1}>
-            <div
-              className={classes.deleteAccount}
-              onClick={() => handleClickDelete()}
-            >
-              <p>Delete Account</p>
-            </div>
-          </div>
-        </div>
-        <div className={classes.rightContainer}>
-          <div className={classes.username}>
-            <div className={classes.usernameHeader}>
-              <span>User Name: </span>
-              <p
-                className={classes.LinkButton}
-                onClick={() => handleClickUsername()}
-              >
-                Change
-              </p>
-            </div>
-            <div>{user.userName}</div>
-          </div>
-          <div className={classes.email}>
-            <div className={classes.emailHeader}>
-              <span>Email: </span>
-              <p className={classes.LinkButton} onClick={handleClickEmail}>
-                Change
-              </p>
-            </div>
-            <div>{user.userEmail}</div>
-          </div>
-          {user.userRole === 1 ? (
-            ""
-          ) : (
-            <div className={classes.balance}>
-              <div className={classes.balanceHeader}>
-                <span>Balance: </span>
-                <Link to={"/topup"}>
-                  <div className={classes.topUpButton}>Top Up +</div>
-                </Link>
+        {isPageLoading ? (
+          <h1>Loading...</h1>
+        ) : (
+          <Fragment>
+            <div className={classes.leftContainer}>
+              <div className={classes.profilePicture}>
+                <div>
+                  <img src={user.profilePicture} alt="error" />
+                </div>
+                <div
+                  className={classes.changePicture}
+                  onClick={() => handleClickAccount()}
+                >
+                  <p>Change Picture</p>
+                </div>
               </div>
-              <div>Rp. {user.balance}</div>
-            </div>
-          )}
-
-          <div className={classes.buttons}>
-            <div
-              className={classes.changePassword}
-              onClick={() => handleClickPassword()}
-            >
-              <img src={lockIcon} alt="ERROR" />
-              <p>Change Password</p>
-            </div>
-
-            <div className={classes.deleteButton2}>
-              <div className={classes.deleteAccount}>
-                <p>Delete Account</p>
+              <div className={classes.deleteButton1}>
+                <div
+                  className={classes.deleteAccount}
+                  onClick={() => handleClickDelete()}
+                >
+                  <p>Delete Account</p>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+            <div className={classes.rightContainer}>
+              <div className={classes.username}>
+                <div className={classes.usernameHeader}>
+                  <span>User Name: </span>
+                  <p
+                    className={classes.LinkButton}
+                    onClick={() => handleClickUsername()}
+                  >
+                    Change
+                  </p>
+                </div>
+                <div>{user.userName}</div>
+              </div>
+              <div className={classes.email}>
+                <div className={classes.emailHeader}>
+                  <span>Email: </span>
+                  <p className={classes.LinkButton} onClick={handleClickEmail}>
+                    Change
+                  </p>
+                </div>
+                <div>{user.userEmail}</div>
+              </div>
+              {user.userRole === 1 ? (
+                ""
+              ) : (
+                <div className={classes.balance}>
+                  <div className={classes.balanceHeader}>
+                    <span>Balance: </span>
+                    <Link to={"/topup"}>
+                      <div className={classes.topUpButton}>Top Up +</div>
+                    </Link>
+                  </div>
+                  <div>Rp. {user.balance}</div>
+                </div>
+              )}
+
+              <div className={classes.buttons}>
+                <div
+                  className={classes.changePassword}
+                  onClick={() => handleClickPassword()}
+                >
+                  <img src={lockIcon} alt="ERROR" />
+                  <p>Change Password</p>
+                </div>
+
+                <div className={classes.deleteButton2}>
+                  <div className={classes.deleteAccount}>
+                    <p>Delete Account</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Fragment>
+        )}
       </div>
       <Footer />
       {UsernameVisible && (

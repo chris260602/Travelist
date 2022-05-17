@@ -59,13 +59,14 @@
     font-weight: bold;
 }
 
-.seeDetail a{
+.seeDetail p{
+    cursor: pointer;
     text-decoration: none;
     color: var(--primary);
     transition: all 0.3s ease;
 }
 
-.seeDetail a:hover{
+.seeDetail p:hover{
     color: var(--secondary);
 }
 
@@ -85,6 +86,8 @@
 
 
 .statusOnProcess{
+    cursor: default;
+    user-select: none;
     width: 110px;
     padding: 5px 10px;
     border-radius: 10px;
@@ -95,6 +98,8 @@
 }
 
 .statusCompleted{
+    cursor: pointer;
+    user-select: none;
     color: white;
     width: 100px;
     padding: 5px 10px;
@@ -105,7 +110,9 @@
     background-color: var(--primary);
     transition: all 0.3s ease;
 }
-
+.statusCompleted a{
+    color: white;
+}
 .statusCompleted:hover{
     background-color: var(--secondary);
 }
