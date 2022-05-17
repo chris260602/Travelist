@@ -71,6 +71,7 @@ const Cart = () => {
         }
       );
       const cartData = response.data.data;
+      handleRestrictProductStocks(response.data.data);
       let totalItem = 0;
       let totalPrice = 0;
       cartData.forEach((item) => {
@@ -96,7 +97,7 @@ const Cart = () => {
           withCredentials: true,
         }
       );
-      console.log(response.data.data);
+      // console.log(response.data.data);
       handleRestrictProductStocks(response.data.data);
       setCartData(response.data.data);
     } catch (e) {
@@ -106,9 +107,11 @@ const Cart = () => {
   };
   const handleRestrictProductStocks = (productDatas) => {
     productDatas.forEach((data) => {
-      if (data.quantity < data.productID.productStocks) {
+      if (data.productID.productStocks < data.quantity) {
         setSoldOut(true);
         return;
+      } else {
+        setSoldOut(false);
       }
     });
   };
@@ -210,7 +213,7 @@ const Cart = () => {
                           <span>Total Price: </span>Rp {summaryData.totalPrice}
                         </p>
                       </div>
-                      {!soldOut ? (
+                      {soldOut ? (
                         <div className={classes.buyNowButton}>
                           <p>Some products might be sold out.</p>
                         </div>

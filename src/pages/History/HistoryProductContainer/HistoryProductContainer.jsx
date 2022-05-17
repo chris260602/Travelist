@@ -29,9 +29,14 @@ const HistoryProductContainer = () => {
     setLoadingHistoryData(false);
   };
 
-  const HistoryProductContainerList = historyData.map((item) => (
-    <HistoryProductCard data={item} key={item._id} />
-  ));
+  const HistoryProductContainerList =
+    historyData.length === 0 ? (
+      <p>No Data...</p>
+    ) : (
+      historyData.map((item) => (
+        <HistoryProductCard data={item} key={item._id} />
+      ))
+    );
 
   return (
     <div className={classes.HistoryProductContainer_list}>

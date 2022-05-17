@@ -6,6 +6,7 @@ import axios from "axios";
 
 const ProductList = (props) => {
   const [wishListData, setWishListData] = useState([]);
+  const [wishListLoading, setWishListLoading] = useState(false);
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -14,6 +15,7 @@ const ProductList = (props) => {
     }
   }, []);
   const getFavouritesProductsDataHander = async () => {
+    setWishListLoading(true);
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_BACKEND_URL}/favourite/getUserProducts/${user.userID}`,
@@ -26,6 +28,7 @@ const ProductList = (props) => {
     } catch (e) {
       alert("Please refresh your browser");
     }
+    setWishListLoading(false);
   };
   const listItems = wishListData.map((item) => (
     <Fragment>
@@ -35,7 +38,13 @@ const ProductList = (props) => {
 
   return (
     <div className={classes.product_list}>
-      {wishListData.length === 0 ? <p>No Data..</p> : listItems}
+      {wishListLoading ? (
+        <h1>Loading...</h1>
+      ) : wishListData.length === 0 ? (
+        <p>No Data..</p>
+      ) : (
+        listItems
+      )}
     </div>
   );
 };
