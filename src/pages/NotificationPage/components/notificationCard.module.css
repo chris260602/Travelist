@@ -1,0 +1,45 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: var(--primary50);
+    margin: 0 0 1px 0;
+    padding: 10px 10px 10px 20px;
+    cursor: pointer;
+}
+
+.container:first-child{
+    border-radius: 10px 10px 0 0;
+}
+
+.container:last-child{
+    border-radius: 0 0 10px 10px;
+    margin: 0;
+}
+
+.container:hover{
+    background-color: var(--primary75);
+}
+
+.leftContainer{
+    width: 85%;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.body {
+    color: rgb(0, 0, 0, 0.75);
+    margin: 5px 0;
+}
+
+.notificationRelease{
+    color: rgb(0, 0, 0, 0.75);
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: flex-end;
+
+}
