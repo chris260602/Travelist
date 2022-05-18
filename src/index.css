@@ -2,6 +2,8 @@
 :root {
   --primary: #ed8f03;
   --primaryT: rgba(237, 143, 3, 0.25);
+  --primary50: rgb(237, 143, 3, 0.5);
+  --primary75: rgb(237, 143, 3, 0.75);
   --primaryD: #9c5f04;
   --secondary: #ffb75e;
   --secondaryT: rgb(255, 183, 94, 0.25);
