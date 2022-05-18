@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import classes from "./ProductPage.module.css";
+import classes from "./ProductFilterName.module.css";
 import ProductList from "./components/productList";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
@@ -7,11 +7,12 @@ import ProductAdmin from "../Products/Products";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-const Products = () => {
+const ProductFilterName = () => {
   const user = useSelector((state) => state.user);
   const params = useParams();
   const [isFilter, setIsFilter] = useState(params.filter);
   useEffect(() => {
+    console.log(params);
     setIsFilter(params.filter);
   }, [params]);
   return user.userRole === 1 ? (
@@ -30,4 +31,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default ProductFilterName;

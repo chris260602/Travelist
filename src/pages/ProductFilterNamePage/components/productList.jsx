@@ -28,7 +28,7 @@ const ProductList = (props) => {
   const getFilterProductsDataHander = async () => {
     setIsLoading(true);
     const responses = await axios.get(
-      `${process.env.REACT_APP_BACKEND_URL}/products/filter/?category=${props.isFilter}`,
+      `${process.env.REACT_APP_BACKEND_URL}/products/filter/?name=${props.isFilter}`,
       {
         withCredentials: true,
       }

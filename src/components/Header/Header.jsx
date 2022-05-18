@@ -7,18 +7,21 @@ import notificationBellIcon from "../../assets/img/notifcationBellIcon.svg";
 import CartHoverCard from "./CartHoverCard";
 import ProfileHoverCard from "./ProfileHoverCard";
 import NotificationHoverCard from "./NotificationHoverCard";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setCartData } from "../../store/reducers/cartReducer/cartReducer";
 import { logoff } from "../../store/reducers/userReducer/userReducer";
+import { setSeenNotificationData } from "../../store/reducers/notificationReducer/notificationReducer";
 const Header = () => {
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
+  const notification = useSelector((state) => state.notification);
   const [showCartCard, setShowCartCard] = useState(false);
   const [showNotificationCard, setShowNotificationCard] = useState(false);
   const [showProfileCard, setShowProfileCard] = useState(false);
   const [isFirstTime] = useState(true);
+  const searchRef = useRef();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -29,6 +32,7 @@ const Header = () => {
       }
       if (isFirstTime && user.userRole === 0) {
         await getCartData();
+        await getNotification();
       }
     };
     headerStartUp();
@@ -70,6 +74,41 @@ const Header = () => {
       console.log(e);
     }
   };
+  const getNotification = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/notification/notread/${user.userID}`,
+        {
+          withCredentials: true,
+        }
+      );
+      let totalData = 0;
+      const notificationHeaderData = response.data.data.map((item) => {
+        totalData++;
+        return {
+          type: item.type,
+          title: item.title,
+          content: item.content,
+        };
+      });
+      dispatch(setSeenNotificationData({ totalData, notificationHeaderData }));
+    } catch (e) {
+      console.log("Something Went Wrong");
+    }
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearchProductByName();
+    }
+  };
+  const handleSearchProductByName = async () => {
+    console.log(searchRef.current.value);
+    if (searchRef.current.value.length > 0) {
+      navigate(`/products/name/${searchRef.current.value}`);
+      searchRef.current.value = "";
+    }
+    // to={`/products/name/${searchRef.current}`}
+  };
   return (
     <div className={classes.headerContainer}>
       <div className={classes.logoContainer}>
@@ -79,10 +118,18 @@ const Header = () => {
       </div>
       <div className={classes.rightContainer}>
         <div className={classes.searchBarContainer}>
-          <input type="text" placeholder="Search" />
-          <Link to={"/"} className={classes.searchLink}>
+          <input
+            type="text"
+            placeholder="Search"
+            ref={searchRef}
+            onKeyDown={handleKeyDown}
+          />
+          <div
+            className={classes.searchLink}
+            onClick={handleSearchProductByName}
+          >
             <img src={searchIcon} alt="search" />
-          </Link>
+          </div>
         </div>
         <div className={classes.iconContainer}>
           {user.userID === "" ? (
@@ -129,10 +176,19 @@ const Header = () => {
                       className={classes.notificationLink}
                     >
                       <img src={notificationBellIcon} alt="notification" />
-                      <p className={classes.pendingIcon}>1</p>
+                      {notification.totalNotification === 0 ? (
+                        ""
+                      ) : (
+                        <p className={classes.pendingIcon}>
+                          {notification.totalNotification}
+                        </p>
+                      )}
                     </Link>
                     {showNotificationCard ? (
-                      <NotificationHoverCard active="true" />
+                      <NotificationHoverCard
+                        active="true"
+                        data={notification}
+                      />
                     ) : (
                       ""
                     )}

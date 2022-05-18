@@ -5,7 +5,11 @@ import { Link } from "react-router-dom";
 const CategoryCard = (props) => {
   const { item } = props;
   return (
-    <Link to={"/products"} className={classes.card} key={item.id}>
+    <Link
+      to={`/products/${item.categoryValue}`}
+      className={classes.card}
+      key={item.id}
+    >
       <div className={classes.card_img}>
         <img src={item.categoryIcon} alt="error" />
       </div>

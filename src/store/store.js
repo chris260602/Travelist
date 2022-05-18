@@ -3,10 +3,12 @@ import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 import userReducer from "./reducers/userReducer/userReducer";
 import cartReducer from "./reducers/cartReducer/cartReducer";
+import notificationReducer from "./reducers/notificationReducer/notificationReducer";
 
 const reducers = combineReducers({
   user: userReducer,
   cart: cartReducer,
+  notification: notificationReducer,
 });
 const persistConfig = {
   key: "root",

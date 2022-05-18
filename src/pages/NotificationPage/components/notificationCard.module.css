@@ -3,12 +3,15 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    background-color: var(--primary50);
+    background-color: var(--primary75);
     margin: 0 0 1px 0;
     padding: 10px 10px 10px 20px;
     cursor: pointer;
+    overflow-wrap: break-word;
 }
-
+.container.seen{
+    background-color: var(--primaryT);
+}
 .container:first-child{
     border-radius: 10px 10px 0 0;
 }
@@ -19,16 +22,27 @@
 }
 
 .container:hover{
-    background-color: var(--primary75);
+    background-color: var(--primary);
 }
 
 .leftContainer{
     width: 85%;
 }
-
+.notificationType{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+.notificationType img{
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+}
 .title {
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
+
 }
 
 .body {
