@@ -27,7 +27,7 @@ const ProductCart = (props) => {
       );
       props.setTotalAmountChange(true);
     } catch (e) {
-      alert("Something went wrong");
+      console.log("Please refresh your browser");
     }
     setLoadingCart(false);
   };
@@ -43,7 +43,7 @@ const ProductCart = (props) => {
       });
       props.setDataChange(true);
     } catch (e) {
-      alert("Something went wrong");
+      console.log("Please refresh your browser");
     }
   };
 

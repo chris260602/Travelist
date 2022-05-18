@@ -18,7 +18,6 @@ const ProfilePage = () => {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const [prompt, setPrompt] = useState(null);
-  // console.log(user);
   const [UsernameVisible, setUsernameVisible] = useState(false);
   const [PasswordVisible, setPasswordVisible] = useState(false);
   const [DeleteVisible, setDeleteVisible] = useState(false);
@@ -28,6 +27,7 @@ const ProfilePage = () => {
   useEffect(() => {
     if (!user || user.userRole === -1) {
       navigate("/login");
+      return;
     }
     if (
       UsernameVisible ||
@@ -40,7 +40,7 @@ const ProfilePage = () => {
     } else {
       document.body.style.overflow = "auto";
     }
-    if (user) {
+    if (user && user.userRole !== -1) {
       refreshUserData();
     }
   }, [
@@ -50,6 +50,7 @@ const ProfilePage = () => {
     EmailVisible,
     AccountVisible,
   ]);
+
   const handleClickUsername = () => {
     setUsernameVisible(true);
   };
@@ -93,7 +94,7 @@ const ProfilePage = () => {
       );
       dispatch(login(userData.data.data));
     } catch (e) {
-      alert("Something went wrong");
+      console.log("Something Went Wrong");
     }
 
     setIsPageLoading(false);

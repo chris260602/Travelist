@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import classes from "./Header.module.css";
 import searchIcon from "../../assets/img/searchIcon.svg";
 import logoIcon from "../../assets/company_name/Travelist.svg";
@@ -11,6 +11,7 @@ import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setCartData } from "../../store/reducers/cartReducer/cartReducer";
+import { logoff } from "../../store/reducers/userReducer/userReducer";
 const Header = () => {
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
@@ -18,12 +19,34 @@ const Header = () => {
   const [showNotificationCard, setShowNotificationCard] = useState(false);
   const [showProfileCard, setShowProfileCard] = useState(false);
   const [isFirstTime] = useState(true);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
   useEffect(() => {
-    if (isFirstTime && user.userRole === 0) {
-      getCartData();
-    }
+    const headerStartUp = async () => {
+      if (user && user.userRole !== -1) {
+        await checkSession();
+      }
+      if (isFirstTime && user.userRole === 0) {
+        await getCartData();
+      }
+    };
+    headerStartUp();
   }, []);
+  const checkSession = async () => {
+    try {
+      await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/user/verifysession`,
+        {
+          withCredentials: true,
+        }
+      );
+    } catch (e) {
+      navigate("/");
+      dispatch(logoff());
+      return;
+    }
+  };
   const getCartData = async () => {
     try {
       const response = await axios.get(
@@ -45,7 +68,6 @@ const Header = () => {
       dispatch(setCartData({ totalData, cartHeaderData }));
     } catch (e) {
       console.log(e);
-      alert("Please refresh your browser");
     }
   };
   return (

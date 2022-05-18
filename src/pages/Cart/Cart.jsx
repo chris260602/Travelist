@@ -83,7 +83,7 @@ const Cart = () => {
         totalPrice: totalPrice,
       });
     } catch (e) {
-      alert("Please refresh your browser");
+      console.log("Please refresh your browser");
     }
     setTotalAmountChangeLoading(false);
     setTotalAmountChange(false);
@@ -101,7 +101,7 @@ const Cart = () => {
       handleRestrictProductStocks(response.data.data);
       setCartData(response.data.data);
     } catch (e) {
-      alert("Please refresh your browser");
+      console.log("Please refresh your browser");
     }
     setCartDataLoading(false);
   };
@@ -137,7 +137,7 @@ const Cart = () => {
         }
       );
     } catch (e) {
-      alert("Please refresh your browser");
+      console.log("Please refresh your browser");
     }
     navigate("/");
     setPurchaseLoading(false);
@@ -152,7 +152,7 @@ const Cart = () => {
       );
       dispatch(login(userData.data.data));
     } catch (e) {
-      alert("Something went wrong");
+      console.log("Please refresh your browser");
     }
   };
   return (
