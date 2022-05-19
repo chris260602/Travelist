@@ -27,6 +27,7 @@ import Categories from "./pages/Categories/Categories";
 import Wishlist from "./pages/Wishlist/Wishlist";
 import Products from "./pages/ProductPage/ProductPage";
 import ProductFilterName from "./pages/ProductFilterNamePage/ProductFilterName";
+import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
 
 //Testing
 const App = React.lazy(() => {
@@ -66,6 +67,7 @@ ReactDOM.render(
               path="products/name/:filter"
               element={<ProductFilterName />}
             />
+            <Route path="forgetpassword" element={<ForgetPassword />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

@@ -3,9 +3,8 @@ import React, { Fragment, useState } from "react";
 import classes from "./notificationCard.module.css";
 import promotionIcon from "../../../assets/img/notification_promotion_icon.svg";
 import shoppingIcon from "../../../assets/img/notification_shopping_icon.svg";
-import otherIcon from "../../../assets/img/notification_other_icon.svg";
+import otherIcon from "../../../assets/img/notification_other_icon.png";
 const NotificationCard = (props) => {
-  console.log(props);
   const { item } = props;
   const [readMore, setReadMore] = useState(true);
   const [isSeen, setIsSeen] = useState(item.seen);

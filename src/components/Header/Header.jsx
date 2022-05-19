@@ -107,7 +107,6 @@ const Header = () => {
       navigate(`/products/name/${searchRef.current.value}`);
       searchRef.current.value = "";
     }
-    // to={`/products/name/${searchRef.current}`}
   };
   return (
     <div className={classes.headerContainer}>
