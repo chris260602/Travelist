@@ -20,8 +20,14 @@
   font-size: 25px;
   padding: 10px 0 0 0;
   margin: 0 20px 0 0;
+  display: flex;
+  align-items: flex-end;
 }
-
+.titleOfSection a{
+  font-size: 1.1rem;
+  margin-left: 20px;
+  color: var(--primary);
+}
 .firstSection {
   display: flex;
   justify-content: flex-start;

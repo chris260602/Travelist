@@ -4,6 +4,8 @@ import profileIcon from "../../assets/img/testingprofilepic.png";
 import classes from "./NotificationHoverCard.module.css";
 const NotificationHoverCard = (props) => {
   const [isActive, setIsActive] = useState(false);
+  console.log(props);
+  const { data } = props;
   useEffect(() => {
     if (props.active === "true") {
       setIsActive(true);
@@ -11,6 +13,7 @@ const NotificationHoverCard = (props) => {
       setIsActive(false);
     }
   }, [props]);
+
   return (
     <div
       className={`${classes.notificationHoverCardMainContainer} ${
@@ -22,19 +25,26 @@ const NotificationHoverCard = (props) => {
         <Link to={"/notification"}>See More</Link>
       </div>
       <div className={`${classes.notificationHoverCardContainer}`}>
-        <Link to={"/notification"} className={classes.notificationHoverCard}>
-          <div className={classes.notificationHoverCardTextContainer}>
-            <h3>Purchase Progress</h3>
-            <p>Bag on progress</p>
-          </div>
-        </Link>
-
-        <Link to={"/notification"} className={classes.notificationHoverCard}>
-          <div className={classes.notificationHoverCardTextContainer}>
-            <h3>Message from Travelist</h3>
-            <p>New promotion!</p>
-          </div>
-        </Link>
+        {data.notifications.length === 0 ? (
+          <p>No Notifications</p>
+        ) : (
+          data.notifications.map((item) => (
+            <Link
+              to={"/notification"}
+              className={classes.notificationHoverCard}
+              key={item.title}
+            >
+              <div className={classes.notificationHoverCardTextContainer}>
+                <h3>{item.title}</h3>
+                <p>
+                  {item.content.length > 30
+                    ? item.content.slice(0, 30) + "..."
+                    : item.content}
+                </p>
+              </div>
+            </Link>
+          ))
+        )}
       </div>
     </div>
   );

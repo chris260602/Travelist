@@ -314,7 +314,10 @@ const Login = () => {
                   />
                 </div>
                 <div className={classes.forgetPasswordContainer}>
-                  <Link to={"/"} className={classes.forgetPassword}>
+                  <Link
+                    to={"/forgetpassword"}
+                    className={classes.forgetPassword}
+                  >
                     Forgot Password
                   </Link>
                 </div>

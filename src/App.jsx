@@ -9,6 +9,7 @@ import DeleteProductCard from "./components/ProductCard/components/DeleteProduct
 import ProductCardList from "./components/ProductCard/ProductCardList";
 import axios from "axios";
 import CategoryCardList from "./components/CategoryCard/categoryCardList";
+import { Link } from "react-router-dom";
 
 const App = () => {
   const user = useSelector((state) => state.user);
@@ -61,6 +62,7 @@ const App = () => {
         <div className={classes.rightContainer}>
           <div className={classes.titleOfSection}>
             <p>Most Popular</p>
+            <Link to={"/products"}>See All Products</Link>
           </div>
           <ProductCardList isAdmin={user.userRole === 1} data={productData} />
         </div>

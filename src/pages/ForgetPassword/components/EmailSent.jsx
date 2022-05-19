@@ -1,15 +1,15 @@
 import { Fragment } from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
-import classes from "./EmailVerification.module.css";
+import classes from "./EmailSent.module.css";
 const EmailVerification = () => {
   document.body.style.overflow = "hidden";
   return ReactDOM.createPortal(
     <Fragment>
       <div className={classes.backDrop}></div>
       <div className={classes.container}>
-        <p>Account Verification has been sent to your email.</p>
-        <p>Please go to your email account to verify your account</p>
+        <p>Password reset link has been sent to your email.</p>
+        <p>Please go to your email account to reset your password</p>
         <div className={classes.linkContainer}>
           <Link to={"/login"}>Go back to login page</Link>
         </div>

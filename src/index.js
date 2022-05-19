@@ -26,6 +26,8 @@ import UpdateCategory from "./pages/UpdateCategory/UpdateCategory";
 import Categories from "./pages/Categories/Categories";
 import Wishlist from "./pages/Wishlist/Wishlist";
 import Products from "./pages/ProductPage/ProductPage";
+import ProductFilterName from "./pages/ProductFilterNamePage/ProductFilterName";
+import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
 
 //Testing
 const App = React.lazy(() => {
@@ -51,17 +53,22 @@ ReactDOM.render(
             <Route path="cart" element={<Cart />} />
             <Route path="about" element={<About />} /> {/* BELUM JADI */}
             <Route path="notification" element={<NotificationPage />} />{" "}
-            {/* BELUM JADI */}
             <Route path="profile" element={<ProfilePage />} />
             <Route path="history" element={<HistoryPage />} />
             <Route path="topup" element={<TopUp />} />
-            <Route path="*" element={<NotFound />} />
             <Route path="productdetail/:id" element={<Productdetail />} />
             <Route path="addcategory" element={<AddCategory />} />
             <Route path="updatecategory/:id" element={<UpdateCategory />} />
             <Route path="categories" element={<Categories />} />
             <Route path="wishlist" element={<Wishlist />} />
             <Route path="products" element={<Products />} />
+            <Route path="products/:filter" element={<Products />} />
+            <Route
+              path="products/name/:filter"
+              element={<ProductFilterName />}
+            />
+            <Route path="forgetpassword" element={<ForgetPassword />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </PersistGate>

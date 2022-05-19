@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import classes from "./Header.module.css";
 import searchIcon from "../../assets/img/searchIcon.svg";
 import logoIcon from "../../assets/company_name/Travelist.svg";
@@ -7,23 +7,50 @@ import notificationBellIcon from "../../assets/img/notifcationBellIcon.svg";
 import CartHoverCard from "./CartHoverCard";
 import ProfileHoverCard from "./ProfileHoverCard";
 import NotificationHoverCard from "./NotificationHoverCard";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setCartData } from "../../store/reducers/cartReducer/cartReducer";
+import { logoff } from "../../store/reducers/userReducer/userReducer";
+import { setSeenNotificationData } from "../../store/reducers/notificationReducer/notificationReducer";
 const Header = () => {
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
+  const notification = useSelector((state) => state.notification);
   const [showCartCard, setShowCartCard] = useState(false);
   const [showNotificationCard, setShowNotificationCard] = useState(false);
   const [showProfileCard, setShowProfileCard] = useState(false);
   const [isFirstTime] = useState(true);
+  const searchRef = useRef();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
   useEffect(() => {
-    if (isFirstTime && user.userRole === 0) {
-      getCartData();
-    }
+    const headerStartUp = async () => {
+      if (user && user.userRole !== -1) {
+        await checkSession();
+      }
+      if (isFirstTime && user.userRole === 0) {
+        await getCartData();
+        await getNotification();
+      }
+    };
+    headerStartUp();
   }, []);
+  const checkSession = async () => {
+    try {
+      await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/user/verifysession`,
+        {
+          withCredentials: true,
+        }
+      );
+    } catch (e) {
+      navigate("/");
+      dispatch(logoff());
+      return;
+    }
+  };
   const getCartData = async () => {
     try {
       const response = await axios.get(
@@ -45,7 +72,40 @@ const Header = () => {
       dispatch(setCartData({ totalData, cartHeaderData }));
     } catch (e) {
       console.log(e);
-      alert("Please refresh your browser");
+    }
+  };
+  const getNotification = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/notification/notread/${user.userID}`,
+        {
+          withCredentials: true,
+        }
+      );
+      let totalData = 0;
+      const notificationHeaderData = response.data.data.map((item) => {
+        totalData++;
+        return {
+          type: item.type,
+          title: item.title,
+          content: item.content,
+        };
+      });
+      dispatch(setSeenNotificationData({ totalData, notificationHeaderData }));
+    } catch (e) {
+      console.log("Something Went Wrong");
+    }
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearchProductByName();
+    }
+  };
+  const handleSearchProductByName = async () => {
+    console.log(searchRef.current.value);
+    if (searchRef.current.value.length > 0) {
+      navigate(`/products/name/${searchRef.current.value}`);
+      searchRef.current.value = "";
     }
   };
   return (
@@ -57,10 +117,18 @@ const Header = () => {
       </div>
       <div className={classes.rightContainer}>
         <div className={classes.searchBarContainer}>
-          <input type="text" placeholder="Search" />
-          <Link to={"/"} className={classes.searchLink}>
+          <input
+            type="text"
+            placeholder="Search"
+            ref={searchRef}
+            onKeyDown={handleKeyDown}
+          />
+          <div
+            className={classes.searchLink}
+            onClick={handleSearchProductByName}
+          >
             <img src={searchIcon} alt="search" />
-          </Link>
+          </div>
         </div>
         <div className={classes.iconContainer}>
           {user.userID === "" ? (
@@ -107,10 +175,19 @@ const Header = () => {
                       className={classes.notificationLink}
                     >
                       <img src={notificationBellIcon} alt="notification" />
-                      <p className={classes.pendingIcon}>1</p>
+                      {notification.totalNotification === 0 ? (
+                        ""
+                      ) : (
+                        <p className={classes.pendingIcon}>
+                          {notification.totalNotification}
+                        </p>
+                      )}
                     </Link>
                     {showNotificationCard ? (
-                      <NotificationHoverCard active="true" />
+                      <NotificationHoverCard
+                        active="true"
+                        data={notification}
+                      />
                     ) : (
                       ""
                     )}
