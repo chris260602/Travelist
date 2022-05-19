@@ -25,7 +25,7 @@ const NotificationCard = (props) => {
                 <p className={classes.title}>
                     {item.title}
                 </p>
-                <p className={classes.body}>
+                <p className={classes.information}>
                     {content}
                 </p>
             </div>
