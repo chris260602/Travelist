@@ -15,12 +15,15 @@ const App = () => {
   const user = useSelector((state) => state.user);
   const [seeAll, setSeeAll] = useState(false);
   const [productData, setProductData] = useState([]);
+  const [loadingProductData, setLoadingProductData] = useState(false);
   const [categoryData, setCategoryData] = useState([]);
+  const [loadingCategoryData, setLoadingCategoryData] = useState(false);
   useEffect(() => {
     getProductsDataHander();
     getCategoryDataHander();
   }, []);
   const getProductsDataHander = async () => {
+    setLoadingProductData(true);
     const response = await axios.get(
       `${process.env.REACT_APP_BACKEND_URL}/products/popular`,
       {
@@ -28,11 +31,13 @@ const App = () => {
       }
     );
     setProductData(response.data.data);
+    setLoadingProductData(false);
   };
   const seeAllHandler = () => {
     setSeeAll((prevState) => !prevState);
   };
   const getCategoryDataHander = async () => {
+    setLoadingCategoryData(true);
     const response = await axios.get(
       `${process.env.REACT_APP_BACKEND_URL}/categories/`,
       {
@@ -40,6 +45,7 @@ const App = () => {
       }
     );
     setCategoryData(response.data.data);
+    setLoadingCategoryData(false);
   };
   return (
     <Fragment>
@@ -56,15 +62,22 @@ const App = () => {
               </p>
             </div>
           </div>
-
-          <CategoryCardList seeAll={seeAll} data={categoryData} />
+          {loadingCategoryData ? (
+            <p>Loading...</p>
+          ) : (
+            <CategoryCardList seeAll={seeAll} data={categoryData} />
+          )}
         </div>
         <div className={classes.rightContainer}>
           <div className={classes.titleOfSection}>
             <p>Most Popular</p>
             <Link to={"/products"}>See All Products</Link>
           </div>
-          <ProductCardList isAdmin={user.userRole === 1} data={productData} />
+          {loadingProductData ? (
+            <p>Loading...</p>
+          ) : (
+            <ProductCardList isAdmin={user.userRole === 1} data={productData} />
+          )}
         </div>
       </div>
       <Footer />

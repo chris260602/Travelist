@@ -28,9 +28,14 @@ const NotificationCardList = () => {
     setNotificationLoading(false);
   };
 
-  const listItems = notificationData.map((item) => (
-    <NotificationCard item={item} key={item._id} />
-  ));
+  const listItems =
+    notificationData.length === 0 ? (
+      <p>No Notification...</p>
+    ) : (
+      notificationData.map((item) => (
+        <NotificationCard item={item} key={item._id} />
+      ))
+    );
 
   return (
     <div className={classes.notification_list}>

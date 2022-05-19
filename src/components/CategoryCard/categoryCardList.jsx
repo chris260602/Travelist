@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import CategoryCard from "./categoryCard";
 import classes from "./categoryCardList.module.css";
 

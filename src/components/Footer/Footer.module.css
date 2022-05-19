@@ -4,11 +4,13 @@
 }
 .upperContainer {
   display: flex;
+  flex-wrap: wrap;
   max-width: 1300px;
   margin: auto;
 }
 .childContainer {
   width: 20%;
+  min-width: 200px;
   padding: 20px;
 }
 .childContainer h3 {

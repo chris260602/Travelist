@@ -1,0 +1,132 @@
+.aboutContainer{
+    max-width: 1300px;
+  margin: auto;
+}
+.aboutSection{
+    width: 100%;
+    height: 300px;
+    background-image: url("../../assets/background/aboutBackground.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    font-weight: bolder;
+}
+.exploreSection{
+    display: flex;
+    padding: 100px 50px 0 50px;
+}
+.exploreSection .imageContainer{
+width: 40%;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.exploreSection .imageContainer img{
+    max-width: 80%;
+}
+.exploreSection .contentContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 60%;
+}
+.exploreSection .contentContainer .exploreButton{
+    color: white;
+    font-weight: bold;
+    padding: 0.5em 1em;
+    border-radius: 20px;
+    background-color: var(--primary);
+    margin-top: 30px;
+    transition: all 0.3s;
+}
+.exploreSection .contentContainer .exploreButton:hover{
+    transform: scale(1.15);
+}
+.missionSection{
+    text-align: center;
+    border-top: 1px solid var(--primary);
+    border-bottom: 1px solid var(--primary);
+    padding: 50px 50px 50px 50px;
+    margin: 50px 0 50px 0;
+
+}
+.valueSection{
+    padding: 0 50px 0 50px;
+}
+.mainSectionTitle{
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.valueTopContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 100px;
+}
+.valueCard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 300px;
+text-align: center;
+}
+.valueCard img{
+    width: 150px;
+}
+.valueCard h3{
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+.valueBottomContainer{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+@media screen and (max-width: 720px){
+    .exploreSection{
+        display: flex;
+        padding: 100px 50px 0 50px;
+        flex-direction: column;
+    }
+    .exploreSection .imageContainer{
+        width: 0;
+        display: none;
+    }
+
+    .exploreSection .contentContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+    }
+    .exploreSection .contentContainer .exploreButton{
+        color: white;
+        font-weight: bold;
+        padding: 0.5em 1em;
+        border-radius: 20px;
+        background-color: var(--primary);
+        margin-top: 30px;
+    }
+    .valueTopContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0;
+    }
+    .valueTopContainer .valueCard{
+        margin-bottom: 100px;
+    }
+}

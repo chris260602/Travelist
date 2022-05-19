@@ -29,6 +29,7 @@
   display: flex;
   align-items: center;
   width: 50%;
+  min-width: 130px;
 }
 .searchBarContainer input {
   font-size: 1.1rem;
