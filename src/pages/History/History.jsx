@@ -18,9 +18,9 @@ const History = () => {
   return (
     <Fragment>
       <Header />
-      <div className={classes.Container}>
-        <div className={classes.ContainerHeader}>
-          <h1>History</h1>
+      <div className={classes.container}>
+        <div className={classes.titleOfSection}>
+          <p>History</p>
         </div>
         <HistoryProductContainer />
       </div>
