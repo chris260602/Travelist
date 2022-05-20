@@ -30,6 +30,8 @@ const ProductDetail = () => {
       setLoadingProduct(false);
     };
     initPage();
+
+    document.title = "Product Detail | Travelist";
   }, [isWishlist]);
   const getProductDataHander = async () => {
     const response = await axios.get(

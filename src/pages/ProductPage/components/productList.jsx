@@ -1,7 +1,6 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./productList.module.css";
 import ProductCard from "./components/productCard";
-import ProductList_data from "./components/productCard_data";
 import axios from "axios";
 
 const ProductList = (props) => {

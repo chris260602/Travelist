@@ -5,11 +5,9 @@ import Footer from "../../components/Footer/Footer";
 import SimpleButton from "../../components/UI/SimpleButton/SimpleButton";
 import { useDispatch, useSelector } from "react-redux";
 import TopUpCol from "./TopUpCol";
-import DataIsEmpty from "../../components/DataIsEmpty/DataIsEmpty";
 import axios from "axios";
 import { login } from "../../store/reducers/userReducer/userReducer";
 import { useNavigate } from "react-router-dom";
-//DUMMY_DATA
 
 const TopUpPage = () => {
   const [topUpAmount, setTopUpAmount] = useState(0);
@@ -27,6 +25,8 @@ const TopUpPage = () => {
     document.title = "TopUp | Travelist";
     refreshUserData();
     fetchAllTopUpRequest();
+
+    document.title = "Top Up | Travelist";
   }, []);
   const refreshUserData = async () => {
     const userData = await axios.get(

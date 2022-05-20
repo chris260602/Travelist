@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import classes from "./HistoryProductContainer.module.css";
-import HistoryProductContainer_data from "./HistoryProductContainer_data";
 import HistoryProductCard from "./HistoryProductCard";
 import axios from "axios";
 import { useSelector } from "react-redux";

@@ -34,6 +34,8 @@ const UpdateCategory = () => {
       }
     };
     getCategoryData();
+
+    document.title = "Update Category | Travelist";
   }, []);
 
   const setImages = (data) => {

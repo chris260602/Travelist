@@ -51,6 +51,8 @@ const UpdateProduct = () => {
     } else {
       navigate("/");
     }
+
+    document.title = "Update Product | Travelist";
   }, []);
 
   const setImages = (number, data) => {

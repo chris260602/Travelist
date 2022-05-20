@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import classes from "./HistoryDetailPopup.module.css";
+import ReactDOM from "react-dom";
 
 const HistoryDetailPopup = ({ handleClose, Details }) => {
   console.log(Details);
-  return (
+  return ReactDOM.createPortal(
+    <Fragment>
     <div className={classes.DetailBackground}>
       <div className={classes.DetailContainer}>
         <div className={classes.DetailTitle}>
@@ -80,6 +82,8 @@ const HistoryDetailPopup = ({ handleClose, Details }) => {
         </div>
       </div>
     </div>
+    </Fragment>,
+    document.getElementById("card")
   );
 };
 

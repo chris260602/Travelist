@@ -5,8 +5,12 @@ import helpIcon from "../../assets/img/helpIcon.svg";
 import ratingIcon from "../../assets/img/ratingIcon.svg";
 import growthIcon from "../../assets/img/growth-mindsetIcon.svg";
 import classes from "./About.module.css";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 const About = () => {
+
+  useEffect(() => {
+    document.title = "About | Travelist";
+  },[])
   return (
     <Fragment>
       <section className={classes.aboutSection}>

@@ -14,6 +14,8 @@ const Wishlist = () => {
       navigate("/login");
       return;
     }
+
+    document.title = "Wishlist | Travelist";
   }, []);
   return (
     <Fragment>

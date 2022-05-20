@@ -20,6 +20,8 @@ const AddCategory = () => {
     if (!user || user.userRole === -1 || user.userRole === 0) {
       navigate("/login");
     }
+
+    document.title = "Add Category | Travelist";
   }, []);
   const checkIsPictureInserted = (picture, minVal) => {
     if (picture.current !== null && 1 >= minVal) {

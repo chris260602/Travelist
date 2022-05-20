@@ -1,7 +1,6 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
-import Loader from "../../../components/UI/Loader/Loader";
 import classes from "./buyPage.module.css";
 
 const BuyPage = (props) => {

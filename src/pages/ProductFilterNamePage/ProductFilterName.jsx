@@ -14,6 +14,8 @@ const ProductFilterName = () => {
   useEffect(() => {
     console.log(params);
     setIsFilter(params.filter);
+
+    document.title = "Product | Travelist";
   }, [params]);
   return user.userRole === 1 ? (
     <ProductAdmin />

@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
 import classes from "./Cart.module.css";
-import ProductCart from "../../components/ProductCart/ProductCart";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import BuyPage from "./components/buyPage";
@@ -50,6 +49,8 @@ const Cart = () => {
       handleReloadTotalPrice();
     }
     setIsFirstTime(false);
+
+    document.title = "Cart | Travelist";
   }, [getTdPromt, isDataChange, totalAmountChange]);
   const handlePageStart = async () => {
     setPageLoading(true);

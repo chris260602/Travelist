@@ -1,5 +1,4 @@
-import React, { Fragment } from "react";
-import productCard_data from "./productCard_data";
+import React from "react";
 import classes from "./ProductCardList.module.css";
 
 import ProductCard from "./ProductCard";

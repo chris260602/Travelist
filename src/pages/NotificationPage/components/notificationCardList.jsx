@@ -1,9 +1,8 @@
 import axios from "axios";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import NotificationCard from "./notificationCard";
 import classes from "./notificationCardList.module.css";
-import NotificationData from "./notificationData";
 
 const NotificationCardList = () => {
   const user = useSelector((state) => state.user);

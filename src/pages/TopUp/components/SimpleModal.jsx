@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import ReactDOM from "react-dom";
 import classes from "./SimpleModal.module.css";
 const SimpleModal = (props) => {
-  const { title, desc, warning, name, id, price } = props.item;
+  const { title, desc, warning, name, price } = props.item;
   return ReactDOM.createPortal(
     <Fragment>
       <div

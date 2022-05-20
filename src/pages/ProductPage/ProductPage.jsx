@@ -13,6 +13,8 @@ const Products = () => {
   const [isFilter, setIsFilter] = useState(params.filter);
   useEffect(() => {
     setIsFilter(params.filter);
+
+    document.title = "Product | Travelist";
   }, [params]);
   return user.userRole === 1 ? (
     <ProductAdmin />

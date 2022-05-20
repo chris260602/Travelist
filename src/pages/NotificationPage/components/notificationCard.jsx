@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import classes from "./notificationCard.module.css";
 import promotionIcon from "../../../assets/img/notification_promotion_icon.svg";
 import shoppingIcon from "../../../assets/img/notification_shopping_icon.svg";

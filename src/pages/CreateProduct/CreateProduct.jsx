@@ -39,6 +39,8 @@ const CreateProduct = () => {
     } else {
       navigate("/");
     }
+
+    document.title = "Create Product | Travelist";
   }, []);
   const checkIsPictureInserted = (picture, minVal) => {
     if (picture.current !== null && totalPictures >= minVal) {

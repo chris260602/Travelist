@@ -7,7 +7,7 @@ import ChangePasswordPopUp from "./components/ChangePassword";
 import DeleteAccountPopUp from "./components/DeleteAccount";
 import ChangeEmailPopUp from "./components/ChangeEmail";
 import lockIcon from "../../assets/img/lockIcon.svg";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileConfirmationCard from "./components/ProfileConfirmationCard";
 import ChangeProfilePicture from "./components/ChangeProfilePicture";
@@ -43,6 +43,8 @@ const ProfilePage = () => {
     if (user && user.userRole !== -1) {
       refreshUserData();
     }
+
+    document.title = "Profile | Travelist";
   }, [
     UsernameVisible,
     PasswordVisible,

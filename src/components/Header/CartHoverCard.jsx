@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import profileIcon from "../../assets/img/testingprofilepic.png";
 import classes from "./CartHoverCard.module.css";
 const CartHoverCard = (props) => {
   const [isActive, setIsActive] = useState(false);

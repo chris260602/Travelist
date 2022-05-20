@@ -21,6 +21,8 @@ const Categories = () => {
       setCardContainer(cardContainerHandler);
     }
     setIsLoading(false);
+
+    document.title = "Categories | Travelist";
   }, [categoryData.length]);
   const getCategoryDataHander = async () => {
     setIsLoading(true);

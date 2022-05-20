@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import HistoryDetailPopup from "../HistoryDetailPopup/HistoryDetailPopup";
 import classes from "./HistoryProductContainer.module.css";
@@ -14,6 +14,13 @@ const HistoryProductCard = (props) => {
   const hideDetail = () => {
     setVisible(false);
   };
+  useEffect(() => {
+    if (Visible === true) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  },[Visible]);
   return (
     <div className={classes.Container}>
       <div className={classes.Container_Content}>

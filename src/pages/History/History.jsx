@@ -13,6 +13,8 @@ const History = () => {
     if (!user || user.userRole === -1 || user.userRole === 1) {
       navigate("/login");
     }
+
+    document.title = "History | Travelist";
   }, []);
 
   return (

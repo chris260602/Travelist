@@ -14,6 +14,8 @@ const NotificationPage = () => {
       navigate("/login");
       return;
     }
+
+    document.title = "Notification | Travelist";
   }, []);
   return (
     <div>

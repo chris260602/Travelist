@@ -1,11 +1,8 @@
 import { Fragment, useEffect, useState } from "react";
 import classes from "./App.module.css";
-import ProductCard from "./components/ProductCard/ProductCard";
-import CategoryCard from "./components/CategoryCard/categoryCard";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import { useSelector } from "react-redux";
-import DeleteProductCard from "./components/ProductCard/components/DeleteProductCard";
 import ProductCardList from "./components/ProductCard/ProductCardList";
 import axios from "axios";
 import CategoryCardList from "./components/CategoryCard/categoryCardList";
@@ -21,6 +18,8 @@ const App = () => {
   useEffect(() => {
     getProductsDataHander();
     getCategoryDataHander();
+
+    document.title = "Travelist";
   }, []);
   const getProductsDataHander = async () => {
     setLoadingProductData(true);

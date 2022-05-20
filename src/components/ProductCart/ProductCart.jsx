@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classes from "./ProductCart.module.css";
 import TrashIcon from "../../assets/img/trash.svg";
-import { Link, useParams } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 

@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import categoryCardData from "./categoryCardData";
+import React from "react";
 import classes from "./categoryCard.module.css";
 import { Link } from "react-router-dom";
 const CategoryCard = (props) => {
