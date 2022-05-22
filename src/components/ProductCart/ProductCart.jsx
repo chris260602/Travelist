@@ -4,6 +4,8 @@ import TrashIcon from "../../assets/img/trash.svg";
 import { Link} from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import addIcon from "../../assets/img/addIcon.png"
+import substractIcon from "../../assets/img/substractIcon.png"
 
 const ProductCart = (props) => {
   const { item } = props;
@@ -85,7 +87,7 @@ const ProductCart = (props) => {
                 onClick={handleSubtract}
               >
                 <img
-                  src="https://i.ibb.co/31VR1Vq/carbon-subtract-alt.png"
+                  src={substractIcon}
                   alt="error"
                 />
               </div>
@@ -102,7 +104,7 @@ const ProductCart = (props) => {
                 onClick={handleIncrement}
               >
                 <img
-                  src="https://i.ibb.co/VVVXtH4/carbon-add-alt.png"
+                  src={addIcon}
                   alt="error"
                 />
               </div>

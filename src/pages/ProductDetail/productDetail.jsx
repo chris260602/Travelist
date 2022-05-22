@@ -6,6 +6,8 @@ import Footer from "../../components/Footer/Footer";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import addIcon from "../../assets/img/addIcon.png"
+import substractIcon from "../../assets/img/substractIcon.png"
 
 const ProductDetail = () => {
   const [productData, setProductData] = useState({});
@@ -281,7 +283,7 @@ const ProductDetail = () => {
                       onClick={handleSubtract}
                     >
                       <img
-                        src="https://i.ibb.co/31VR1Vq/carbon-subtract-alt.png"
+                        src={substractIcon}
                         alt="error"
                       />
                     </div>
@@ -300,7 +302,7 @@ const ProductDetail = () => {
                       onClick={handleIncrement}
                     >
                       <img
-                        src="https://i.ibb.co/VVVXtH4/carbon-add-alt.png"
+                        src={addIcon}
                         alt="error"
                       />
                     </div>
