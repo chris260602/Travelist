@@ -54,8 +54,14 @@
     padding-top: 50px;
 }
 
+
 .changeAmountIcon img{
     width: 45px;
+}
+
+.changeAmountIcon:hover{
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 .amountText{
@@ -70,6 +76,10 @@
     width: fit-content;
 }
 
+.removeCart:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
 .removeCart img{
     width: 100%;
 }

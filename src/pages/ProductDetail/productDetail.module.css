@@ -163,6 +163,11 @@
     width: 35px;
 }
 
+.changeAmountIcon:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
 .amountText{
     font-size: 1.2rem;
     margin: 0 10px;
