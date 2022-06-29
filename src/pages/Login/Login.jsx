@@ -281,6 +281,16 @@ const Login = () => {
             <div className={classes.formContainer}>
               <form className={classes.loginForm} onSubmit={loginSubmit}>
                 <h2 className={classes.loginTitle}>Login</h2>
+                <h3>
+                  Email (Customer): martinlo1008@gmail.com <br />
+                  Email (Admin): christoperlim20@gmail.com <br />
+                  Password: 123123
+                </h3>
+                <h4>
+                  <br />
+                  menggunakan dummy_account dikarenakan kami harus melakukan
+                  reset token tiap hari jika website kami tidak digunakan
+                </h4>
                 {isInvalid ? (
                   <p className={classes.invalidLogin}>
                     Invalid email or password !

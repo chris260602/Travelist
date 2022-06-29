@@ -108,6 +108,7 @@ const Header = () => {
       searchRef.current.value = "";
     }
   };
+
   return (
     <div className={classes.headerContainer}>
       <div className={classes.logoContainer}>
